@@ -1,0 +1,371 @@
+/* All Star Cleaning — Custom Design System */
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+
+  /* Layout */
+  --header-height: 6rem;
+
+  /* === COLOR STRATEGY: Royal Blue & White === */
+  /* Blue carries 30-60% of hero/CTA surfaces. Navy anchors. White keeps it clean. */
+  /* Neutrals tinted toward blue (hue 255) with chroma 0.005-0.015 */
+
+  /* Brand: Midnight Indigo (Refined) */
+  --color-midnight-indigo: #1e2a4a;
+  --color-midnight-indigo: oklch(28% 0.08 265);
+  --color-midnight-indigo-light: #2d3d66;
+  --color-midnight-indigo-light: oklch(38% 0.07 265);
+  --color-midnight-indigo-dark: #141d35;
+  --color-midnight-indigo-dark: oklch(20% 0.06 265);
+  --color-midnight-indigo-surface: #f5f6fa;
+  --color-midnight-indigo-surface: oklch(97.5% 0.015 265);
+
+  /* Anchor: Navy — warm-tinted indigo, never pure black */
+  --color-navy: #1a1d2e;
+  --color-navy: oklch(17.5% 0.030 265);
+  --color-navy-light: #2d3148;
+  --color-navy-light: oklch(25.5% 0.035 265);
+  --color-navy-dark: #12141f;
+  --color-navy-dark: oklch(12.0% 0.025 265);
+
+  /* Accent: Gold reserved for ratings and rare emphasis */
+  --color-gold: #c9a84c;
+  --color-gold: oklch(75% 0.15 85);
+  --color-gold-light: #d4b96e;
+  --color-gold-light: oklch(80% 0.14 85);
+  --color-gold-dark: #a88a2e;
+  --color-gold-dark: oklch(65% 0.16 85);
+
+  /* Semantic colors */
+  --color-green: #1a9a4a;
+  --color-green: oklch(63.0% 0.190 145);
+  --color-green-light: #3dba6a;
+  --color-green-light: oklch(78.0% 0.180 150);
+  --color-green-dark: #157a3a;
+  --color-green-dark: oklch(52.0% 0.175 140);
+  --color-green-surface: #f0fdf4;
+  --color-green-surface: oklch(98% 0.015 145);
+
+  --color-sky: #0ea5e9;
+  --color-sky: oklch(70% 0.16 235);
+  --color-sky-light: #38bdf8;
+  --color-sky-light: oklch(78% 0.14 235);
+  --color-sky-dark: #0284c7;
+  --color-sky-dark: oklch(60% 0.18 235);
+  --color-sky-surface: #f0f9ff;
+  --color-sky-surface: oklch(98% 0.015 235);
+
+  --color-amber: #f59e0b;
+  --color-amber: oklch(78% 0.17 75);
+  --color-amber-light: #fbbf24;
+  --color-amber-light: oklch(84% 0.16 75);
+  --color-amber-dark: #d97706;
+  --color-amber-dark: oklch(68% 0.18 75);
+  --color-amber-surface: #fffbeb;
+  --color-amber-surface: oklch(98.5% 0.015 75);
+
+  /* Neutrals — indigo-tinted (hue 265), hex fallbacks + OKLCH */
+  --color-off-white: #fafafc;
+  --color-off-white: oklch(98.0% 0.005 265);       /* Page background */
+  --color-off-white-dark: #eeeff3;
+  --color-off-white-dark: oklch(93.5% 0.006 265);
+  --color-background: var(--color-off-white);
+  --color-foreground: var(--color-navy);
+  --color-primary: var(--color-midnight-indigo);
+  --color-primary-foreground: var(--color-text-on-dark);
+  --color-destructive-foreground: var(--color-text-on-dark);
+  --color-input: var(--color-border);
+  --color-secondary: var(--color-navy);
+  --color-secondary-foreground: #fafafc;
+  --color-secondary-foreground: oklch(98.5% 0.004 265);
+  --color-accent: var(--color-gold);
+  --color-accent-foreground: var(--color-navy);
+  --color-muted: #464860;
+  --color-muted: oklch(35.0% 0.03 265);              /* Deeper secondary text for better authority */
+  --color-muted-foreground: #5c5f7a;
+  --color-muted-foreground: oklch(42.0% 0.025 265);   /* WCAG AA: 5.22:1 on off-white */
+  --color-border: #e4e5ed;
+  --color-border: oklch(92.0% 0.008 265);              /* Tinted toward brand, not pure gray */
+  --color-ring: var(--color-midnight-indigo);                 /* Indigo focus rings */
+  --color-destructive: #b91c1c;
+  --color-destructive: oklch(55.0% 0.200 25);
+  --color-card: oklch(99.2% 0.004 265);                /* Card surfaces — tinted white, not pure #fff */
+  --color-card-foreground: var(--color-navy);
+
+  /* === TYPOGRAPHY TEST: "White" Text on Dark === */
+  /* --color-text-on-dark: oklch(98.0% 0.003 265); [Original Stark White] */
+  
+  /* TEST 1: Refined White (Soft Parchment) - INACTIVE */
+  /* --color-text-on-dark: oklch(96.5% 0.008 265); */
+  /* --color-text-on-dark-muted: oklch(90.0% 0.01 265); */
+
+  /* TEST 2: Indigo-Wash (Subtle Brand Glow) - ACTIVE */
+  --color-text-on-dark: #e8e9f5;
+  --color-text-on-dark: oklch(94.5% 0.025 265);
+  --color-text-on-dark-muted: #c8cae0;
+  --color-text-on-dark-muted: oklch(88.0% 0.03 265);
+
+  /* Safe areas */
+  --safe-area-top: env(safe-area-inset-top);
+  --safe-area-bottom: env(safe-area-inset-bottom);
+  --safe-area-left: env(safe-area-inset-left);
+  --safe-area-right: env(safe-area-inset-right);
+
+  /* === TYPOGRAPHY === */
+  /* Impeccable typeset: fluid clamp() headings, fixed rem body, 1.25 ratio scale */
+  --font-heading: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --text-display: clamp(2.5rem, 5vw, 4.5rem);
+  --text-headline: clamp(1.75rem, 4vw, 3rem);
+  --text-subheading: clamp(1.125rem, 2.5vw, 1.5rem);
+  --text-lead: 1.25rem;              /* Body lead paragraphs — slightly larger */
+
+  /* === RADIUS === */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+
+  /* === SPACING === */
+  /* Impeccable layout: 8/16/24/32/48/80/120 scale, no off-scale tokens */
+  --space-section-sm: 4rem;
+  --space-section-md: 5rem;
+  --space-section-lg: 6rem;
+  --space-gap-tight: 0.5rem;         /* 8px — related siblings */
+  --space-gap-normal: 1rem;          /* 16px — standard grouping */
+  --space-gap-relaxed: 1.5rem;       /* 24px — section internals */
+  --space-gap-loose: 2rem;           /* 32px — distinct groups */
+  --space-gap-section: 3rem;         /* 48px — section separation */
+  --space-gap-spread: 5rem;          /* 80px — generous separation */
+
+  /* === WIDTH === */
+  --width-content: 65ch;
+  --width-max: 80rem;
+
+  /* === ELEVATION === */
+  /* Impeccable: Tinted shadows using brand hue for premium depth */
+  --shadow-sm: 0 1px 3px 0 oklch(15% 0.05 265 / 0.07), 0 1px 2px -1px oklch(15% 0.05 265 / 0.04);
+  --shadow-md: 0 4px 6px -1px oklch(15% 0.05 265 / 0.08), 0 2px 4px -2px oklch(15% 0.05 265 / 0.08);
+  --shadow-lg: 0 10px 15px -3px oklch(15% 0.05 265 / 0.08), 0 4px 6px -4px oklch(15% 0.05 265 / 0.08);
+  --shadow-xl: 0 20px 25px -5px oklch(15% 0.05 265 / 0.08), 0 8px 10px -6px oklch(15% 0.05 265 / 0.08);
+  --shadow-hover: 0 4px 24px -4px oklch(15% 0.05 265 / 0.12), 0 1px 3px oklch(15% 0.05 265 / 0.06);
+  --shadow-blue-glow: 0 8px 32px -8px oklch(28% 0.08 265 / 0.25);
+
+  /* === Z-INDEX === */
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+
+  /* === MOTION === */
+  /* Impeccable: ease-out-quart, no bounce/elastic */
+  --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-base: 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 350ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-entrance: 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-padding-top: 5rem; }
+  body { font-family: var(--font-body); color: var(--color-foreground); background-color: var(--color-background); line-height: 1.6; min-height: 100vh; font-kerning: normal; padding-top: env(safe-area-inset-top); padding-bottom: max(0px, env(safe-area-inset-bottom)); }
+
+  /* Impeccable typeset: hierarchy through scale + weight contrast (≥1.25 ratio) */
+  h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); line-height: 1.15; text-wrap: balance; color: var(--color-midnight-indigo); }
+  h1 { font-weight: 700; letter-spacing: -0.02em; }
+  h2 { font-weight: 700; }
+  h3 { font-weight: 600; }
+  h4, h5, h6 { font-weight: 500; }
+
+  /* Reduce orphans and ragged endings in long prose */
+  article p, .measure { text-wrap: pretty; }
+
+  /* Links: use Royal Blue */
+  a { color: var(--color-midnight-indigo); text-decoration: none; transition: color var(--transition-fast); }
+  a:hover { color: var(--color-midnight-indigo-dark); }
+
+  img { max-width: 100%; height: auto; display: block; }
+  :focus-visible { outline: 2px solid var(--color-ring); outline-offset: 2px; border-radius: 4px; }
+
+  /* Respect reduced motion preferences — WCAG 2.3.3 */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Font fallback metrics — minimize CLS on web font swap */
+  /* DM Serif Display fallback: Georgia with size-adjust */
+  @font-face {
+    font-family: 'DM Serif Display Fallback';
+    src: local('Georgia');
+    size-adjust: 108%;
+    ascent-override: 95%;
+    descent-override: 30%;
+    line-gap-override: 0%;
+  }
+  /* Outfit fallback: system-ui with size-adjust */
+  @font-face {
+    font-family: 'Outfit Fallback';
+    src: local('Arial');
+    size-adjust: 104%;
+    ascent-override: 92%;
+    descent-override: 22%;
+    line-gap-override: 0%;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+
+  /* External link indicator */
+  .external-link::after {
+    content: '↗';
+    font-size: 0.7em;
+    margin-left: 0.2em;
+    opacity: 0.6;
+  }
+
+  /* Brand gradient — Royal Blue focused */
+  .brand-gradient { background: linear-gradient(180deg, var(--color-midnight-indigo) 0%, var(--color-midnight-indigo-dark) 100%); }
+
+  /* CTA gradient — Royal Blue focused */
+  .cta-gradient { background: linear-gradient(135deg, var(--color-midnight-indigo) 0%, var(--color-midnight-indigo-dark) 100%); }
+
+  /* Colorized utilities for Impeccable context */
+  .bg-emerald-subtle { background-color: var(--color-green-surface); border-color: var(--color-green-light) / 0.2; }
+  .text-emerald-bold { color: var(--color-green-dark); }
+  
+  .bg-sky-subtle { background-color: var(--color-sky-surface); border-color: var(--color-sky-light) / 0.2; }
+  .text-sky-bold { color: var(--color-sky-dark); }
+
+  .bg-amber-subtle { background-color: var(--color-amber-surface); border-color: var(--color-amber-light) / 0.2; }
+  .text-amber-bold { color: var(--color-amber-dark); }
+
+  /* Minimum touch target size — WCAG 2.5.8 */
+  .touch-target { min-height: 44px; min-width: 44px; }
+
+  /* Safe area bottom utility for iOS notch handling */
+  .safe-area-bottom { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+
+  /* Container query support */
+  .container-query { container-type: inline-size; }
+
+  /* Readability measure cap — impeccable typeset */
+  .measure { max-width: 65ch; }
+
+  /* Text shadow for readability over images */
+  .text-shadow { text-shadow: 0 1px 4px oklch(15% 0.05 265 / 0.6); }
+  .text-shadow-lg { text-shadow: 0 2px 8px oklch(15% 0.05 265 / 0.7); }
+
+  /* Impeccable typeset: heading size variety for visual rhythm */
+  .heading-display { font-size: var(--text-display); }
+  .heading-section { font-size: var(--text-headline); }
+  .heading-subsection { font-size: var(--text-subheading); }
+  .heading-card { font-size: var(--text-xl); }
+
+  /* Tabular numbers for data alignment */
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+
+  /* Touch-optimized styles for coarse pointers */
+  @media (pointer: coarse) {
+    .touch-target { min-height: 48px; min-width: 48px; }
+    button, a[role="button"], .btn { min-height: 44px; min-width: 44px; }
+  }
+
+  /* Impeccable delight: hover lift with soft shadow — GPU-composited */
+  .hover-lift { position: relative; transition: transform var(--transition-base); }
+  .hover-lift::after { content: ''; position: absolute; inset: 0; border-radius: inherit; box-shadow: var(--shadow-hover); opacity: 0; transition: opacity var(--transition-base); pointer-events: none; }
+  .hover-lift:hover { transform: translateY(-2px); will-change: transform; }
+  .hover-lift:hover::after { opacity: 1; }
+
+  /* Impeccable delight: entrance animations */
+  .fade-in { animation: fadeIn var(--transition-entrance) cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .slide-up { animation: slideUp var(--transition-entrance) cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Stagger delays for entrance choreography */
+  .delay-1 { animation-delay: 100ms; }
+  .delay-2 { animation-delay: 200ms; }
+  .delay-3 { animation-delay: 300ms; }
+  .delay-4 { animation-delay: 400ms; }
+  .delay-5 { animation-delay: 500ms; }
+
+  /* Hover-capable device refinements */
+  @media (hover: hover) {
+    .hover-underline:hover { text-decoration: underline; }
+  }
+
+  /* Impeccable layout: asymmetric section utility */
+  .section-asymmetric {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-gap-section);
+  }
+  @media (min-width: 1024px) {
+    .section-asymmetric {
+      grid-template-columns: 7fr 5fr;
+    }
+  }
+
+  /* Impeccable layout: full-bleed section */
+  .section-full-bleed {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    overflow-x: clip;
+  }
+
+  /* Impeccable harden: text overflow handling */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-clamp: 2;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-clamp: 3;
+  }
+
+  /* Form validation states */
+  .field-error {
+    border-color: var(--color-destructive) !important;
+    box-shadow: 0 0 0 2px oklch(55% 0.200 25 / 0.15);
+  }
+  .field-error-message {
+    color: var(--color-destructive);
+    font-size: var(--text-sm);
+    margin-top: 0.25rem;
+  }
+}

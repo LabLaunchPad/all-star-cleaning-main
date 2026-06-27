@@ -1,0 +1,54 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+
+# environment variables
+.env
+.env.local
+.env.*.local
+
+# editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Astro
+.astro/
+
+# Wrangler
+.wrangler/
+
+# logs
+*.log
+npm-debug.log*
+
+# agent / skill artifacts (not part of website)
+skills/
+download/
+worklog.md
+
+skills-lock.json
+CLAUDE.md
+
+# Impeccable live session data
+.impeccable/
+capture-*.mjs
+capture-*.py
+serve-and-capture*.mjs
+comprehensive_screenshots.mjs
+screenshot*.mjs
+post_fix_screenshots.mjs
+screenshots/
+
+# IDE / Agent Tooling
+.codex/
+.vibe/
+scratch/
+screenshot*.png

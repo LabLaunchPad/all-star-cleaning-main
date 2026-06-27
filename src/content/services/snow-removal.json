@@ -1,0 +1,74 @@
+{
+  "image": "/images/snow-removal/image.jpg",
+  "slug": "snow-removal",
+  "frSlug": "deneigement",
+  "icon": "lucide:snowflake",
+  "name": "Snow Removal",
+  "frName": "Déneigement",
+  "description": "Reliable snow removal in Ottawa all winter long. Driveways, walkways, parking lots — we clear it all with 4hr response during snow events. Seasonal contracts and per-visit pricing available.",
+  "frDescription": "Déneigement fiable à Ottawa tout au long de l'hiver. Allées, trottoirs, stationnements — nous déblayons tout avec une réponse de 4 heures lors des événements de neige. Contrats saisonniers et tarifs à la visite disponibles.",
+  "features": [
+    "4hr storm response",
+    "Driveways, walkways, parking lots",
+    "Seasonal contracts available",
+    "De-icing & salting included",
+    "GPS-tracked service verification"
+  ],
+  "frFeatures": [
+    "Réponse aux tempêtes de 4 heures",
+    "Allées, trottoirs, stationnements",
+    "Contrats saisonniers disponibles",
+    "Déglaçage et salage inclus",
+    "Vérification de service par GPS"
+  ],
+  "metaTitle": "Snow Removal Ottawa | All Star Cleaning — 4hr Winter Response",
+  "metaDescription": "Dependable snow removal in Ottawa. 4hr storm response, driveways, walkways, parking lots. Seasonal contracts & per-visit pricing. Free quote.",
+  "frMetaTitle": "Déneigement Ottawa | All Star Cleaning — Réponse Hivernale de 4 Heures",
+  "frMetaDescription": "Déneigement fiable à Ottawa. Réponse aux tempêtes de 4 heures, allées, trottoirs, stationnements. Contrats saisonniers. Devis gratuit.",
+  "cta": "Get a Free Snow Removal Quote",
+  "frCta": "Obtenez un Devis Gratuit de Déneigement",
+  "faqs": [
+    {
+      "question": "How much does snow removal cost in Ottawa?",
+      "frQuestion": "Combien coûte le déneigement à Ottawa?",
+      "answer": "Snow removal in Ottawa ranges from $150-$400 per visit for residential properties. Seasonal contracts start at $800 and offer the best value for reliable winter service.",
+      "frAnswer": "Le déneigement à Ottawa varie de 150$ à 400$ par visite. Les contrats saisonniers commencent à 800$ et offrent la meilleure valeur."
+    },
+    {
+      "question": "Do you offer storm response snow removal service?",
+      "frQuestion": "Offrez-vous un service de déneigement lors des tempêtes?",
+      "answer": "Yes, we provide 4hr storm response during snow events. Our GPS-tracked fleet ensures your property is cleared promptly, even during overnight storms.",
+      "frAnswer": "Oui, nous offrons une réponse de 4 heures lors des tempêtes de neige. Notre flotte GPS assure un déneigement rapide."
+    },
+    {
+      "question": "What areas of my property do you clear?",
+      "frQuestion": "Quelles zones de ma propriété déneigez-vous?",
+      "answer": "We clear driveways, walkways, front steps, parking lots, and fire exits. De-icing and salting are included with every visit for safety.",
+      "frAnswer": "Nous déblayons les allées, trottoirs, marches, stationnements et sorties incendie. Le déglaçage et le salage sont inclus."
+    },
+    {
+      "question": "Do you offer seasonal snow removal contracts?",
+      "frQuestion": "Offrez-vous des contrats saisonniers de déneigement?",
+      "answer": "Yes, our seasonal contracts guarantee priority service, fixed pricing, and automatic response during snow events — no need to call us each time it snows.",
+      "frAnswer": "Oui, nos contrats saisonniers garantissent un service prioritaire, des prix fixes et une réponse automatique lors des chutes de neige."
+    },
+    {
+      "question": "How quickly can you respond after a snowstorm?",
+      "frQuestion": "Combien de temps faut-il pour répondre après une tempête de neige?",
+      "answer": "Our target response time is within 4 hours of snowfall ending for contract clients. We monitor weather 24/7 and pre-deploy equipment before major storms.",
+      "frAnswer": "Notre temps de réponse cible est de 4 heures après la fin des chutes de neige pour les clients sous contrat."
+    },
+    {
+      "question": "Is your de-icing product safe for pets and concrete?",
+      "frQuestion": "Votre produit de déglaçage est-il sécuritaire pour les animaux et le béton?",
+      "answer": "Yes, we use pet-safe and concrete-friendly de-icing products that effectively melt ice without damaging surfaces or harming paws.",
+      "frAnswer": "Oui, nous utilisons des produits de déglaçage sécuritaires pour les animaux et le béton qui font fondre la glace sans endommager."
+    },
+    {
+      "question": "What happens if it snows multiple times in one week?",
+      "frQuestion": "Que se passe-t-il s'il neige plusieurs fois en une semaine?",
+      "answer": "With a seasonal contract, we clear your property after every significant snowfall (5cm+) at no additional charge. Per-visit pricing is also available for occasional needs.",
+      "frAnswer": "Avec un contrat saisonnier, nous déblayons après chaque chute significative (5cm+) sans frais supplémentaires."
+    }
+  ]
+}

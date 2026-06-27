@@ -1,0 +1,161 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import GoogleReviewBadge from '@/components/GoogleReviewBadge.astro';
+import { useTranslations } from '@/i18n/translations';
+import { services } from '@/data/services';
+import { getBreadcrumbSchema } from '@/seo';
+import type { BreadcrumbItem } from '@/types';
+import homepageData from '@/content/homepage.json';
+
+export function getStaticPaths() {
+  return [{ params: { locale: 'en' } }, { params: { locale: 'fr' } }];
+}
+
+const { locale } = Astro.params as { locale: 'en' | 'fr' };
+const isFr = locale === 'fr';
+const t = useTranslations(locale);
+const altLocale = isFr ? 'en' : 'fr';
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: t.nav.home, frLabel: t.nav.home, href: `/${locale}` },
+  { label: t.nav.services, frLabel: t.nav.services, href: `/${locale}/services` },
+];
+
+const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: services.map((s, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: isFr ? s.frName : s.name,
+    url: `https://allstarcleaning.ca/${locale}/services/${s.slug}`,
+  })),
+};
+
+
+const cms = homepageData;
+
+const serviceObjectPosition: Record<string, string> = {
+  'window-cleaning':  'object-center',
+  'gutter-cleaning':  'object-[center_30%]',
+  'pressure-washing': 'object-center',
+  'siding-cleaning':  'object-center',
+  'snow-removal':     'object-center',
+};
+
+const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }> = {
+  'window-cleaning':  { en: 'Streak-Free',      fr: 'Sans Traces',        color: 'bg-sky-light/20' },
+  'gutter-cleaning':  { en: 'Clog Prevention',  fr: 'Anti-Obstruction',   color: 'bg-midnight-indigo/15' },
+  'pressure-washing': { en: 'Deep Clean',       fr: 'Nettoyage Intensif', color: 'bg-mint-fresh/20' },
+  'siding-cleaning':  { en: 'Curb Appeal',      fr: 'Façade Propre',      color: 'bg-lavender-blend/20' },
+  'snow-removal':     { en: 'Winter Ready',     fr: 'Prêt Hiver',         color: 'bg-sky-light/15' },
+};
+---
+
+<PageLayout
+  title={isFr ? 'Nos Services de Nettoyage | All Star Cleaning Ottawa' : 'Professional Exterior Cleaning Services in Ottawa | All Star Cleaning'}
+  description={isFr ? 'Services de nettoyage extérieur professionnels à Ottawa. Nettoyage de vitres, gouttières, lavage sous pression, revêtement et déneigement.' : 'Professional exterior cleaning services in Ottawa. Window cleaning, gutter cleaning, pressure washing, siding cleaning, and snow removal.'}
+  locale={locale}
+  breadcrumbs={breadcrumbs}
+  heroTitle={t.servicesPage.heroTitle}
+  heroSubtitle={t.servicesPage.heroSubtitle}
+  alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/services/` }]}
+  schema={[breadcrumbSchema, itemListSchema]}
+>
+  <section class="py-8 sm:py-12">
+    <!-- Trust Badge Bar -->
+    <div class="mx-auto mb-8 max-w-7xl flex flex-wrap items-center justify-center gap-4 px-4 md:px-6 sm:gap-6">
+      <GoogleReviewBadge locale={locale} variant="inline" asLink={false} />
+      <div class="flex items-center gap-2 rounded-full bg-midnight-indigo/10 px-4 py-2 border border-midnight-indigo/20">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-midnight-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        <span class="text-sm font-semibold text-navy">{t.trust.insured}</span>
+      </div>
+      <div class="flex items-center gap-2 rounded-full bg-midnight-indigo/10 px-4 py-2 border border-midnight-indigo/20">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-midnight-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span class="text-sm font-semibold text-navy">{t.servicesPage.trustGuarantee}</span>
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-7xl grid gap-6 px-4 md:px-6 md:grid-cols-2 lg:grid-cols-3">
+      {services.map((service, i) => {
+        const delayClass = `delay-${Math.min(i + 1, 5)}`;
+        const features = isFr ? service.frFeatures : service.features;
+        const imgSrc = service.image || `/images/${service.slug}.jpg`;
+        const isFeatured = i === 0;
+        const badge = serviceBadgeMap[service.slug];
+        const objPos = serviceObjectPosition[service.slug] ?? 'object-center';
+        return (
+          <a
+            href={`/${locale}/services/${service.slug}`}
+            class:list={[
+              `touch-target fade-in ${delayClass} group relative overflow-hidden rounded-2xl transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2`,
+              isFeatured
+                ? 'md:col-span-2 lg:col-span-2 aspect-[4/3] md:aspect-[16/9] lg:aspect-[8/3]'
+                : i === 1
+                ? 'aspect-[4/3] lg:aspect-auto'
+                : 'aspect-[4/3]',
+            ]}
+          >
+            {/* Full-bleed image */}
+            <img
+              src={imgSrc}
+              alt={isFr ? service.frName : service.name}
+              width="800" height="600"
+              class:list={['absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105', objPos]}
+              loading={i < 2 ? 'eager' : 'lazy'}
+            />
+
+            {/* Gradient — branded indigo wash for maximum text safety */}
+            <div class="absolute inset-0 bg-gradient-to-t from-midnight-indigo-dark/90 via-midnight-indigo-dark/70 to-transparent" />
+
+            {/* All content overlaid at bottom */}
+            <div class="absolute bottom-0 left-0 right-0 flex flex-col gap-2 p-4 md:p-5">
+              <span class:list={['w-fit rounded-md px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-text-on-dark', badge?.color ?? 'bg-midnight-indigo/35']}>
+                {badge ? (isFr ? badge.fr : badge.en) : ''}
+              </span>
+              <h2 class:list={['font-heading font-bold text-text-on-dark drop-shadow', isFeatured ? 'text-2xl lg:text-3xl' : 'text-xl']}>
+                {isFr ? service.frName : service.name}
+              </h2>
+              <p class="line-clamp-2 text-sm leading-relaxed text-text-on-dark-muted">
+                {isFr ? service.frDescription : service.description}
+              </p>
+              {features.length > 0 && (
+                <ul class="space-y-1">
+                  {features.slice(0, isFeatured ? 3 : 2).map((feature) => (
+                    <li class="flex items-center gap-2 text-xs text-text-on-dark-muted">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 shrink-0 text-text-on-dark/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <div class="mt-1 flex w-fit items-center gap-2 rounded-xl border border-text-on-dark/30 bg-text-on-dark/15 py-1.5 pl-3 pr-1.5 transition-colors duration-300 group-hover:bg-text-on-dark/25">
+                <span class="text-xs font-semibold text-text-on-dark">{t.ui.learnMore}</span>
+                <div class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg border border-white/30 transition-transform duration-300 group-hover:translate-x-0.5">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-text-on-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                </div>
+              </div>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+
+    <!-- Bottom CTA Section -->
+    <div class="mx-auto max-w-7xl px-4 md:px-6">
+      <div class="mt-12 rounded-xl bg-midnight-indigo px-6 py-8 text-center text-text-on-dark sm:px-10">
+        <h2 class="font-heading heading-card font-bold">{t.servicesPage.ctaReady}</h2>
+        <p class="mt-2 text-text-on-dark-muted">{t.servicesPage.ctaDescription}</p>
+        <div class="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <a href={`/${locale}/contact`} class="touch-target inline-flex items-center rounded-full bg-text-on-dark px-8 py-3 text-lg font-semibold uppercase tracking-wider text-midnight-indigo shadow-lg transition-colors duration-200 hover:bg-text-on-dark/90 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2">
+            {t.cta.freeQuote}
+          </a>
+          <a href={`tel:${cms.phoneLink}`} class="touch-target inline-flex items-center gap-2 rounded-full border-2 border-text-on-dark/30 px-8 py-3 text-lg font-semibold uppercase tracking-wider text-text-on-dark transition-colors duration-200 hover:border-text-on-dark/60 hover:bg-text-on-dark/10">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            {cms.phone}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

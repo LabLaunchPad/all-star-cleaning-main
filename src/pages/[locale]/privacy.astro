@@ -1,0 +1,132 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { useTranslations } from '@/i18n/translations';
+import type { BreadcrumbItem } from '@/types';
+
+export function getStaticPaths() {
+  return [{ params: { locale: 'en' } }, { params: { locale: 'fr' } }];
+}
+const { locale } = Astro.params as { locale: 'en' | 'fr' };
+const t = useTranslations(locale);
+const isFr = locale === 'fr';
+const altLocale = isFr ? 'en' : 'fr';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: t.nav.home, frLabel: t.nav.home, href: `/${locale}` },
+  { label: 'Privacy Policy', frLabel: 'Politique de Confidentialité', href: `/${locale}/privacy` },
+];
+
+const tocSections = isFr ? [
+  { id: 'collection', label: 'Collecte de renseignements' },
+  { id: 'use', label: 'Utilisation des renseignements' },
+  { id: 'retention', label: 'Conservation des données' },
+  { id: 'rights', label: 'Vos droits' },
+  { id: 'security', label: 'Sécurité' },
+  { id: 'cookies', label: 'Témoins de connexion' },
+  { id: 'third-party', label: 'Services tiers' },
+  { id: 'changes', label: 'Modifications' },
+  { id: 'contact', label: 'Contact' },
+] : [
+  { id: 'collection', label: 'Information Collection' },
+  { id: 'use', label: 'Use of Information' },
+  { id: 'retention', label: 'Data Retention' },
+  { id: 'rights', label: 'Your Rights' },
+  { id: 'security', label: 'Security' },
+  { id: 'cookies', label: 'Cookies' },
+  { id: 'third-party', label: 'Third-Party Services' },
+  { id: 'changes', label: 'Changes to This Policy' },
+  { id: 'contact', label: 'Contact' },
+];
+---
+<PageLayout
+  title={isFr ? 'Politique de Confidentialité | All Star Cleaning' : 'Privacy Policy | All Star Cleaning'}
+  description={isFr ? 'Politique de confidentialité de All Star Cleaning Ottawa.' : 'Privacy policy for All Star Cleaning Ottawa.'}
+  locale={locale}
+  breadcrumbs={breadcrumbs}
+  heroTitle={isFr ? 'Politique de Confidentialité' : 'Privacy Policy'}
+  heroSubtitle={isFr ? 'Comment nous protégeons vos renseignements personnels' : 'How we protect your personal information'}
+  noindex={true}
+  alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/privacy/` }]}
+>
+  <section class="py-8 sm:py-12">
+    <div class="mx-auto max-w-3xl px-4">
+      <p class="text-sm font-medium text-navy">{isFr ? 'Dernière mise à jour : Mars 2026' : 'Last updated: March 2026'}</p>
+
+      <!-- Table of Contents -->
+      <nav aria-label={isFr ? 'Table des matières' : 'Table of Contents'} class="mt-6 rounded-xl border border-border bg-off-white p-5">
+        <h2 class="font-heading text-sm font-semibold uppercase tracking-wider text-midnight-indigo">{isFr ? 'Table des matières' : 'Table of Contents'}</h2>
+        <ol class="mt-3 space-y-2">
+          {tocSections.map((section, i) => (
+            <li class="flex items-start gap-2">
+              <span class="text-xs font-medium text-muted-foreground mt-0.5">{i + 1}.</span>
+              <a href={`#${section.id}`} class="text-sm text-navy transition-colors hover:text-midnight-indigo focus-visible:ring-2 focus-visible:ring-midnight-indigo">{section.label}</a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+
+      <div class="measure mt-8 space-y-8 text-navy leading-relaxed">
+
+        <div>
+          <h2 id="collection" class="font-heading text-xl font-semibold text-midnight-indigo">{isFr ? 'Collecte de renseignements' : 'Information Collection'}</h2>
+          <p class="mt-2">{isFr ? "Nous recueillons des renseignements personnels uniquement lorsque vous remplissez notre formulaire de contact, notamment votre nom, adresse courriel, numéro de téléphone et adresse. Nous ne recueillons pas de renseignements de manière automatique." : 'We collect personal information only when you fill out our contact form, including your name, email address, phone number, and address. We do not collect information automatically.'}</p>
+        </div>
+
+        <div>
+          <h2 id="use" class="font-heading text-xl font-semibold text-midnight-indigo">{isFr ? 'Utilisation des renseignements' : 'Use of Information'}</h2>
+          <p class="mt-2">{isFr ? 'Nous utilisons vos renseignements uniquement pour répondre à vos demandes de devis et fournir nos services. Nous ne vendons ni ne partageons vos renseignements avec des tiers à des fins marketing.' : 'We use your information only to respond to quote requests and provide our services. We do not sell or share your information with third parties for marketing purposes.'}</p>
+        </div>
+
+        <div>
+          <h2 id="retention" class="font-heading text-xl font-semibold text-midnight-indigo">{isFr ? 'Conservation des données' : 'Data Retention'}</h2>
+          <p class="mt-2">{isFr ? "Nous conservons vos renseignements personnels uniquement pendant la durée nécessaire aux fins pour lesquelles ils ont été recueillis, ou selon les exigences légales. Les demandes de devis sont conservées pendant 12 mois, après quoi elles sont supprimées de manière sécuritaire." : 'We retain your personal information only for as long as necessary for the purposes for which it was collected, or as required by law. Quote requests are retained for 12 months, after which they are securely deleted.'}</p>
+        </div>
+
+        <div>
+          <h2 id="rights" class="font-heading text-xl font-semibold text-midnight-indigo">{isFr ? 'Vos droits' : 'Your Rights'}</h2>
+          <p class="mt-2">{isFr ? "Conformément à la Loi sur la protection des renseignements personnels et les documents électroniques (LPRPDE/PIPEDA) et aux lois provinciales applicables, vous avez le droit d'accéder à vos renseignements personnels, de demander leur correction ou leur suppression, et de retirer votre consentement à tout moment. Pour exercer ces droits, contactez-nous aux coordonnées ci-dessous." : 'Under the Personal Information Protection and Electronic Documents Act (PIPEDA) and applicable provincial privacy legislation, you have the right to access your personal information, request its correction or deletion, and withdraw your consent at any time. To exercise these rights, contact us using the details below.'}</p>
+        </div>
+
+        <div>
+          <h2 id="security" class="font-heading text-xl font-semibold text-midnight-indigo">{isFr ? 'Sécurité' : 'Security'}</h2>
+          <p class="mt-2">{isFr ? "Nous prenons des mesures raisonnables pour protéger vos renseignements personnels contre l'accès non autorisé, la modification, la divulgation ou la destruction. Cependant, aucune méthode de transmission sur Internet n'est totalement sécurisée." : 'We take reasonable measures to protect your personal information from unauthorized access, modification, disclosure, or destruction. However, no method of transmission over the Internet is completely secure.'}</p>
+        </div>
+
+        <div>
+          <h2 id="cookies" class="font-heading text-xl font-semibold text-midnight-indigo">{isFr ? 'Témoins de connexion (cookies)' : 'Cookies'}</h2>
+          <p class="mt-2">{isFr ? "Notre site utilise des témoins de connexion (cookies) uniquement pour améliorer votre expérience de navigation. Nous n'utilisons pas de cookies de suivi publicitaire. Les cookies de Google Fonts peuvent être déposés pour le chargement des polices web." : 'Our website uses cookies only to improve your browsing experience. We do not use advertising tracking cookies. Google Fonts cookies may be set for web font loading.'}</p>
+        </div>
+
+        <div>
+          <h2 id="third-party" class="font-heading text-xl font-semibold text-midnight-indigo">{isFr ? 'Services tiers' : 'Third-Party Services'}</h2>
+          <p class="mt-2">{isFr ? 'Nous utilisons Google Fonts pour les polices web et Web3Forms pour le traitement des formulaires. Ces services peuvent recueillir votre adresse IP conformément à leurs propres politiques de confidentialité.' : 'We use Google Fonts for web fonts and Web3Forms for form processing. These services may collect your IP address in accordance with their own privacy policies.'}</p>
+        </div>
+
+        <div>
+          <h2 id="changes" class="font-heading text-xl font-semibold text-midnight-indigo">{isFr ? 'Modifications' : 'Changes to This Policy'}</h2>
+          <p class="mt-2">{isFr ? "Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. Les modifications prendront effet dès leur publication sur cette page. Nous vous encourageons à consulter cette page régulièrement." : 'We reserve the right to modify this privacy policy at any time. Changes will take effect upon publication on this page. We encourage you to review this page periodically.'}</p>
+        </div>
+
+        <div>
+          <h2 id="contact" class="font-heading text-xl font-semibold text-midnight-indigo">{isFr ? 'Contact' : 'Contact'}</h2>
+          <p class="mt-2">{isFr ? 'Pour toute question concernant cette politique, contactez-nous à' : 'For questions about this policy, contact us at'} <a href={`mailto:${t.contact.email}`} class="text-midnight-indigo hover:text-midnight-indigo-dark touch-target">{t.contact.email}</a> {isFr ? 'ou au' : 'or call'} <a href={`tel:${t.contact.phoneLink}`} class="text-midnight-indigo hover:text-midnight-indigo-dark touch-target">{t.contact.phone}</a>.</p>
+        </div>
+      </div>
+
+      <!-- CTA to return to conversion flow -->
+      <div class="mt-10 rounded-xl bg-midnight-indigo-dark px-6 py-8 text-center text-text-on-dark">
+        <h2 class="font-heading text-xl font-bold">{isFr ? 'Des questions sur votre vie privée?' : 'Questions About Your Privacy?'}</h2>
+        <p class="mt-2 text-text-on-dark-muted">{isFr ? "Nous serons heureux de discuter de la façon dont nous protégeons vos renseignements." : "We're happy to discuss how we protect your information."}</p>
+        <div class="mt-4 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <a href={`/${locale}/contact`} class="touch-target inline-flex items-center rounded-full bg-midnight-indigo px-6 py-3 text-sm font-semibold uppercase tracking-wider text-text-on-dark shadow-lg hover:bg-midnight-indigo-dark hover:shadow-xl transition-colors duration-200">
+            {isFr ? 'Contactez-Nous' : 'Contact Us'}
+          </a>
+          <a href={`tel:${t.contact.phoneLink}`} class="touch-target inline-flex items-center gap-2 rounded-full border-2 border-text-on-dark/30 px-6 py-3 text-sm font-semibold uppercase tracking-wider text-text-on-dark hover:border-text-on-dark/60 hover:bg-text-on-dark/10 transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            {t.contact.phone}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

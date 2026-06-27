@@ -1,0 +1,74 @@
+{
+  "image": "/images/pressure-washing/image.jpg",
+  "slug": "pressure-washing",
+  "frSlug": "lavage-sous-pression",
+  "icon": "lucide:waves",
+  "name": "Pressure Washing",
+  "frName": "Lavage sous Pression",
+  "description": "Professional pressure washing in Ottawa. Driveways, patios, decks — we remove years of grime, algae, and stains for clean, safe surfaces.",
+  "frDescription": "Lavage sous pression professionnel à Ottawa. Allées, patios, terrasses — nous éliminons des années de saleté et d'algues pour des surfaces propres et sécuritaires.",
+  "features": [
+    "Surface-appropriate PSI selection",
+    "Eco-friendly cleaning solutions",
+    "Driveways, patios, decks",
+    "Mold & algae treatment",
+    "Same-day results visible"
+  ],
+  "frFeatures": [
+    "Sélection de PSI adaptée à la surface",
+    "Solutions de nettoyage écologiques",
+    "Allées, patios, terrasses",
+    "Traitement de moisissure et d'algues",
+    "Résultats visibles le jour même"
+  ],
+  "metaTitle": "Pressure Washing Ottawa | All Star Cleaning — Driveways, Decks & More",
+  "metaDescription": "Professional pressure washing in Ottawa. Driveways, decks, patios, siding — eco-friendly, surface-safe cleaning. Free quote — book today.",
+  "frMetaTitle": "Lavage sous Pression Ottawa | All Star Cleaning — Allées, Terrasses et Plus",
+  "frMetaDescription": "Lavage sous pression professionnel à Ottawa. Allées, terrasses, patios, revêtements — nettoyage écologique et sûr. Devis gratuit.",
+  "cta": "Get a Free Pressure Washing Quote",
+  "frCta": "Obtenez un Devis Gratuit de Lavage sous Pression",
+  "faqs": [
+    {
+      "question": "How much does pressure washing cost in Ottawa?",
+      "frQuestion": "Combien coûte le lavage sous pression à Ottawa?",
+      "answer": "Pressure washing in Ottawa ranges from $200-$600 depending on surface area and type. Driveways start around $200, full house siding from $400. Free quotes available.",
+      "frAnswer": "Le lavage sous pression à Ottawa varie de 200$ à 600$ selon la surface. Les allées commencent à 200$. Devis gratuit."
+    },
+    {
+      "question": "Is pressure washing safe for all surfaces?",
+      "frQuestion": "Le lavage sous pression est-il sécuritaire pour toutes les surfaces?",
+      "answer": "We select the appropriate PSI for each surface — lower pressure for siding and decks, higher for concrete driveways. Our eco-friendly solutions are safe for plants and pets.",
+      "frAnswer": "Nous sélectionnons le PSI approprié pour chaque surface. Nos solutions écologiques sont sécuritaires pour les plantes et animaux."
+    },
+    {
+      "question": "Can pressure washing remove oil stains from my driveway?",
+      "frQuestion": "Le lavage sous pression peut-il enlever les taches d'huile de mon entrée?",
+      "answer": "Yes, our specialized cleaning solutions combined with appropriate pressure can effectively remove oil, rust, and organic stains from concrete and asphalt driveways.",
+      "frAnswer": "Oui, nos solutions spécialisées combinées à la pression appropriée enlèvent efficacement les taches d'huile et de rouille."
+    },
+    {
+      "question": "How often should I pressure wash my driveway?",
+      "frQuestion": "À quelle fréquence faut-il laver une entrée sous pression?",
+      "answer": "We recommend pressure washing driveways annually and decks every 1-2 years to prevent mold, algae, and stain buildup that can damage surfaces over time.",
+      "frAnswer": "Nous recommandons un lavage annuel des allées et tous les 1-2 ans pour les terrasses pour prévenir la moisissure."
+    },
+    {
+      "question": "Do you use eco-friendly cleaning solutions?",
+      "frQuestion": "Utilisez-vous des solutions de nettoyage écologiques?",
+      "answer": "Yes, all our cleaning solutions are biodegradable and eco-friendly, safe for your lawn, garden, and pets while still delivering powerful cleaning results.",
+      "frAnswer": "Oui, toutes nos solutions sont biodégradables et écologiques, sécuritaires pour votre gazon et vos animaux."
+    },
+    {
+      "question": "Can you pressure wash my deck without damaging the wood?",
+      "frQuestion": "Pouvez-vous laver ma terrasse sans endommager le bois?",
+      "answer": "Absolutely. We use reduced pressure and specialized techniques for wood surfaces, along with appropriate cleaning agents that clean without stripping or gouging the wood fibers.",
+      "frAnswer": "Absolument. Nous utilisons une pression réduite et des techniques spécialisées pour le bois qui nettoient sans endommager."
+    },
+    {
+      "question": "What surfaces can be pressure washed?",
+      "frQuestion": "Quelles surfaces peuvent être lavées sous pression?",
+      "answer": "We pressure wash driveways, patios, decks, sidewalks, retaining walls, fences, and siding. Each surface gets a customized pressure and solution treatment.",
+      "frAnswer": "Nous lavons les allées, patios, terrasses, trottoirs, murs de soutènement, clôtures et revêtements."
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+# Redirect root to EN (permanent)
+/  /en  301

@@ -1,0 +1,130 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import FAQAccordion from '@/components/FAQAccordion.astro';
+import GoogleReviewBadge from '@/components/GoogleReviewBadge.astro';
+import SidebarCTA from '@/components/SidebarCTA.astro';
+import { useTranslations } from '@/i18n/translations';
+import { services } from '@/data/services';
+import { getServiceSchema, getBreadcrumbSchema, getFAQSchema } from '@/seo';
+import type { BreadcrumbItem } from '@/types';
+import siteSettings from '@/content/settings.json';
+
+export function getStaticPaths() {
+  return ['en', 'fr'].flatMap((locale) =>
+    services.map((service) => ({
+      params: { locale, serviceSlug: service.slug },
+      props: { service, locale: locale as 'en' | 'fr' },
+    }))
+  );
+}
+
+const { service, locale } = Astro.props;
+const isFr = locale === 'fr';
+const t = useTranslations(locale);
+const altLocale = isFr ? 'en' : 'fr';
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: t.nav.home, frLabel: t.nav.home, href: `/${locale}` },
+  { label: t.nav.services, frLabel: t.nav.services, href: `/${locale}/services` },
+  { label: service.name, frLabel: service.frName, href: `/${locale}/services/${service.slug}` },
+];
+const serviceSchema = getServiceSchema(service, locale, `https://allstarcleaning.ca/${locale}/services/${service.slug}`);
+const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
+const faqSchema = service.faqs && service.faqs.length > 0 ? getFAQSchema(service.faqs, locale) : null;
+const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])];
+const altSlug = service.slug;  // Both locales use EN slugs in URLs
+
+const otherServices = services.filter((s) => s.slug !== service.slug);
+const responseTimeText = service.slug === 'snow-removal'
+  ? t.servicesPage.noObligation4h
+  : t.servicesPage.noObligation24h;
+---
+
+<PageLayout
+  title={isFr ? service.frMetaTitle : service.metaTitle}
+  description={isFr ? service.frMetaDescription : service.metaDescription}
+  locale={locale}
+  breadcrumbs={breadcrumbs}
+  heroTitle={isFr ? service.frName : service.name}
+  heroSubtitle={isFr ? service.frDescription : service.description}
+  ogImage={service.image ? `https://allstarcleaning.ca${service.image}` : undefined}
+  alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/services/${altSlug}/` }]}
+  schema={allSchemas}
+>
+  <div class="mx-auto max-w-7xl px-4 md:px-6 py-8 sm:py-12">
+    <div class="grid gap-10 lg:grid-cols-3">
+      <div class="lg:col-span-2">
+      <!-- Review Badge -->
+      <div class="mb-6 flex flex-wrap items-center gap-3">
+        <GoogleReviewBadge locale={locale} variant="pill" />
+        <div class="touch-target flex items-center gap-2 rounded-full bg-midnight-indigo/10 px-4 py-2 border border-midnight-indigo/20">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-midnight-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          <span class="text-sm font-semibold text-navy">{t.trust.insured}</span>
+        </div>
+      </div>
+      <h2 class="font-heading heading-card font-bold text-midnight-indigo">{t.servicesPage.sectionIncluded}</h2>
+      <ul class="mt-4 space-y-3">
+        {(isFr ? service.frFeatures : service.features).map((feature) => (
+          <li class="flex items-start gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-5 w-5 shrink-0 text-midnight-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span class="text-foreground">{feature}</span>
+          </li>
+        ))}
+      </ul>
+      <!-- Mobile-only inline CTA -->
+      <div class="mt-8 lg:hidden">
+        <a href={`/${locale}/contact?service=${service.slug}`} class="touch-target inline-flex items-center gap-2 rounded-full uppercase tracking-wider bg-midnight-indigo px-6 py-4 text-base font-bold text-text-on-dark shadow-lg transition-colors duration-200 hover:bg-midnight-indigo-dark focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2 active:scale-[0.98] w-full justify-center">
+          {t.cta.freeQuote}
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </a>
+        <p class="mt-2 text-center text-sm text-muted-foreground">{responseTimeText}</p>
+      </div>
+      <div class="mt-10">
+        <h2 class="font-heading heading-card font-bold text-midnight-indigo">{t.servicesPage.sectionWhyChoose}</h2>
+        <div class="mt-4 grid gap-4 sm:grid-cols-2">
+          <div class="rounded-xl border border-midnight-indigo/20 bg-midnight-indigo/5 p-4 sm:col-span-2"><h3 class="font-medium text-navy">{t.servicesPage.uspGuaranteedResults}</h3><p class="mt-1 text-sm text-muted-foreground">{t.servicesPage.uspGuaranteedResultsDesc}</p></div>
+          <div class="rounded-xl border border-border bg-card p-4"><h3 class="font-medium text-navy">{t.servicesPage.uspProfessionalEquipment}</h3><p class="mt-1 text-sm text-muted-foreground">{t.servicesPage.uspProfessionalEquipmentDesc}</p></div>
+          <div class="rounded-xl border border-border bg-card p-4"><h3 class="font-medium text-navy">{t.servicesPage.uspExperiencedTeam}</h3><p class="mt-1 text-sm text-muted-foreground">{t.servicesPage.uspExperiencedTeamDesc}</p></div>
+          <div class="rounded-xl border border-border bg-card p-4"><h3 class="font-medium text-navy">{t.servicesPage.uspFreeQuotes}</h3><p class="mt-1 text-sm text-muted-foreground">{t.servicesPage.uspFreeQuotesDesc}</p></div>
+        </div>
+      </div>
+
+      <!-- Related Services -->
+      <div class="mt-10">
+        <h2 class="font-heading heading-card font-bold text-midnight-indigo">
+          {t.servicesPage.sectionOther}
+        </h2>
+        <div class="mt-4 grid gap-4 sm:grid-cols-2">
+          {otherServices.map((otherService, i) => (
+            <a href={`/${locale}/services/${otherService.slug}`} class={`touch-target group rounded-xl border border-border bg-card p-4 transition-colors duration-200 hover:border-midnight-indigo/30 focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2 hover-lift ${i === 0 ? 'sm:col-span-2 border-midnight-indigo/20 bg-midnight-indigo/5' : ''}`}>
+              <h3 class="font-medium text-navy group-hover:text-midnight-indigo">{isFr ? otherService.frName : otherService.name}</h3>
+              <p class="mt-1 text-sm text-muted-foreground line-clamp-2">{isFr ? otherService.frDescription : otherService.description}</p>
+              <span class="mt-2 inline-flex items-center gap-1 text-sm font-medium text-midnight-indigo">
+                {t.ui.learnMore}
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <FAQAccordion
+        faqs={service.faqs}
+        locale={locale}
+        title={isFr ? `Questions fréquentes: ${service.frName}` : `Frequently asked questions: ${service.name}`}
+      />
+    </div>
+    <div class="lg:col-span-1">
+      <SidebarCTA
+        heading={isFr ? service.frCta : service.cta}
+        description={isFr ? service.frDescription : service.description}
+        ctaText={t.cta.freeQuote}
+        contactHref={`/${locale}/contact?service=${service.slug}`}
+        responseTimeText={responseTimeText}
+        phoneLink={siteSettings.phoneLink}
+        phone={siteSettings.phone}
+      />
+    </div>
+    </div>
+  </div>
+</PageLayout>

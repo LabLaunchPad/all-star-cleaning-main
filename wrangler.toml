@@ -1,0 +1,5 @@
+name = "all-star-cleaning-main-workers"
+
+[[kv_namespaces]]
+binding = "SESSION"
+id = "9e31056e116d4f38ac9d1bf99fbb3a9d"

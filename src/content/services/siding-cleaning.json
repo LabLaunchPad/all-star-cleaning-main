@@ -1,0 +1,74 @@
+{
+  "image": "/images/siding-cleaning/image.jpg",
+  "slug": "siding-cleaning",
+  "frSlug": "nettoyage-revetement",
+  "icon": "lucide:home",
+  "name": "Siding Cleaning",
+  "frName": "Nettoyage de Revêtement",
+  "description": "Gentle yet effective siding cleaning in Ottawa. Our soft-wash technique safely removes dirt, mold, mildew, and algae from vinyl, aluminum, and stucco siding without damage or discoloration.",
+  "frDescription": "Nettoyage de revêtement doux mais efficace à Ottawa. Notre technique de lavage doux élimine en toute sécurité la saleté, la moisissure et les algues des revêtements en vinyle, aluminium et stuc sans dommage ni décoloration.",
+  "features": [
+    "Soft-wash technique (no high PSI)",
+    "Safe for vinyl, aluminum, stucco",
+    "Mold & mildew treatment",
+    "Brightens faded siding",
+    "2–3 year protection guarantee"
+  ],
+  "frFeatures": [
+    "Technique de lavage doux (sans PSI élevé)",
+    "Sécuritaire pour vinyle, aluminium, stuc",
+    "Traitement de moisissure et de mildiou",
+    "Ravive les revêtements décolorés",
+    "Garantie de protection de 2 à 3 ans"
+  ],
+  "metaTitle": "Siding Cleaning Ottawa | All Star Cleaning — Soft Wash Specialists",
+  "metaDescription": "Gentle soft-wash siding cleaning in Ottawa. Safe for vinyl, aluminum & stucco. Removes mold, mildew, algae — no damage. Free quote.",
+  "frMetaTitle": "Nettoyage de Revêtement Ottawa | All Star Cleaning — Spécialistes du Lavage Doux",
+  "frMetaDescription": "Nettoyage doux de revêtement à Ottawa. Sécuritaire pour vinyle, aluminium et stuc. Élimine moisissure et algues. Devis gratuit.",
+  "cta": "Get a Free Siding Cleaning Quote",
+  "frCta": "Obtenez un Devis Gratuit de Nettoyage de Revêtement",
+  "faqs": [
+    {
+      "question": "How much does siding cleaning cost in Ottawa?",
+      "frQuestion": "Combien coûte le nettoyage de revêtement à Ottawa?",
+      "answer": "Siding cleaning in Ottawa typically costs $300-$700 depending on home size and siding type. We offer free, no-obligation quotes for every property.",
+      "frAnswer": "Le nettoyage de revêtement à Ottawa coûte généralement entre 300$ et 700$ selon la taille. Devis gratuit sans engagement."
+    },
+    {
+      "question": "What is soft washing and how is it different from pressure washing?",
+      "frQuestion": "Qu'est-ce que le lavage doux et comment diffère-t-il du lavage sous pression?",
+      "answer": "Soft washing uses low-pressure water combined with specialized cleaning solutions to safely remove mold, mildew, and algae without the high PSI that can damage siding.",
+      "frAnswer": "Le lavage doux utilise une basse pression avec des solutions spécialisées pour enlever moisissure et algues sans le PSI élevé qui peut endommager."
+    },
+    {
+      "question": "Is soft washing safe for vinyl siding?",
+      "frQuestion": "Le lavage doux est-il sécuritaire pour le revêtement en vinyle?",
+      "answer": "Yes, soft washing is the recommended method for vinyl siding. It effectively removes dirt and biological growth without causing cracks, fading, or water intrusion behind panels.",
+      "frAnswer": "Oui, le lavage doux est la méthode recommandée pour le vinyle. Il enlève la saleté sans causer de fissures ni de décoloration."
+    },
+    {
+      "question": "Can you remove mold and mildew from siding?",
+      "frQuestion": "Pouvez-vous enlever la moisissure des revêtements?",
+      "answer": "Yes, our specialized mold and mildew treatment kills spores at the root and removes visible staining, providing 2-3 years of protection against regrowth.",
+      "frAnswer": "Oui, notre traitement spécialisé tue les spores à la racine et enlève les taches, offrant 2-3 ans de protection."
+    },
+    {
+      "question": "How long does siding cleaning take?",
+      "frQuestion": "Combien de temps dure le nettoyage de revêtement?",
+      "answer": "Most residential siding cleaning is completed in 2-4 hours. Larger homes or heavily soiled siding may take a full day. We always provide a time estimate upfront.",
+      "frAnswer": "La plupart des nettoyages résidentiels se font en 2-4 heures. Les maisons plus grandes peuvent prendre une journée."
+    },
+    {
+      "question": "Do you clean aluminum and stucco siding too?",
+      "frQuestion": "Nettoyez-vous aussi le revêtement en aluminium et stuc?",
+      "answer": "Yes, we safely clean vinyl, aluminum, stucco, wood, and fiber cement siding using surface-appropriate techniques and cleaning agents for each material.",
+      "frAnswer": "Oui, nous nettoyons le vinyle, aluminium, stuc, bois et ciment-fibre avec des techniques adaptées à chaque matériau."
+    },
+    {
+      "question": "How often should siding be cleaned?",
+      "frQuestion": "À quelle fréquence faut-il nettoyer le revêtement?",
+      "answer": "We recommend siding cleaning every 2-3 years, or more frequently if you notice green algae growth, especially on north-facing walls that receive less sunlight.",
+      "frAnswer": "Nous recommandons un nettoyage aux 2-3 ans, ou plus souvent si vous remarquez de la croissance d'algues."
+    }
+  ]
+}
