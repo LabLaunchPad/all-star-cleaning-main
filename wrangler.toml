@@ -1,15 +1,11 @@
 name = "all-star-cleaning-main"
-main = "dist/server/entry.mjs"
 compatibility_date = "2026-06-28"
+compatibility_flags = [ "nodejs_compat" ]
 workers_dev = false
 
 [assets]
 directory = "dist/client"
 binding = "ASSETS"
-
-[[kv_namespaces]]
-binding = "SESSION"
-id = "939d671f53f448c4bddec2dce4accfe5"
 
 [[routes]]
 pattern = "allstarcleaning.ca"
