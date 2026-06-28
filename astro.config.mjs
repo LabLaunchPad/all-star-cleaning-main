@@ -101,6 +101,7 @@ export default defineConfig({
   // Rename /_astro/ → /static/ to defeat Astro path detection
   build: {
     assets: 'static',
+    concurrency: 1,
   },
 
   // Remove dev toolbar in production (contains Astro identifiers)
