@@ -1,5 +1,7 @@
 // @ts-nocheck — Vite plugin types inferred at runtime; Astro config uses .mjs
-import { defineConfig } from 'astro/config';
+import { defineConfig, sessionDrivers } from 'astro/config';
+import fs from 'node:fs';
+import path from 'node:path';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import markdoc from '@astrojs/markdoc';
@@ -89,12 +91,31 @@ function stripHtmlComments() {
   };
 }
 
+function fixSsrEntryName() {
+  return {
+    name: 'fix-ssr-entryname',
+    config(config) {
+      if (config.build?.ssr) {
+        config.build.rollupOptions = config.build.rollupOptions || {};
+        config.build.rollupOptions.output = {
+          entryFileNames: 'entry.mjs',
+          chunkFileNames: '[name].[hash].js',
+          assetFileNames: '[name].[hash][extname]',
+        };
+      }
+    }
+  };
+}
+
 export default defineConfig({
   output: 'static',
   adapter: cloudflare({
     prerenderEnvironment: 'node',
     imageService: 'passthrough',
   }),
+  session: {
+    driver: sessionDrivers.memory(),
+  },
 
   site: 'https://allstarcleaning.ca',
 
@@ -167,6 +188,7 @@ export default defineConfig({
       tailwind(),
       obfuscateTechStack(),
       stripHtmlComments(),
+      fixSsrEntryName(),
     ],
   },
 });
