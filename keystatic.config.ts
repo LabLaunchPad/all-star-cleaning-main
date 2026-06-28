@@ -5,7 +5,7 @@ export default config({
     kind: 'cloud',
   },
   cloud: {
-    project: 'team-red/all-star-cleaning',
+    project: 'all-star/all-star-cleaning',
   },
 
   collections: {
