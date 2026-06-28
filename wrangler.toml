@@ -1,4 +1,6 @@
-name = "all-star-cleaning-main-workers"
+name = "all-star-cleaning-main"
+pages_build_output_dir = "dist/client"
+compatibility_date = "2026-06-28"
 
 [[kv_namespaces]]
 binding = "SESSION"
