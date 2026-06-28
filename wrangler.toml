@@ -1,6 +1,7 @@
 name = "all-star-cleaning-main"
 main = "dist/server/entry.mjs"
 compatibility_date = "2026-06-28"
+workers_dev = false
 
 [assets]
 directory = "dist/client"
@@ -8,4 +9,8 @@ binding = "ASSETS"
 
 [[kv_namespaces]]
 binding = "SESSION"
-id = "9e31056e116d4f38ac9d1bf99fbb3a9d"
+id = "939d671f53f448c4bddec2dce4accfe5"
+
+[[routes]]
+pattern = "allstarcleaning.ca"
+custom_domain = true
