@@ -3,8 +3,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import markdoc from '@astrojs/markdoc';
-import keystatic from '@keystatic/astro';
-import cloudflare from '@astrojs/cloudflare';
+
 import tailwind from '@tailwindcss/vite';
 
 /**
@@ -91,10 +90,7 @@ function stripHtmlComments() {
 
 export default defineConfig({
   output: 'static',
-  adapter: cloudflare({
-    prerenderEnvironment: 'node',
-    imageService: 'passthrough',
-  }),
+
   site: 'https://allstarcleaning.ca',
 
   // === TECH-STACK OBFUSCATION ===
@@ -112,7 +108,6 @@ export default defineConfig({
   integrations: [
     react(),
     markdoc(),
-    keystatic(),
     sitemap({
       i18n: {
         defaultLocale: 'en',
@@ -128,9 +123,6 @@ export default defineConfig({
   },
 
   vite: {
-    optimizeDeps: {
-      exclude: ['virtual:keystatic-config', 'virtual:keystatic-content-components'],
-    },
     resolve: {
       alias: { '@': '/src' },
     },
