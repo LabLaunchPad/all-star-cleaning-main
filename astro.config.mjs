@@ -136,6 +136,7 @@ export default defineConfig({
       alias: { '@': '/src' },
     },
     build: {
+      emptyOutDir: false,
       // Never generate source maps — they reveal original file structure
       sourcemap: false,
       // Minify aggressively to remove comments and identifiers
