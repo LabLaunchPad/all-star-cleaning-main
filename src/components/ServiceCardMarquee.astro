@@ -41,15 +41,15 @@ const rowB = [...services].reverse().concat([...services].reverse());
 
   <div class="marquee-row" data-marquee-row>
     <div class="marquee-track marquee-track--left">
-      {rowA.map((service) => (
-        <div class="marquee-card"><ServiceCard service={service} locale={locale} learnMoreText={learnMoreText} /></div>
+      {rowA.map((service, i) => (
+        <div class="marquee-card"><ServiceCard service={service} locale={locale} learnMoreText={learnMoreText} ariaHidden={i >= services.length} /></div>
       ))}
     </div>
   </div>
   <div class="marquee-row mt-4" data-marquee-row>
     <div class="marquee-track marquee-track--right">
-      {rowB.map((service) => (
-        <div class="marquee-card"><ServiceCard service={service} locale={locale} learnMoreText={learnMoreText} /></div>
+      {rowB.map((service, i) => (
+        <div class="marquee-card"><ServiceCard service={service} locale={locale} learnMoreText={learnMoreText} ariaHidden={i >= services.length} /></div>
       ))}
     </div>
   </div>
@@ -79,9 +79,10 @@ const rowB = [...services].reverse().concat([...services].reverse());
     to { transform: translateX(0); }
   }
 
-  /* Pause on hover/keyboard-focus within a row, or when the explicit toggle is engaged */
+  /* Pause on hover/keyboard-focus within a row, touch-and-hold, or the explicit toggle */
   .marquee-row:hover .marquee-track,
   .marquee-row:focus-within .marquee-track,
+  .marquee-row[data-touching="true"] .marquee-track,
   [data-marquee][data-paused="true"] .marquee-track {
     animation-play-state: paused;
   }
@@ -100,16 +101,17 @@ const rowB = [...services].reverse().concat([...services].reverse());
     const resumeText = isFr ? 'Reprendre le défilement' : 'Resume scrolling';
 
     // Touch-and-hold: pause while a finger is down on a row, resume on release —
-    // independent of the persistent toggle state.
+    // independent of the persistent toggle state. Driven entirely through a data
+    // attribute (same mechanism as the toggle button below), not inline styles —
+    // an earlier version set animationPlayState inline on touchstart with only
+    // touchend clearing it, so an interrupted gesture (scroll takeover, system
+    // gesture) left the track permanently paused with no way for the toggle
+    // button to override it (inline styles beat stylesheet rules).
     wrap.querySelectorAll<HTMLElement>('[data-marquee-row]').forEach((row) => {
-      row.addEventListener('touchstart', () => {
-        if (wrap.dataset.paused !== 'true') row.style.setProperty('--touch-pause', '1');
-        row.querySelectorAll<HTMLElement>('.marquee-track').forEach((t) => (t.style.animationPlayState = 'paused'));
-      }, { passive: true });
-      row.addEventListener('touchend', () => {
-        if (wrap.dataset.paused === 'true') return;
-        row.querySelectorAll<HTMLElement>('.marquee-track').forEach((t) => (t.style.animationPlayState = ''));
-      }, { passive: true });
+      const clearTouch = () => { delete row.dataset.touching; };
+      row.addEventListener('touchstart', () => { row.dataset.touching = 'true'; }, { passive: true });
+      row.addEventListener('touchend', clearTouch, { passive: true });
+      row.addEventListener('touchcancel', clearTouch, { passive: true });
     });
 
     toggle.addEventListener('click', () => {

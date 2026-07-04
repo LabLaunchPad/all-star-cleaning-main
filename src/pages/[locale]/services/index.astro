@@ -63,6 +63,7 @@ const cms = homepageData;
     </div>
 
     <div class="mx-auto max-w-7xl px-4 md:px-6">
+      <h2 class="sr-only">{isFr ? 'Nos Services' : 'Our Services'}</h2>
       <ServiceCardMarquee services={services} locale={locale} learnMoreText={t.ui.learnMore} />
       <div class="hidden md:grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {services.map((service, i) => (

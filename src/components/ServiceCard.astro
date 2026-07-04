@@ -15,8 +15,12 @@ interface Props {
   featured?: boolean;
   learnMoreText: string;
   delayClass?: string;
+  /** For duplicate copies in a looping carousel (see ServiceCardMarquee) — hides
+   * the repeated card from assistive tech and keyboard nav, since screen-reader/
+   * keyboard users shouldn't hit the same link/heading twice per row. */
+  ariaHidden?: boolean;
 }
-const { service, locale, featured = false, learnMoreText, delayClass = '' } = Astro.props;
+const { service, locale, featured = false, learnMoreText, delayClass = '', ariaHidden = false } = Astro.props;
 const isFr = locale === 'fr';
 const accent = getServiceAccent(service.slug);
 const imgSrc = service.image || `/images/${service.slug}.jpg`;
@@ -27,6 +31,8 @@ const badge = isFr ? accent.badgeFr : accent.badgeEn;
 <a
   href={`/${locale}/services/${service.slug}`}
   style={`--accent: ${accent.color}; --accent-surface: ${accent.colorSurface}; --accent-dark: ${accent.colorDark};`}
+  aria-hidden={ariaHidden ? 'true' : undefined}
+  tabindex={ariaHidden ? -1 : undefined}
   class:list={[
     'touch-target fade-in group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2',
     delayClass,
@@ -43,7 +49,7 @@ const badge = isFr ? accent.badgeFr : accent.badgeEn;
         class:list={['h-full w-full object-cover transition-transform duration-500 group-hover:scale-105', accent.objectPosition]}
         loading={featured ? 'eager' : 'lazy'}
       />
-      <span class="absolute left-3 top-3 w-fit rounded-full bg-[var(--accent)] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-white shadow-sm">
+      <span class="absolute left-3 top-3 w-fit rounded-full border border-[var(--accent)]/40 bg-[var(--accent-surface)] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-navy-dark shadow-sm">
         {badge}
       </span>
     </div>
