@@ -3,6 +3,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import FAQAccordion from '@/components/FAQAccordion.astro';
 import GoogleReviewBadge from '@/components/GoogleReviewBadge.astro';
 import SidebarCTA from '@/components/SidebarCTA.astro';
+import Badge from '@/components/Badge.astro';
 import { useTranslations } from '@/i18n/translations';
 import { services } from '@/data/services';
 import { getServiceSchema, getBreadcrumbSchema, getFAQSchema } from '@/seo';
@@ -56,10 +57,9 @@ const responseTimeText = service.slug === 'snow-removal'
       <!-- Review Badge -->
       <div class="mb-6 flex flex-wrap items-center gap-3">
         <GoogleReviewBadge locale={locale} variant="pill" />
-        <div class="touch-target flex items-center gap-2 rounded-full bg-midnight-indigo/10 px-4 py-2 border border-midnight-indigo/20">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-midnight-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-          <span class="text-sm font-semibold text-navy">{t.trust.insured}</span>
-        </div>
+        <Badge label={t.trust.insured} tone="brand" caps={false} class="!text-navy">
+          <svg slot="icon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-midnight-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </Badge>
       </div>
       <h2 class="font-heading heading-card font-extrabold text-midnight-indigo">{t.servicesPage.sectionIncluded}</h2>
       <ul class="mt-4 space-y-3">

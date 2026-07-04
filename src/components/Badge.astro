@@ -14,9 +14,16 @@
 //
 // Also absorbs the former ServiceBadge.astro (neighbour-location link pills) —
 // those aren't small-caps trust labels, they're proper nouns (place names), so
-// `caps={false}` switches to normal-case/medium-weight type instead of the
+// `caps={false}` switches to normal-case/semibold type instead of the
 // bold/uppercase/tracking-widest default. Same shape, two real typographic
 // registers, not one component pretending to be two.
+//
+// `caps={false}` also absorbs the "Insured & Bonded" / "100% Guarantee" info
+// pills hand-rolled identically in about.astro, services/index.astro (×2),
+// services/[serviceSlug].astro, and area/[locationSlug]/[serviceSlug].astro —
+// all five used the same text-sm/font-semibold size, so that's the size this
+// mode standardizes on (not the smaller text-xs the two link-pill instances
+// happened to use previously).
 interface Props {
   label: string;
   href?: string;
@@ -34,7 +41,7 @@ const accentStyle = tone === 'accent' && accentColor && accentSurface && accentD
 const classes = [
   'inline-flex items-center rounded-full',
   'px-[var(--space-badge-x)] py-[var(--space-badge-y)] gap-[var(--space-icon-gap)]',
-  caps ? 'text-[11px] font-bold uppercase tracking-widest' : 'text-xs font-medium',
+  caps ? 'text-[11px] font-bold uppercase tracking-widest' : 'text-sm font-semibold',
   tone === 'neutral' && 'border border-border bg-card text-muted-foreground',
   tone === 'dark' && 'border border-text-on-dark/20 bg-text-on-dark/10 text-text-on-dark',
   tone === 'brand' && 'border border-midnight-indigo/20 bg-midnight-indigo/10 text-midnight-indigo',

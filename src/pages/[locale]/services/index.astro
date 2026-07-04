@@ -3,6 +3,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import GoogleReviewBadge from '@/components/GoogleReviewBadge.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import ServiceCardMarquee from '@/components/ServiceCardMarquee.astro';
+import Badge from '@/components/Badge.astro';
 import { useTranslations } from '@/i18n/translations';
 import { services } from '@/data/services';
 import { getBreadcrumbSchema } from '@/seo';
@@ -52,14 +53,12 @@ const cms = homepageData;
     <!-- Trust Badge Bar -->
     <div class="mx-auto mb-8 max-w-7xl flex flex-wrap items-center justify-center gap-4 px-4 md:px-6 sm:gap-6">
       <GoogleReviewBadge locale={locale} variant="inline" asLink={false} />
-      <div class="flex items-center gap-2 rounded-full bg-midnight-indigo/10 px-4 py-2 border border-midnight-indigo/20">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-midnight-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-        <span class="text-sm font-semibold text-navy">{t.trust.insured}</span>
-      </div>
-      <div class="flex items-center gap-2 rounded-full bg-midnight-indigo/10 px-4 py-2 border border-midnight-indigo/20">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-midnight-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        <span class="text-sm font-semibold text-navy">{t.servicesPage.trustGuarantee}</span>
-      </div>
+      <Badge label={t.trust.insured} tone="brand" caps={false} class="!text-navy">
+        <svg slot="icon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-midnight-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+      </Badge>
+      <Badge label={t.servicesPage.trustGuarantee} tone="brand" caps={false} class="!text-navy">
+        <svg slot="icon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-midnight-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </Badge>
     </div>
 
     <div class="mx-auto max-w-7xl px-4 md:px-6">
