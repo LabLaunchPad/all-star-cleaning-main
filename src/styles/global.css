@@ -297,13 +297,13 @@
   .cta-gradient { background: linear-gradient(135deg, var(--color-midnight-indigo) 0%, var(--color-midnight-indigo-dark) 100%); }
 
   /* Colorized utilities for Impeccable context */
-  .bg-emerald-subtle { background-color: var(--color-green-surface); border-color: var(--color-green-light) / 0.2; }
+  .bg-emerald-subtle { background-color: var(--color-green-surface); }
   .text-emerald-bold { color: var(--color-green-dark); }
-  
-  .bg-sky-subtle { background-color: var(--color-sky-surface); border-color: var(--color-sky-light) / 0.2; }
+
+  .bg-sky-subtle { background-color: var(--color-sky-surface); }
   .text-sky-bold { color: var(--color-sky-dark); }
 
-  .bg-amber-subtle { background-color: var(--color-amber-surface); border-color: var(--color-amber-light) / 0.2; }
+  .bg-amber-subtle { background-color: var(--color-amber-surface); }
   .text-amber-bold { color: var(--color-amber-dark); }
 
   /* Minimum touch target size — WCAG 2.5.8 */
