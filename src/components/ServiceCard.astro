@@ -13,6 +13,14 @@
 // from the tennis-bento reference. Kept as a prop on the same component rather than
 // a new one — the card-patterns skill caps this project at a small number of card
 // species on purpose.
+//
+// `variant="text"` (2026-07, gap-audit follow-up): a third species absorbing a photo-
+// less "related services" link pattern that had been independently reimplemented
+// byte-for-byte in three places (services/[serviceSlug].astro's "Related Services",
+// area/[locationSlug]/index.astro's service list, and area/[locationSlug]/
+// [serviceSlug].astro's "Other Services in this Area" — the 440-page template).
+// Two of those three link to a location+service URL, not the plain /services/ one
+// ServiceCard otherwise assumes, hence the optional `href` override below.
 import { getServiceAccent } from '@/data/services';
 import type { Service } from '@/types';
 
@@ -22,33 +30,45 @@ interface Props {
   featured?: boolean;
   learnMoreText: string;
   delayClass?: string;
-  variant?: 'inset' | 'bleed';
+  variant?: 'inset' | 'bleed' | 'text';
+  /** Overrides the default `/${locale}/services/${slug}` link — needed by the
+   * `text` variant's area/location callers, which link to a location+service URL. */
+  href?: string;
+  /** `text` variant only — some callers (area/[locationSlug]/[serviceSlug].astro's
+   * "Other Services" grid) omit the learn-more affordance entirely. */
+  showLearnMore?: boolean;
   /** For duplicate copies in a looping carousel (see ServiceCardMarquee) — hides
    * the repeated card from assistive tech and keyboard nav, since screen-reader/
    * keyboard users shouldn't hit the same link/heading twice per row. */
   ariaHidden?: boolean;
 }
-const { service, locale, featured = false, learnMoreText, delayClass = '', variant = 'inset', ariaHidden = false } = Astro.props;
+const {
+  service, locale, featured = false, learnMoreText, delayClass = '', variant = 'inset',
+  href, showLearnMore = true, ariaHidden = false,
+} = Astro.props;
 const isFr = locale === 'fr';
 const accent = getServiceAccent(service.slug);
 const imgSrc = service.image || `/images/${service.slug}.jpg`;
 const features = isFr ? service.frFeatures : service.features;
 const badge = isFr ? accent.badgeFr : accent.badgeEn;
+const resolvedHref = href || `/${locale}/services/${service.slug}`;
 ---
 
 <a
-  href={`/${locale}/services/${service.slug}`}
+  href={resolvedHref}
   style={`--accent: ${accent.color}; --accent-surface: ${accent.colorSurface}; --accent-dark: ${accent.colorDark};`}
   aria-hidden={ariaHidden ? 'true' : undefined}
   tabindex={ariaHidden ? -1 : undefined}
   class:list={[
-    'touch-target fade-in group flex flex-col overflow-hidden rounded-2xl border border-border transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2',
-    variant === 'bleed' ? 'border-transparent' : 'bg-card',
+    'touch-target fade-in group flex flex-col overflow-hidden rounded-2xl border transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2',
+    variant === 'bleed' && 'border-transparent',
+    variant === 'text' && (featured ? 'border-midnight-indigo/20 bg-midnight-indigo/5' : 'border-border bg-card'),
+    variant === 'inset' && 'border-border bg-card',
     delayClass,
-    featured ? 'md:col-span-2 lg:col-span-2' : '',
+    variant === 'text' ? (featured && 'sm:col-span-2') : (featured && 'md:col-span-2 lg:col-span-2'),
   ]}
 >
-  {variant === 'bleed' ? (
+  {variant === 'bleed' && (
     <div class="flex h-full flex-col" style={`background-color: ${accent.color};`}>
       {/* Text sits directly on the vivid field — dark ink reads at strong contrast
           against every accent color (all mid-to-light tones), no scrim needed. */}
@@ -78,7 +98,26 @@ const badge = isFr ? accent.badgeFr : accent.badgeEn;
         </span>
       </div>
     </div>
-  ) : (
+  )}
+
+  {variant === 'text' && (
+    <div class="flex flex-col gap-1 p-4 md:p-5">
+      <h3 class:list={['font-heading font-semibold text-navy group-hover:text-midnight-indigo', featured ? 'text-lg' : 'text-base']}>
+        {isFr ? service.frName : service.name}
+      </h3>
+      <p class="text-sm text-muted-foreground line-clamp-2">
+        {isFr ? service.frDescription : service.description}
+      </p>
+      {showLearnMore && (
+        <span class="mt-1 inline-flex w-fit items-center gap-1 text-sm font-medium text-midnight-indigo">
+          {learnMoreText}
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </span>
+      )}
+    </div>
+  )}
+
+  {variant === 'inset' && (
     <>
       {/* Image inset in its own frame — not full-bleed, so text below never depends on a scrim */}
       <div class="relative p-3 pb-0">

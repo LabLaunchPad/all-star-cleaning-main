@@ -4,6 +4,7 @@ import FAQAccordion from '@/components/FAQAccordion.astro';
 import GoogleReviewBadge from '@/components/GoogleReviewBadge.astro';
 import SidebarCTA from '@/components/SidebarCTA.astro';
 import Badge from '@/components/Badge.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
 import { useTranslations } from '@/i18n/translations';
 import { services } from '@/data/services';
 import { getServiceSchema, getBreadcrumbSchema, getFAQSchema } from '@/seo';
@@ -95,14 +96,7 @@ const responseTimeText = service.slug === 'snow-removal'
         </h2>
         <div class="mt-4 grid gap-4 sm:grid-cols-2">
           {otherServices.map((otherService, i) => (
-            <a href={`/${locale}/services/${otherService.slug}`} class={`touch-target group rounded-xl border border-border bg-card p-4 transition-colors duration-200 hover:border-midnight-indigo/30 focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2 hover-lift ${i === 0 ? 'sm:col-span-2 border-midnight-indigo/20 bg-midnight-indigo/5' : ''}`}>
-              <h3 class="font-medium text-navy group-hover:text-midnight-indigo">{isFr ? otherService.frName : otherService.name}</h3>
-              <p class="mt-1 text-sm text-muted-foreground line-clamp-2">{isFr ? otherService.frDescription : otherService.description}</p>
-              <span class="mt-2 inline-flex items-center gap-1 text-sm font-medium text-midnight-indigo">
-                {t.ui.learnMore}
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-              </span>
-            </a>
+            <ServiceCard service={otherService} locale={locale} variant="text" featured={i === 0} learnMoreText={t.ui.learnMore} />
           ))}
         </div>
       </div>
