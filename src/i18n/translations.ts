@@ -41,9 +41,9 @@ const en = {
     noObligation4h: 'No obligation · Response within 4 hours during storms',
   },
   usps: {
-    expertise: { title: 'Local Expertise', description: 'Serving Ottawa homes means we master harsh winters, gutters, and siding. We deliver customized, reliable results competitors can\'t match.' },
-    equipment: { title: 'Premium, Damage-Free Equipment', description: 'We use specialized vacuums, gutter cameras, and safe pressure washers. They ensure thorough cleans without home damage, harsh chemicals, or risks.' },
-    guarantee: { title: 'Hassle-Free Satisfaction Guarantee', description: '100% satisfaction promised with flexible scheduling and eco-friendly products. You get spotless results, no mess, and lasting trust.' },
+    expertise: { title: 'Ottawa Winters, Handled', description: 'Freeze-thaw cycles cause ice dams, salt stains, and clogged eavestroughs — we see it every season and know how to fix it right, not just patch it over.' },
+    equipment: { title: 'Damage-Free, Not Just Powerful', description: 'Gutter cameras catch hidden clogs before they cause water damage. Soft-wash pressure control means no cracked siding, no stripped paint, no harsh chemicals near your garden.' },
+    guarantee: { title: 'Not Happy? We Come Back — Free', description: '100% satisfaction, no fine print. Flexible scheduling around your week, eco-friendly products safe for kids and pets, and spotless results or we fix it at no charge.' },
   },
   contact: {
     phone: '(613) 314-3300',
@@ -107,9 +107,9 @@ const fr = {
     noObligation4h: 'Sans engagement · Réponse sous 4h lors des tempêtes',
   },
   usps: {
-    expertise: { title: "Expertise Locale", description: "Servir les foyers d'Ottawa signifie que nous maîtrisons les hivers rigoureux, les gouttières et les revêtements. Nous offrons des résultats personnalisés et fiables que nos concurrents ne peuvent égaler." },
-    equipment: { title: 'Équipement Premium sans Dommage', description: 'Nous utilisons des aspirateurs spécialisés, des caméras de gouttière et des laveuses sous pression sécuritaires. Ils assurent un nettoyage approfondi sans dommage à la maison, produits chimiques agressifs ou risques.' },
-    guarantee: { title: 'Garantie de Satisfaction sans Tracas', description: "Satisfaction à 100% garantie avec des horaires flexibles et des produits écologiques. Vous obtenez des résultats impeccables, sans désordre, et une confiance durable." },
+    expertise: { title: "Les Hivers d'Ottawa, Maîtrisés", description: "Les cycles de gel-dégel causent des barrages de glace, des taches de sel et des gouttières bloquées — nous voyons ça chaque saison et savons régler le problème à la source, pas juste le camoufler." },
+    equipment: { title: 'Sans Dommage, Pas Juste Puissant', description: 'Nos caméras de gouttière détectent les blocages cachés avant qu\'ils causent des dégâts d\'eau. Un contrôle de pression en douceur évite les fissures au revêtement, la peinture arrachée, et les produits chimiques agressifs près de votre jardin.' },
+    guarantee: { title: 'Pas Satisfait? On Revient — Gratuitement', description: "Satisfaction à 100%, sans petits caractères. Horaires flexibles selon votre semaine, produits écologiques sécuritaires pour enfants et animaux, et des résultats impeccables ou nous corrigeons le tout sans frais." },
   },
   contact: {
     phone: '(613) 314-3300',

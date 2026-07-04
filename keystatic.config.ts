@@ -325,6 +325,22 @@ export default config({
           defaultValue: "Contactez-nous dès aujourd'hui pour un devis gratuit. Nous sommes ouverts 7 jours par semaine!",
         }),
 
+        // ──────────────────────────────────────────
+        // FAQS — same shape as the services collection's faqs field
+        // ──────────────────────────────────────────
+        faqs: fields.array(
+          fields.object({
+            question: fields.text({ label: 'Question (English)' }),
+            frQuestion: fields.text({ label: 'Question (French)' }),
+            answer: fields.text({ label: 'Answer (English)', multiline: true }),
+            frAnswer: fields.text({ label: 'Answer (French)', multiline: true }),
+          }),
+          {
+            label: 'FAQs',
+            itemLabel: (props) => props.fields.question.value || 'FAQ',
+          }
+        ),
+
       },
     }),
 

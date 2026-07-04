@@ -1,0 +1,23 @@
+---
+// Bold number + muted label pair — the "proof point" pattern common across the
+// 2026-07 reference screenshots (Bahasa's 210+/1000+/100+, Aeline's 120+/100%/520k+),
+// adapted here for genuine local-trust numbers (review count, locations served,
+// years operating) rather than SaaS-style growth metrics — PRODUCT.md's own
+// anti-references explicitly ban "SaaS-style landing pages with hero metrics."
+interface Props {
+  value: string;
+  suffix?: string;
+  label: string;
+  tone?: 'light' | 'dark';
+  align?: 'left' | 'center';
+}
+const { value, suffix = '', label, tone = 'light', align = 'left' } = Astro.props;
+---
+<div class:list={['flex flex-col gap-[var(--space-stat-gap)]', align === 'center' && 'items-center text-center']}>
+  <span class:list={['font-heading text-4xl font-extrabold tabular-nums tracking-tight sm:text-5xl', tone === 'dark' ? 'text-text-on-dark' : 'text-midnight-indigo']}>
+    {value}{suffix && <span style="color: var(--color-vivid-amber);">{suffix}</span>}
+  </span>
+  <span class:list={['text-xs font-semibold uppercase tracking-widest', tone === 'dark' ? 'text-text-on-dark-muted' : 'text-muted-foreground']}>
+    {label}
+  </span>
+</div>

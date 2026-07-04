@@ -4,9 +4,12 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import ServiceCardMarquee from '@/components/ServiceCardMarquee.astro';
 import SectionMotif from '@/components/SectionMotif.astro';
+import Badge from '@/components/Badge.astro';
+import StatTile from '@/components/StatTile.astro';
+import FAQAccordion from '@/components/FAQAccordion.astro';
 import { services } from '@/data/services';
 import { useTranslations } from '@/i18n/translations';
-import { getHowToSchema, getBreadcrumbSchema } from '@/seo';
+import { getHowToSchema, getBreadcrumbSchema, getFAQSchema } from '@/seo';
 import homepageData from '@/content/homepage.json';
 import siteSettings from '@/content/settings.json';
 
@@ -31,6 +34,7 @@ const usps = [
 
 // CMS-managed content (editable via Keystatic at /keystatic)
 const cms = homepageData;
+const faqSchema = cms.faqs && cms.faqs.length > 0 ? getFAQSchema(cms.faqs, locale) : null;
 ---
 
 <BaseLayout
@@ -39,7 +43,7 @@ const cms = homepageData;
   locale={locale}
   ogImage="https://allstarcleaning.ca/og-default.jpg"
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/` }]}
-  schema={[howtoSchema, homeBreadcrumbSchema]}
+  schema={[howtoSchema, homeBreadcrumbSchema, ...(faqSchema ? [faqSchema] : [])]}
 >
   <!-- ============================================================ -->
   <!-- HERO SECTION — Full-screen bg image + centered overlay (SHINE layout) -->
@@ -81,10 +85,16 @@ const cms = homepageData;
         <!-- Top Row: Uniform sizing -->
         <div class="flex flex-wrap items-center justify-center gap-3">
           <!-- Free Estimates -->
-          <div class="flex min-w-[150px] items-center justify-center gap-2 rounded-full bg-amber-500/10 px-4 py-2.5 border border-amber-500/20">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-            <span class="text-[10px] font-bold uppercase tracking-widest text-text-on-dark sm:text-xs">{isFr ? 'Devis Gratuits' : 'Free Estimates'}</span>
-          </div>
+          <Badge
+            label={isFr ? 'Devis Gratuits' : 'Free Estimates'}
+            tone="accent"
+            accentColor="oklch(78% 0.18 70)"
+            accentSurface="oklch(78% 0.18 70 / 0.1)"
+            accentDark="var(--color-text-on-dark)"
+            class="min-w-[150px] justify-center !text-[10px] sm:!text-xs"
+          >
+            <svg slot="icon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+          </Badge>
 
           <!-- Google Rating -->
           <a 
@@ -94,7 +104,7 @@ const cms = homepageData;
             class="touch-target flex min-w-[150px] items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-2.5 border border-white/20 transition-transform hover:bg-white/20 hover:scale-105 active:scale-95"
             aria-label={isFr ? 'Voir nos avis Google (ouvre une nouvelle fenêtre)' : 'See our Google Reviews (opens in new window)'}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c3.11 0 5.72-1.03 7.63-2.77l-3.57-2.77c-1.01.68-2.31 1.09-4.06 1.09-3.13 0-5.78-2.11-6.73-4.96H2.62v2.87C4.52 20.38 8.04 23 12 23z" fill="#34A853"/><path d="M5.27 13.59c-.24-.71-.38-1.47-.38-2.27 0-.79.14-1.55.38-2.26V6.19H2.62C1.81 7.82 1.35 9.66 1.35 11.62c0 1.96.46 3.8 1.27 5.43l2.65-2.07z" fill="#FBBC05"/><path d="M12 4.39c1.7 0 3.22.58(6.19l3.3 2.57C6.88 6.5 9.53 4.39 12 4.39z" fill="#EA4335"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c3.11 0 5.72-1.03 7.63-2.77l-3.57-2.77c-1.01.68-2.31 1.09-4.06 1.09-3.13 0-5.78-2.11-6.73-4.96H2.62v2.87C4.52 20.38 8.04 23 12 23z" fill="#34A853"/><path d="M5.27 13.59c-.24-.71-.38-1.47-.38-2.27 0-.79.14-1.55.38-2.26V6.19H2.62C1.81 7.82 1.35 9.66 1.35 11.62c0 1.96.46 3.8 1.27 5.43l2.65-2.07z" fill="#FBBC05"/><path d="M12 4.39c1.7 0 3.22.58 4.42 1.73l3.31-3.31C17.71 1.05 15.09 0 12 0 8.04 0 4.52 2.62 2.62 6.19l3.3 2.57C6.88 6.5 9.53 4.39 12 4.39z" fill="#EA4335"/></svg>
             <div class="flex text-yellow-400">
               {[...Array(5)].map(() => (
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -105,16 +115,36 @@ const cms = homepageData;
         </div>
 
         <!-- Bottom Row: Primary Trust -->
-        <div class="flex min-w-[200px] items-center justify-center gap-2 rounded-full bg-emerald-500/10 px-6 py-2.5 border border-emerald-500/20">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-          <span class="text-[10px] font-bold uppercase tracking-widest text-text-on-dark sm:text-xs">{isFr ? 'Assuré & Cautionné' : 'Insured & Bonded'}</span>
-        </div>
+        <Badge
+          label={isFr ? 'Assuré & Cautionné' : 'Insured & Bonded'}
+          tone="accent"
+          accentColor="oklch(65% 0.20 150)"
+          accentSurface="oklch(65% 0.20 150 / 0.1)"
+          accentDark="var(--color-text-on-dark)"
+          class="min-w-[200px] justify-center px-6 !text-[10px] sm:!text-xs"
+        >
+          <svg slot="icon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </Badge>
       </div>
     </div>
 
     <!-- Bottom scroll indicator -->
     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 animate-bounce opacity-30">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-text-on-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 13 5 5 5-5"/><path d="m7 6 5 5 5-5"/></svg>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PROOF STRIP — bold-number stats, real local-trust numbers only.
+       Uses homepage.json fields that already existed (statsRatingEn/Fr,
+       statsSatisfactionEn/Fr, statsDaysEn/Fr) but were never rendered
+       anywhere — not new content, just finally surfaced. -->
+  <!-- ============================================================ -->
+  <section aria-label={isFr ? 'Nos chiffres' : 'Our numbers'} class="border-b border-border bg-card py-8 md:py-10">
+    <div class="mx-auto grid max-w-3xl grid-cols-3 gap-4 px-4 md:max-w-4xl md:gap-8 md:px-6">
+      <StatTile align="center" value={String(cms.googleReviewCount)} suffix="+" label={isFr ? cms.statsRatingFr : cms.statsRatingEn} />
+      <StatTile align="center" value="100" suffix="%" label={isFr ? cms.statsSatisfactionFr : cms.statsSatisfactionEn} />
+      <StatTile align="center" value="7" label={isFr ? cms.statsDaysFr : cms.statsDaysEn} />
     </div>
   </section>
 
@@ -156,12 +186,15 @@ const cms = homepageData;
           <!-- Feature cards stacked -->
           <div class="mt-8 flex flex-col gap-4">
             {usps.map((usp) => (
-              <div class:list={[
-                'fade-in rounded-xl border p-5 flex items-start gap-4 transition-transform duration-300 hover:-translate-y-0.5',
-                usp.icon === 'shield' ? 'bg-emerald-subtle border-green-500/20' : 
-                usp.icon === 'sparkles' ? 'bg-sky-subtle border-sky-500/20' : 
-                'bg-amber-subtle border-amber-500/20'
-              ]}>
+              <div
+                style="box-shadow: var(--shadow-stacked);"
+                class:list={[
+                  'fade-in rounded-xl border p-5 flex items-start gap-4 transition-transform duration-300 hover:-translate-y-0.5',
+                  usp.icon === 'shield' ? 'bg-emerald-subtle border-green-500/20' :
+                  usp.icon === 'sparkles' ? 'bg-sky-subtle border-sky-500/20' :
+                  'bg-amber-subtle border-amber-500/20'
+                ]}
+              >
                 <div class:list={[
                   'flex h-10 w-10 shrink-0 items-center justify-center rounded-full',
                   usp.icon === 'shield' ? 'bg-green-500/10 text-green-600' : 
@@ -211,13 +244,14 @@ const cms = homepageData;
         <p class="fade-in delay-2 mx-auto mt-4 max-w-2xl measure text-muted-foreground">{isFr ? "Des fenêtres étincelantes aux allées déneigées, nous couvrons tout Ottawa." : "From sparkling windows to snow-free driveways, we've got Ottawa covered."}</p>
       </div>
       <div class="mt-12">
-        <ServiceCardMarquee services={services} locale={locale} learnMoreText={t.ui.learnMore} />
+        <ServiceCardMarquee services={services} locale={locale} learnMoreText={t.ui.learnMore} cardVariant="bleed" />
         <div class="hidden md:grid md:grid-cols-2 gap-6 lg:grid-cols-3">
           {services.map((service, i) => (
             <ServiceCard
               service={service}
               locale={locale}
               featured={i === 0}
+              variant={i === 0 ? 'bleed' : 'inset'}
               learnMoreText={t.ui.learnMore}
               delayClass={`delay-${Math.min(i + 1, 5)}`}
             />
@@ -300,6 +334,59 @@ const cms = homepageData;
           class="h-full w-full object-cover"
           loading="lazy"
         />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- FAQ SECTION — addresses objections right before the closing CTA.
+       Uses homepage.json's faqs field (new — mirrors the services
+       collection's identical faqs shape) and the existing FAQAccordion
+       component already proven on service-detail/location pages. -->
+  <!-- ============================================================ -->
+  {cms.faqs && cms.faqs.length > 0 && (
+    <section aria-label={isFr ? 'Questions fréquentes' : 'Frequently asked questions'} class="bg-card py-16 md:py-20">
+      <div class="mx-auto max-w-3xl px-4 md:px-6">
+        <FAQAccordion
+          faqs={cms.faqs}
+          locale={locale}
+          title={isFr ? 'Questions Fréquentes' : 'Frequently Asked Questions'}
+        />
+      </div>
+    </section>
+  )}
+
+  <!-- ============================================================ -->
+  <!-- CLOSING CTA — cms.ctaHeadline/ctaSubtitle/ctaImage existed in the
+       CMS schema but were never rendered anywhere on the page; the
+       homepage previously just ended after "How It Works". -->
+  <!-- ============================================================ -->
+  <section aria-label={isFr ? 'Demandez un devis' : 'Get a quote'} class="relative overflow-hidden py-20 md:py-24">
+    <div class="absolute inset-0 z-0">
+      <img
+        src={cms.ctaImage}
+        alt=""
+        role="presentation"
+        width="1344" height="768"
+        class="h-full w-full object-cover"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-midnight-indigo-dark/90"></div>
+    </div>
+    <div class="relative z-10 mx-auto max-w-3xl px-4 text-center md:px-6">
+      <h2 class="font-heading text-3xl font-extrabold text-text-on-dark md:text-4xl">
+        {isFr ? cms.ctaHeadlineFr : cms.ctaHeadlineEn}
+      </h2>
+      <p class="mx-auto mt-4 max-w-xl text-lg text-text-on-dark-muted">
+        {isFr ? cms.ctaSubtitleFr : cms.ctaSubtitleEn}
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={`/${locale}/contact`} class="touch-target inline-flex w-full items-center justify-center gap-2 rounded-full bg-text-on-dark px-8 py-3.5 text-base font-bold uppercase tracking-wider text-midnight-indigo shadow-xl transition-colors duration-200 hover:bg-text-on-dark/90 sm:w-auto">
+          {t.cta.freeQuote}
+        </a>
+        <a href={`tel:${cms.phoneLink}`} class="touch-target inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-text-on-dark/30 px-8 py-3.5 text-base font-bold uppercase tracking-wider text-text-on-dark transition-colors duration-200 hover:border-text-on-dark/60 hover:bg-text-on-dark/10 sm:w-auto">
+          {cms.phone}
+        </a>
       </div>
     </div>
   </section>

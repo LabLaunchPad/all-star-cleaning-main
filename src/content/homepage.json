@@ -20,5 +20,37 @@
   "ctaHeadlineEn": "Ready to Get Started?",
   "ctaHeadlineFr": "Prêt à Commencer?",
   "ctaSubtitleEn": "Contact us today for a free quote. We're open 7 days a week!",
-  "ctaSubtitleFr": "Contactez-nous dès aujourd'hui pour un devis gratuit. Nous sommes ouverts 7 jours par semaine!"
+  "ctaSubtitleFr": "Contactez-nous dès aujourd'hui pour un devis gratuit. Nous sommes ouverts 7 jours par semaine!",
+  "faqs": [
+    {
+      "question": "What areas of Ottawa do you service?",
+      "frQuestion": "Quels quartiers d'Ottawa desservez-vous?",
+      "answer": "We serve 44 neighbourhoods across the Ottawa region, from Kanata and Barrhaven to Orleans and the Glebe. Not sure if we cover your street? Contact us and we'll confirm right away.",
+      "frAnswer": "Nous desservons 44 quartiers de la région d'Ottawa, de Kanata et Barrhaven à Orléans et le Glebe. Pas certain que nous couvrons votre rue? Contactez-nous et nous confirmerons tout de suite."
+    },
+    {
+      "question": "How do I get a quote, and does it cost anything?",
+      "frQuestion": "Comment obtenir un devis, et est-ce payant?",
+      "answer": "Quotes are always free, with no obligation. Call us or fill out the form and we'll follow up with a clear price — no surprise fees added on the day of service.",
+      "frAnswer": "Les devis sont toujours gratuits et sans engagement. Appelez-nous ou remplissez le formulaire, et nous vous répondrons avec un prix clair — aucuns frais surprises le jour du service."
+    },
+    {
+      "question": "Are you insured and bonded?",
+      "frQuestion": "Êtes-vous assurés et cautionnés?",
+      "answer": "Yes — fully insured and bonded for both residential and commercial work, so you're covered if anything unexpected happens on your property.",
+      "frAnswer": "Oui — entièrement assurés et cautionnés pour les travaux résidentiels et commerciaux, afin que vous soyez protégé en cas d'imprévu sur votre propriété."
+    },
+    {
+      "question": "How fast can you respond during a winter storm?",
+      "frQuestion": "À quelle vitesse pouvez-vous intervenir lors d'une tempête hivernale?",
+      "answer": "Our snow removal crews target a 4-hour response window during active storms, so driveways and walkways stay clear and safe without you having to chase us down.",
+      "frAnswer": "Nos équipes de déneigement visent un délai d'intervention de 4 heures lors des tempêtes actives, afin que vos entrées et allées restent dégagées et sécuritaires."
+    },
+    {
+      "question": "What if I'm not satisfied with the work?",
+      "frQuestion": "Que se passe-t-il si je ne suis pas satisfait du travail?",
+      "answer": "Every job is backed by our hassle-free satisfaction guarantee. If something's not right, tell us and we'll come back to make it right — no extra charge.",
+      "frAnswer": "Chaque travail est couvert par notre garantie de satisfaction sans tracas. Si quelque chose ne va pas, dites-le-nous et nous reviendrons corriger la situation — sans frais supplémentaires."
+    }
+  ]
 }

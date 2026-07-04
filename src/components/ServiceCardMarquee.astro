@@ -15,8 +15,12 @@ interface Props {
   services: Service[];
   locale: 'en' | 'fr';
   learnMoreText: string;
+  /** Card species passed through to ServiceCard — defaults to the original inset
+   * anatomy so existing callers (services/index.astro) are unaffected; the
+   * homepage opts into 'bleed' explicitly. */
+  cardVariant?: 'inset' | 'bleed';
 }
-const { services, locale, learnMoreText } = Astro.props;
+const { services, locale, learnMoreText, cardVariant = 'inset' } = Astro.props;
 const isFr = locale === 'fr';
 
 // Duplicate the list so each track can loop seamlessly at translateX(-50%).
@@ -42,14 +46,14 @@ const rowB = [...services].reverse().concat([...services].reverse());
   <div class="marquee-row" data-marquee-row>
     <div class="marquee-track marquee-track--left">
       {rowA.map((service, i) => (
-        <div class="marquee-card"><ServiceCard service={service} locale={locale} learnMoreText={learnMoreText} ariaHidden={i >= services.length} /></div>
+        <div class="marquee-card"><ServiceCard service={service} locale={locale} learnMoreText={learnMoreText} variant={cardVariant} ariaHidden={i >= services.length} /></div>
       ))}
     </div>
   </div>
   <div class="marquee-row mt-4" data-marquee-row>
     <div class="marquee-track marquee-track--right">
       {rowB.map((service, i) => (
-        <div class="marquee-card"><ServiceCard service={service} locale={locale} learnMoreText={learnMoreText} ariaHidden={i >= services.length} /></div>
+        <div class="marquee-card"><ServiceCard service={service} locale={locale} learnMoreText={learnMoreText} variant={cardVariant} ariaHidden={i >= services.length} /></div>
       ))}
     </div>
   </div>

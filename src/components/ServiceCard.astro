@@ -6,6 +6,13 @@
 // background below it (real contrast, no text-shadow-over-photo reliance), per-service
 // vivid color carries the identity via a tinted badge + accent icon, not a border stripe
 // (DESIGN.md bans side-stripe borders).
+//
+// `variant="bleed"` (2026-07, gap-audit follow-up): a second card species for the
+// homepage's featured placement only — the accent color fills the whole card (not
+// just a badge tint) and the photo bleeds to the card's bottom/side edges, borrowed
+// from the tennis-bento reference. Kept as a prop on the same component rather than
+// a new one — the card-patterns skill caps this project at a small number of card
+// species on purpose.
 import { getServiceAccent } from '@/data/services';
 import type { Service } from '@/types';
 
@@ -15,12 +22,13 @@ interface Props {
   featured?: boolean;
   learnMoreText: string;
   delayClass?: string;
+  variant?: 'inset' | 'bleed';
   /** For duplicate copies in a looping carousel (see ServiceCardMarquee) — hides
    * the repeated card from assistive tech and keyboard nav, since screen-reader/
    * keyboard users shouldn't hit the same link/heading twice per row. */
   ariaHidden?: boolean;
 }
-const { service, locale, featured = false, learnMoreText, delayClass = '', ariaHidden = false } = Astro.props;
+const { service, locale, featured = false, learnMoreText, delayClass = '', variant = 'inset', ariaHidden = false } = Astro.props;
 const isFr = locale === 'fr';
 const accent = getServiceAccent(service.slug);
 const imgSrc = service.image || `/images/${service.slug}.jpg`;
@@ -34,51 +42,86 @@ const badge = isFr ? accent.badgeFr : accent.badgeEn;
   aria-hidden={ariaHidden ? 'true' : undefined}
   tabindex={ariaHidden ? -1 : undefined}
   class:list={[
-    'touch-target fade-in group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2',
+    'touch-target fade-in group flex flex-col overflow-hidden rounded-2xl border border-border transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2',
+    variant === 'bleed' ? 'border-transparent' : 'bg-card',
     delayClass,
     featured ? 'md:col-span-2 lg:col-span-2' : '',
   ]}
 >
-  {/* Image inset in its own frame — not full-bleed, so text below never depends on a scrim */}
-  <div class="relative p-3 pb-0">
-    <div class:list={['relative overflow-hidden rounded-xl', featured ? 'aspect-[16/9] md:aspect-[21/9]' : 'aspect-[4/3]']}>
-      <img
-        src={imgSrc}
-        alt={isFr ? service.frName : service.name}
-        width="800" height="600"
-        class:list={['h-full w-full object-cover transition-transform duration-500 group-hover:scale-105', accent.objectPosition]}
-        loading={featured ? 'eager' : 'lazy'}
-      />
-      <span class="absolute left-3 top-3 w-fit rounded-full border border-[var(--accent)]/40 bg-[var(--accent-surface)] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-navy-dark shadow-sm">
-        {badge}
-      </span>
-    </div>
-  </div>
+  {variant === 'bleed' ? (
+    <div class="flex h-full flex-col" style={`background-color: ${accent.color};`}>
+      {/* Text sits directly on the vivid field — dark ink reads at strong contrast
+          against every accent color (all mid-to-light tones), no scrim needed. */}
+      <div class="flex flex-col gap-2 p-4 pb-3 md:p-5 md:pb-3">
+        <div class="flex flex-wrap gap-2">
+          <span class="w-fit rounded-full border border-navy-dark/15 bg-navy-dark/10 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-navy-dark">
+            {badge}
+          </span>
+        </div>
+        <h3 class:list={['font-heading font-extrabold text-navy-dark', featured ? 'text-xl lg:text-2xl' : 'text-lg']}>
+          {isFr ? service.frName : service.name}
+        </h3>
+      </div>
 
-  {/* Content on clean card background — full-contrast text, no shadow hack needed */}
-  <div class="flex flex-1 flex-col gap-2 p-4 md:p-5">
-    <h3 class:list={['font-heading font-extrabold text-midnight-indigo', featured ? 'text-xl lg:text-2xl' : 'text-lg']}>
-      {isFr ? service.frName : service.name}
-    </h3>
-    <p class="line-clamp-2 text-sm leading-relaxed text-muted-foreground">
-      {isFr ? service.frDescription : service.description}
-    </p>
-    {features?.length > 0 && (
-      <ul class="space-y-1">
-        {features.slice(0, featured ? 3 : 2).map((feature: string) => (
-          <li class="flex items-center gap-2 text-xs text-muted-foreground">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 shrink-0 text-[var(--accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-            <span>{feature}</span>
-          </li>
-        ))}
-      </ul>
-    )}
-
-    <div class="mt-auto flex w-fit items-center gap-2 rounded-xl bg-[var(--accent-surface)] py-1.5 pl-3 pr-1.5 transition-colors duration-300 group-hover:bg-[var(--accent)]/15">
-      <span class="text-xs font-semibold text-[var(--accent-dark)]">{learnMoreText}</span>
-      <div class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg bg-[var(--accent)]/15 transition-transform duration-300 group-hover:translate-x-0.5">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-[var(--accent-dark)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      {/* Photo bleeds to the card's own bottom/side edges — no inset frame */}
+      <div class:list={['relative mt-auto w-full overflow-hidden', featured ? 'aspect-[16/9] md:aspect-[21/9]' : 'aspect-[4/3]']}>
+        <img
+          src={imgSrc}
+          alt={isFr ? service.frName : service.name}
+          width="800" height="600"
+          class:list={['h-full w-full object-cover transition-transform duration-500 group-hover:scale-105', accent.objectPosition]}
+          loading={featured ? 'eager' : 'lazy'}
+        />
+        <span class="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-card/95 px-3 py-1.5 text-xs font-semibold text-[var(--accent-dark)] shadow-sm">
+          {learnMoreText}
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </span>
       </div>
     </div>
-  </div>
+  ) : (
+    <>
+      {/* Image inset in its own frame — not full-bleed, so text below never depends on a scrim */}
+      <div class="relative p-3 pb-0">
+        <div class:list={['relative overflow-hidden rounded-xl', featured ? 'aspect-[16/9] md:aspect-[21/9]' : 'aspect-[4/3]']}>
+          <img
+            src={imgSrc}
+            alt={isFr ? service.frName : service.name}
+            width="800" height="600"
+            class:list={['h-full w-full object-cover transition-transform duration-500 group-hover:scale-105', accent.objectPosition]}
+            loading={featured ? 'eager' : 'lazy'}
+          />
+          <span class="absolute left-3 top-3 w-fit rounded-full border border-[var(--accent)]/40 bg-[var(--accent-surface)] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-navy-dark shadow-sm">
+            {badge}
+          </span>
+        </div>
+      </div>
+
+      {/* Content on clean card background — full-contrast text, no shadow hack needed */}
+      <div class="flex flex-1 flex-col gap-2 p-4 md:p-5">
+        <h3 class:list={['font-heading font-extrabold text-midnight-indigo', featured ? 'text-xl lg:text-2xl' : 'text-lg']}>
+          {isFr ? service.frName : service.name}
+        </h3>
+        <p class="line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+          {isFr ? service.frDescription : service.description}
+        </p>
+        {features?.length > 0 && (
+          <ul class="space-y-1">
+            {features.slice(0, featured ? 3 : 2).map((feature: string) => (
+              <li class="flex items-center gap-2 text-xs text-muted-foreground">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 shrink-0 text-[var(--accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <div class="mt-auto flex w-fit items-center gap-2 rounded-xl bg-[var(--accent-surface)] py-1.5 pl-3 pr-1.5 transition-colors duration-300 group-hover:bg-[var(--accent)]/15">
+          <span class="text-xs font-semibold text-[var(--accent-dark)]">{learnMoreText}</span>
+          <div class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg bg-[var(--accent)]/15 transition-transform duration-300 group-hover:translate-x-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-[var(--accent-dark)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </div>
+        </div>
+      </div>
+    </>
+  )}
 </a>

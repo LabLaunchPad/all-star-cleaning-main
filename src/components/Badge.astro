@@ -1,0 +1,40 @@
+---
+// Unified pill/chip primitive — replaces the ad-hoc badge markup that had drifted
+// slightly different padding/radius/icon-gap in three places: ServiceCard's accent
+// badge, the homepage hero's trust pills, and services/index.astro's trust bar.
+// Mirrors ServiceCard's proven --accent/--accent-surface/--accent-dark inline-style
+// convention (see src/data/services.ts) rather than a runtime color-mix() — that
+// convention exists specifically because dynamic CSS color tricks were unreliable
+// in this project's Tailwind v4 build pipeline (see DESIGN.md's "Known quirk").
+//
+// The icon is a slot, not a `d`-string prop — most of this codebase's icons are
+// two-path compounds (outline + accent mark), and concatenating multiple <path>
+// elements into one `d` string risks silently breaking relative-coordinate
+// commands (m/l) that were only ever correct relative to their own subpath.
+interface Props {
+  label: string;
+  tone?: 'neutral' | 'accent' | 'dark';
+  accentColor?: string;
+  accentSurface?: string;
+  accentDark?: string;
+  class?: string;
+}
+const { label, tone = 'neutral', accentColor, accentSurface, accentDark, class: className = '' } = Astro.props;
+const accentStyle = tone === 'accent' && accentColor && accentSurface && accentDark
+  ? `--accent: ${accentColor}; --accent-surface: ${accentSurface}; --accent-dark: ${accentDark};`
+  : undefined;
+---
+<span
+  style={accentStyle}
+  class:list={[
+    'inline-flex items-center rounded-full text-[11px] font-bold uppercase tracking-widest',
+    'px-[var(--space-badge-x)] py-[var(--space-badge-y)] gap-[var(--space-icon-gap)]',
+    tone === 'neutral' && 'border border-border bg-card text-muted-foreground',
+    tone === 'dark' && 'border border-text-on-dark/20 bg-text-on-dark/10 text-text-on-dark',
+    tone === 'accent' && 'border border-[var(--accent)]/40 bg-[var(--accent-surface)] text-[var(--accent-dark)]',
+    className,
+  ]}
+>
+  <slot name="icon" />
+  {label}
+</span>
