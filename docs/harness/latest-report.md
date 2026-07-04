@@ -1,9 +1,19 @@
 # Production Readiness Harness Report
 
-**Date:** 2026-06-22 (Updated)
+**Date:** 2026-07-04 (Re-run) — originally 2026-06-22
 **Site:** All Star Cleaning — `all-star-cleaning-main`
-**Stack:** Astro 6.3, React 19, Tailwind CSS v4, Keystatic CMS, Cloudflare Pages
+**Stack:** Astro 7, React 19, Tailwind CSS v4, Keystatic CMS, Cloudflare Pages
 **Verdict:** ✅ **6/6 PASS — Gateway UNLOCKED**
+
+---
+
+## 2026-07-04 Re-run
+
+Re-verified all 6 checks below on branch `claude/init-eha2ln` after a substantial visual/design work cycle: font rebrand (DM Serif Display → heavy Outfit), H2/H3 weight unification, a vivid per-service color system replacing navy-monotone, domain-specific SVG background motifs, a full service-card redesign (`ServiceCard.astro`), and a dual-row mobile card marquee (`ServiceCardMarquee.astro`). All 6 checks below are unchanged/still pass — this was a visual/frontend cycle, not a security-surface change, so no new findings.
+
+Also re-ran the correctness gates: `npm run typecheck` (0 errors) and `npm run build` (all ~600 pages generate). Both green.
+
+**One infra note, not a harness finding:** `astro check` was observed to OOM (JS heap exhaustion) when a stray `dist-*`-named build output directory was left in the project root — Astro's typechecker scans it as source and chokes on minified production JS. Not a code defect; just a reminder to keep non-standard build output directories out of the project root (the default `dist/` is correctly excluded).
 
 ---
 

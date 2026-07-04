@@ -40,11 +40,7 @@ Don't create a third bucket (`cards/`, `sections/`) until there are 3+ component
 
 `code-simplifier` uses a 4+ occurrence threshold for logic duplication — that's the right bar for a helper function nobody will read twice. **Visual components are held to a lower bar: 2+ page types.** The cost of inconsistent card markup drifting across pages (one gets a hover fix, the other doesn't) outweighs the abstraction cost of a props-based `.astro` component.
 
-**Confirmed live violation of this rule:** the service-card markup (image + badge + title + description + feature list + CTA pill) is hand-duplicated in:
-- `src/pages/[locale]/index.astro:225–300` (homepage services grid)
-- `src/pages/[locale]/services/index.astro:~85–110` (services index page)
-
-Same anatomy, same classes, drifting slightly between the two already (featured-card sizing logic only exists in one). This should be `src/components/ServiceCard.astro` taking `service`, `locale`, `featured` props. See the `card-patterns` skill for the canonical anatomy to extract.
+**Resolved (2026-07):** the service-card markup (image + badge + title + description + feature list + CTA pill), previously hand-duplicated with 3 divergent copies across `index.astro` and `services/index.astro` (two referencing undefined tokens `bg-mint-fresh`/`bg-lavender-blend`), is now `src/components/ServiceCard.astro` taking `service`, `locale`, `featured`, `learnMoreText`, `delayClass` props. Both pages import it. See the `card-patterns` skill for its anatomy — this is the reference example for the rule above, not just an illustration of the gap.
 
 ## Prop API Conventions
 
