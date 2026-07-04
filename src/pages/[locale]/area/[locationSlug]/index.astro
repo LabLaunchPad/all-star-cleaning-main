@@ -59,7 +59,7 @@ const heroSubtitle = isFr
       <div class="lg:col-span-2">
       <!-- Area Context -->
       <div class="mt-10 rounded-xl border border-border bg-card p-6">
-        <h2 class="font-heading text-2xl font-bold text-midnight-indigo">
+        <h2 class="font-heading text-2xl font-extrabold text-midnight-indigo">
           {isFr ? `Nettoyage Extérieur à ${location.frName}` : `Exterior Cleaning in ${location.name}`}
         </h2>
         <p class="mt-2 measure text-muted-foreground leading-relaxed">
@@ -84,7 +84,7 @@ const heroSubtitle = isFr
       </div>
 
       <!-- All Services Grid -->
-      <h2 class="font-heading heading-card font-bold text-midnight-indigo">
+      <h2 class="font-heading heading-card font-extrabold text-midnight-indigo">
         {isFr ? 'Nos Services à' : 'Our Services in'} {isFr ? location.frName : location.name}
       </h2>
       <div class="mt-4 grid gap-4 sm:grid-cols-2">
@@ -113,7 +113,7 @@ const heroSubtitle = isFr
       <!-- Neighbouring Areas -->
       {location.neighbours.length > 0 && (
         <div class="mt-10">
-        <h2 class="font-heading heading-card font-bold text-midnight-indigo">
+        <h2 class="font-heading heading-card font-extrabold text-midnight-indigo">
             {isFr ? 'Quartiers avoisinants' : 'Nearby Areas'}
           </h2>
           <div class="mt-4 flex flex-wrap gap-2">

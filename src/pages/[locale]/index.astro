@@ -156,7 +156,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
 
         <!-- Right column: Text + feature cards -->
         <div class="order-1 lg:order-2">
-          <h2 class="heading-section slide-up font-heading font-bold text-midnight-indigo">
+          <h2 class="heading-section slide-up font-heading font-extrabold text-midnight-indigo">
             {isFr ? 'Pourquoi Choisir All Star?' : 'Why Choose All Star?'}
           </h2>
           <p class="fade-in delay-2 mt-4 measure text-lg text-muted-foreground">
@@ -218,7 +218,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
   <section aria-label={isFr ? 'Nos services' : 'Our services'} class="border-t border-midnight-indigo/10 bg-background pt-8 pb-16 md:pt-10 md:pb-20 lg:pt-12 lg:pb-24" style="content-visibility: auto; contain-intrinsic-size: 0 800px">
     <div class="mx-auto max-w-7xl px-4 md:px-6">
       <div class="text-center">
-        <h2 class="heading-subsection slide-up font-heading font-bold text-midnight-indigo">{isFr ? 'Nos Services' : 'Our Services'}</h2>
+        <h2 class="heading-subsection slide-up font-heading font-extrabold text-midnight-indigo">{isFr ? 'Nos Services' : 'Our Services'}</h2>
         <p class="fade-in delay-2 mx-auto mt-4 max-w-2xl measure text-muted-foreground">{isFr ? "Des fenêtres étincelantes aux allées déneigées, nous couvrons tout Ottawa." : "From sparkling windows to snow-free driveways, we've got Ottawa covered."}</p>
       </div>
       <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -265,7 +265,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
                   );
                 })()}
 
-                <h3 class:list={['font-heading font-bold text-text-on-dark text-shadow', isFeatured ? 'text-lg lg:text-xl' : 'text-lg']}>
+                <h3 class:list={['font-heading font-extrabold text-text-on-dark text-shadow', isFeatured ? 'text-lg lg:text-xl' : 'text-lg']}>
                   {isFr ? service.frName : service.name}
                 </h3>
                 <p class="line-clamp-2 text-sm leading-relaxed text-text-on-dark-muted text-shadow">
@@ -331,7 +331,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
   <section aria-label={isFr ? 'Comment ça marche' : 'How it works'} class="py-16 md:py-20 lg:py-24" style="content-visibility: auto; contain-intrinsic-size: 0 700px">
     <div class="mx-auto max-w-7xl px-4 md:px-6">
       <div class="text-center">
-        <h2 class="heading-subsection slide-up font-heading font-bold text-midnight-indigo">{isFr ? 'Comment Ça Marche' : 'How It Works'}</h2>
+        <h2 class="heading-subsection slide-up font-heading font-extrabold text-midnight-indigo">{isFr ? 'Comment Ça Marche' : 'How It Works'}</h2>
         <p class="fade-in delay-2 mx-auto mt-4 max-w-2xl measure text-muted-foreground">{isFr ? "Obtenez un extérieur impeccable en trois étapes simples. C'est aussi facile que ça." : 'Get a spotless exterior in three simple steps. It\'s that easy.'}</p>
       </div>
 
@@ -342,7 +342,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
           <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 border-2 border-sky-500/20">
             <span class="font-heading text-3xl font-bold">1</span>
           </div>
-          <h3 class="mt-5 font-heading text-lg font-semibold text-sky-900">{isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}</h3>
+          <h3 class="mt-5 font-heading text-lg font-extrabold text-sky-900">{isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}</h3>
           <p class="mt-2 measure text-base text-muted-foreground">{isFr ? "Appelez-nous ou remplissez notre formulaire en ligne. Nous vous répondons sous 24 heures avec un devis gratuit et sans engagement." : 'Call us or fill out our online form. We respond within 24 hours with a free, no-obligation quote.'}</p>
         </div>
         <!-- Step 2 -->
@@ -350,7 +350,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
           <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-midnight-indigo/10 text-midnight-indigo border-2 border-midnight-indigo/20">
             <span class="font-heading text-3xl font-bold">2</span>
           </div>
-          <h3 class="mt-5 font-heading text-lg font-semibold text-midnight-indigo">{isFr ? 'Nous Faisons le Travail' : 'We Do the Work'}</h3>
+          <h3 class="mt-5 font-heading text-lg font-extrabold text-midnight-indigo">{isFr ? 'Nous Faisons le Travail' : 'We Do the Work'}</h3>
           <p class="mt-2 measure text-base text-muted-foreground">{isFr ? "Notre équipe professionnelle arrive à l'heure, utilise un équipement de qualité et traite votre maison avec soin. Aucun dégât, aucun désordre." : 'Our professional crew arrives on time, uses premium equipment, and treats your home with care. No damage, no mess.'}</p>
         </div>
         <!-- Step 3 -->
@@ -358,7 +358,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
           <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 border-2 border-emerald-500/20">
             <span class="font-heading text-3xl font-bold">3</span>
           </div>
-          <h3 class="mt-5 font-heading text-lg font-semibold text-emerald-900">{isFr ? 'Appréciez le Résultat' : 'Enjoy the Result'}</h3>
+          <h3 class="mt-5 font-heading text-lg font-extrabold text-emerald-900">{isFr ? 'Appréciez le Résultat' : 'Enjoy the Result'}</h3>
           <p class="mt-2 measure text-base text-muted-foreground">{isFr ? "Vitres étincelantes, gouttières propres, allées comme neuves. Et si vous n'êtes pas satisfait à 100%, nous revenons sans frais." : 'Sparkling windows, clean gutters, driveways like new. And if you\'re not 100% satisfied, we come back at no charge.'}</p>
         </div>
       </div>
