@@ -116,8 +116,8 @@
 
   /* === TYPOGRAPHY === */
   /* Impeccable typeset: fluid clamp() headings, fixed rem body, 1.25 ratio scale */
-  --font-heading: 'DM Serif Display', Georgia, serif;
-  --font-body: 'Outfit', system-ui, sans-serif;
+  --font-heading: 'Outfit', 'Outfit Fallback', system-ui, sans-serif;
+  --font-body: 'Outfit', 'Outfit Fallback', system-ui, sans-serif;
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -188,7 +188,7 @@
 
   /* Impeccable typeset: hierarchy through scale + weight contrast (≥1.25 ratio) */
   h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); line-height: 1.15; text-wrap: balance; color: var(--color-midnight-indigo); }
-  h1 { font-weight: 700; letter-spacing: -0.02em; }
+  h1 { font-weight: 700; letter-spacing: -0.04em; }
   h2 { font-weight: 700; }
   h3 { font-weight: 600; }
   h4, h5, h6 { font-weight: 500; }
@@ -214,16 +214,7 @@
   }
 
   /* Font fallback metrics — minimize CLS on web font swap */
-  /* DM Serif Display fallback: Georgia with size-adjust */
-  @font-face {
-    font-family: 'DM Serif Display Fallback';
-    src: local('Georgia');
-    size-adjust: 108%;
-    ascent-override: 95%;
-    descent-override: 30%;
-    line-gap-override: 0%;
-  }
-  /* Outfit fallback: system-ui with size-adjust */
+  /* Outfit fallback: system-ui with size-adjust — now used by both --font-heading and --font-body */
   @font-face {
     font-family: 'Outfit Fallback';
     src: local('Arial');

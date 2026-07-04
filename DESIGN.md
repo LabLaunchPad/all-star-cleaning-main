@@ -30,8 +30,10 @@ Midnight Indigo (`oklch(28% 0.08 265)`) carries the authoritative brand voice ac
 ## Typography
 
 ### Fonts
-- **Headings**: DM Serif Display — editorial authority, local trust, distinctive without being ornate
-- **Body**: Outfit — clean geometric sans, excellent readability at body sizes, pairs well with serif headings
+- **Headings**: Outfit (ExtraBold/800–Black/900) — heavy, tightly-tracked geometric sans; single-family system, weight carries the hierarchy instead of a serif/sans pairing
+- **Body**: Outfit (Regular/300–700 range) — same family at lighter weights, so heading and body always render from one loaded font, no pairing mismatch risk
+- Letter-spacing floor for display headings: `-0.04em` (tightened from the previous serif pairing's `-0.02em` to match the chunkier, tighter-set look)
+- Rationale: replaced the DM Serif Display + Outfit pairing with a single heavy-weight Outfit system, matching a bolder, more modern geometric-sans display treatment (2026-07 rebrand)
 
 ### Scale
 Fluid `clamp()` for headings, fixed `rem` for body. Ratio 1.25 between steps.
