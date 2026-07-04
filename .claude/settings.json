@@ -1,0 +1,61 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run typecheck)",
+      "Bash(npm run build)",
+      "Bash(npm run dev)",
+      "Bash(npm run preview)",
+      "Bash(git status)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git push*)",
+      "Bash(git fetch*)",
+      "Bash(git pull*)",
+      "Bash(git checkout*)",
+      "Bash(git branch*)",
+      "Bash(ls*)",
+      "Bash(cat*)",
+      "Bash(find*)",
+      "Bash(grep*)",
+      "Read(*)",
+      "Write(.claude/*)",
+      "Write(src/*)",
+      "Edit(src/*)",
+      "Edit(.claude/*)"
+    ],
+    "deny": [
+      "Bash(git push*main*)",
+      "Bash(git push*--force*)",
+      "Bash(rm -rf*)",
+      "Bash(git reset --hard*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[auto-check] File modified — run npm run typecheck to verify TypeScript correctness'",
+            "conditions": {
+              "file_pattern": "\\.(astro|tsx|ts)$"
+            }
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[skill-router] Query received — skills active: impeccable, taste-skill, tdd, systematic-debugging, verification-before-completion, writing-plans, caveman, claude-mem, using-superpowers'"
+          }
+        ]
+      }
+    ]
+  }
+}
