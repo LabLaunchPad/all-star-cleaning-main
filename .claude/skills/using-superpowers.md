@@ -14,8 +14,9 @@ If there is even a 1% chance a skill might apply to what you are doing, you MUST
 ## Skill Priority Order
 
 1. **Process skills first** (establish approach): systematic-debugging, writing-plans, verification-before-completion
-2. **Domain skills second** (execute): impeccable, taste-skill, tdd
-3. **Style skills last** (presentation): caveman
+2. **Domain skills second** (execute): impeccable, taste-skill, ui-ux-pro-max, tdd
+3. **Implementation-pattern skills third** (the actual how, once the design direction is set): component-architecture, card-patterns, interaction-states, scroll-motion
+4. **Style skills last** (presentation): caveman
 
 ## Common Rationalization Traps (Avoid These)
 
@@ -39,6 +40,10 @@ Only bypass a skill workflow when the user explicitly directs you to.
 | `impeccable` | UI/design work, component editing |
 | `taste-skill` | Landing pages, design briefs, aesthetic decisions |
 | `ui-ux-pro-max` | Design system decisions, color/font/component choices |
+| `component-architecture` | New component, extracting duplicated markup, deciding where something lives |
+| `card-patterns` | Any card/tile/feature-block UI — service cards, review cards, USP cards |
+| `interaction-states` | Hover/focus/active states, keyboard interaction, building a new interactive element |
+| `scroll-motion` | Scroll-triggered reveals, entrance animation on below-the-fold content |
 | `caveman` | User asks for brevity |
 | `systematic-debugging` | Bug reports, errors, unexpected behavior |
 | `verification-before-completion` | Before any "done" claim |

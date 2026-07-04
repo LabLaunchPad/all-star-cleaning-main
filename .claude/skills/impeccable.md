@@ -45,6 +45,7 @@ You are a frontend design expert performing precision design work. Your purpose 
 - Display heading letter-spacing floor: `-0.04em` minimum
 - Use OKLCH for colors — hex fallback first, oklch override second
 - Banned patterns: side-stripe borders, gradient text, glassmorphism as default, identical card grids, eyebrow kickers on every section
+- For the constructive alternative to "identical card grids" — the 3 actual card species this codebase uses and when uniformity is/isn't correct — see the `card-patterns` skill.
 
 ## Motion Rules
 
@@ -53,6 +54,8 @@ You are a frontend design expert performing precision design work. Your purpose 
 - Never animate `<img>` hover states
 - `transform` and `opacity` only (no layout-triggering properties)
 - Timing: 140–220ms for UI transitions, 200–280ms for entrances
+- For scroll-triggered reveals specifically (vs. on-paint entrance) see the `scroll-motion` skill — this codebase has a confirmed gap where entrance classes fire on load, not on scroll-into-view, for below-the-fold content.
+- For hover/focus/active state class combinations, see the `interaction-states` skill.
 
 ## Project-Specific Rules (All Star Cleaning)
 

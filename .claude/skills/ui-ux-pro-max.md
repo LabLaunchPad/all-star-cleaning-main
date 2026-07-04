@@ -37,6 +37,7 @@ This project uses **Tailwind CSS v4** — apply Tailwind-stack guidelines throug
 - Minimum spacing between adjacent targets: **8px**
 - Loading feedback within 100ms of user action
 - Form inputs with `autocomplete` and `inputmode` attributes
+- For the actual class-level hover/focus/active/keyboard patterns already proven in this codebase, see the `interaction-states` skill — this section is the rule, that skill is the reusable implementation.
 
 ### 3. HIGH — Performance
 - Images: use `loading="lazy"` below the fold
@@ -55,7 +56,7 @@ This project uses **Tailwind CSS v4** — apply Tailwind-stack guidelines throug
 - Mobile-first breakpoints
 - Max content width: `65ch` for body copy (already in project)
 - Hero sections: image-first on mobile, text overlay optional
-- Cards: equal-height in grid, no nested cards (already in project)
+- Cards: equal-height in grid, no nested cards (already in project) — see the `card-patterns` skill for the 3 card species this codebase actually uses and their individual anatomy rules.
 
 ### 6. MEDIUM — Typography & Color
 **Project tokens** (from `src/styles/global.css`):
@@ -69,8 +70,9 @@ This project uses **Tailwind CSS v4** — apply Tailwind-stack guidelines throug
 - Duration range: **150–300ms**
 - Use `transform` and `opacity` only (GPU-composited)
 - `transition-colors duration-200` or `transition-transform` (never `transition-all`)
-- Always include `prefers-reduced-motion` override
+- Always include `prefers-reduced-motion` override (already global — see `global.css:207-214`)
 - `will-change-transform` only on actively animating elements
+- For scroll-triggered reveal motion specifically, see the `scroll-motion` skill — it documents a confirmed gap (entrance classes firing on page-load paint instead of scroll-into-view for below-the-fold sections) and the fix pattern.
 
 ### 8. MEDIUM — Forms & Feedback
 - Visible labels always (not just placeholders)

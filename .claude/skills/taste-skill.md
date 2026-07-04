@@ -123,6 +123,8 @@ This is a high-trust local service business (exterior cleaning, Ottawa area).
 - `prefers-reduced-motion: reduce` → disable all non-essential animation
 - No `backdrop-blur` on cards — `bg-card/95` opacity instead
 - `StickyBottomCTA` may use `backdrop-blur-md` (only exception)
+- Scroll-triggered reveals (as opposed to on-load entrance) are a separate concern — see `scroll-motion` skill for the pattern and the `MOTION_INTENSITY: 4` dial's concrete duration/translate caps.
+- Reusable hover/focus/active class combinations already proven in this codebase — see `interaction-states` skill before inventing a new one.
 
 ---
 
