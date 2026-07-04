@@ -112,6 +112,9 @@ export default defineConfig({
   adapter: cloudflare({
     prerenderEnvironment: 'node',
     imageService: 'passthrough',
+    // Exposes wrangler.toml bindings (the Workers AI binding for /api/chat) under
+    // `astro dev`/`astro preview` via Miniflare, not just once actually deployed.
+    platformProxy: { enabled: true },
   }),
   session: {
     driver: sessionDrivers.memory(),

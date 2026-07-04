@@ -108,6 +108,14 @@ Flat by default. Shadows only on state change (hover, sticky).
 ### Background Motifs
 `SectionMotif.astro` (2026-07) layers restrained, domain-specific SVG line-art behind section content — water droplets, spray arcs, a window-pane grid, a gutter/downspout silhouette — tinted with a vivid accent color at low opacity (0.04–0.06). Used to relieve flat off-white/navy section fills without competing with foreground text. Pair with the `divider-angle-up` CSS utility for bolder (non-flat) section transitions.
 
+### Chat Widget
+`ChatWidget.astro`/`ChatWidget.tsx` (2026-07): a customer-facing AI assistant, the site's first client-side React island (`client:idle`) and first server-rendered route (`src/pages/api/chat.ts`, `prerender: false`). Backed by Cloudflare Workers AI's free tier (`@cf/meta/llama-3.1-8b-instruct`, 10k neurons/day) via the `workers-ai-provider` + `ai`/`@ai-sdk/react` SDKs — no new backend/database beyond the existing Web3Forms/Keystatic exceptions, and no chat transcript is ever persisted.
+
+- Sub-components in `src/components/chat/` (`Conversation`, `Message`, `PromptInput`, `Response`) are hand-authored, not the upstream `ai-elements` package — this environment's network policy blocks `elements.ai-sdk.dev`, so the components are built to the same behavioral shape (scrollable auto-following list, role-based bubbles, Enter-to-send composer, streamed text) using this project's own tokens instead of importing the registry version.
+- Floating launcher, bottom-right: `bottom-24` on mobile (clears `StickyBottomCTA`'s full-width bar) / `bottom-6` on desktop (where the sticky bar doesn't render).
+- Accessibility: `role="dialog"`/`aria-modal`, focus trap + Escape-to-close + return-focus-to-launcher — the exact same pattern as `Header.astro`'s mobile nav dialog, not reinvented.
+- A `[[ratelimits]]` Workers binding (`wrangler.toml`) throttles the endpoint per-IP — a public LLM route needs its own guard on top of the account-wide free-tier ceiling, or a handful of bot hits can burn the whole site's daily budget.
+
 ### Mobile Card Carousel
 `ServiceCardMarquee.astro` (2026-07): below `md`, the 5 service cards render as two rows auto-scrolling in opposite directions instead of a static grid (which doesn't fit 5 cards well on a narrow screen). Pauses on hover/touch-hold; always ships a persistent, focusable pause/play button (WCAG 2.2.2 — hover-only pause isn't sufficient for keyboard/touch users). `prefers-reduced-motion` is handled by the existing global override (`global.css` forces `animation-duration: 0.01ms`), not a separate JS branch.
 

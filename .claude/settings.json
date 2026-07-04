@@ -47,6 +47,16 @@
         ]
       }
     ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ \"${CLAUDE_CODE_REMOTE:-}\" = \"true\" ]; then npm install; fi"
+          }
+        ]
+      }
+    ],
     "UserPromptSubmit": [
       {
         "hooks": [

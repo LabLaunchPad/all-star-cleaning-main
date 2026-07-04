@@ -52,6 +52,16 @@ const en = {
     address: '800 Hunt Club Rd, Ottawa, ON K1V 1C3',
     hours: 'Monday to Sunday: 9AM – 7PM',
   },
+  chat: {
+    launcherLabel: 'Chat with us',
+    panelTitle: 'All Star Cleaning Assistant',
+    emptyState: 'Ask us anything about our Ottawa exterior cleaning services.',
+    inputPlaceholder: 'Type your message…',
+    send: 'Send',
+    close: 'Close',
+    errorMessage: 'Something went wrong. Please try again or call us directly.',
+    rateLimited: 'Too many messages — please wait a moment.',
+  },
 } as const;
 
 const fr = {
@@ -108,6 +118,16 @@ const fr = {
     address: '800, chemin Hunt Club, Ottawa, ON K1V 1C3',
     hours: 'Lundi au dimanche : 9h – 19h',
   },
+  chat: {
+    launcherLabel: 'Discuter avec nous',
+    panelTitle: 'Assistant All Star Cleaning',
+    emptyState: 'Posez-nous une question sur nos services de nettoyage extérieur à Ottawa.',
+    inputPlaceholder: 'Écrivez votre message…',
+    send: 'Envoyer',
+    close: 'Fermer',
+    errorMessage: "Une erreur s'est produite. Veuillez réessayer ou appelez-nous directement.",
+    rateLimited: 'Trop de messages — veuillez patienter un instant.',
+  },
 } as const;
 
 export interface Translation {
@@ -143,6 +163,16 @@ export interface Translation {
     email: string;
     address: string;
     hours: string;
+  };
+  chat: {
+    launcherLabel: string;
+    panelTitle: string;
+    emptyState: string;
+    inputPlaceholder: string;
+    send: string;
+    close: string;
+    errorMessage: string;
+    rateLimited: string;
   };
 }
 

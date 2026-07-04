@@ -37,6 +37,21 @@
         "mcp-remote",
         "https://observability.mcp.cloudflare.com/mcp"
       ]
+    },
+    "astro-docs": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.docs.astro.build/mcp"
+      ]
+    },
+    "shadcn": {
+      "command": "npx",
+      "args": [
+        "shadcn@latest",
+        "mcp"
+      ]
     }
   }
 }

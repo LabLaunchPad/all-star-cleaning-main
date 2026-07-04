@@ -11,9 +11,9 @@ const astroI18nMiddleware = middleware({
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname } = context.url;
 
-  // Let Keystatic admin UI and its API routes pass through freely.
+  // Let Keystatic admin UI, its API routes, and the chat API pass through freely.
   // These must NOT be intercepted by the i18n router.
-  if (pathname.startsWith('/keystatic') || pathname.startsWith('/api/keystatic')) {
+  if (pathname.startsWith('/keystatic') || pathname.startsWith('/api/keystatic') || pathname.startsWith('/api/chat')) {
     const response = await next();
     return response;
   }

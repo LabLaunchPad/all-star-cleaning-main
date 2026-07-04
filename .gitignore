@@ -24,6 +24,7 @@ Thumbs.db
 
 # Wrangler
 .wrangler/
+worker-configuration.d.ts
 
 # logs
 *.log

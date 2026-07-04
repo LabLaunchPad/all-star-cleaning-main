@@ -39,3 +39,4 @@ Three words: **reliable, local, trustworthy**. Not corporate or slick. Warm conf
 - Location+service combo pages: 440 programmatic SEO pages, must feel unique despite template reuse
 - Contact page: conversion endpoint, form + phone prominent
 - Reviews page: social proof (currently placeholder, needs warmth)
+- Chat widget (site-wide, 2026-07): an AI assistant answering service/area/hours questions in the same brand voice as the rest of the site; it always redirects real quote/booking intent to the actual quote form or phone number rather than acting as a booking channel itself

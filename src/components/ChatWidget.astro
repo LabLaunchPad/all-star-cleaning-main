@@ -1,0 +1,13 @@
+---
+// Bilingual wrapper around the React chat island. client:idle (not client:load) —
+// the chat widget isn't above-the-fold critical content, so hydration can wait
+// until the browser is idle.
+import ChatWidget from './ChatWidget';
+import { useTranslations } from '@/i18n/translations';
+
+interface Props { locale: 'en' | 'fr'; }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<ChatWidget client:idle locale={locale} t={t.chat} />

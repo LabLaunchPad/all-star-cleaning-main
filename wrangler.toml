@@ -7,6 +7,18 @@ workers_dev = false
 directory = "dist/client"
 binding = "ASSETS"
 
+[ai]
+binding = "AI"
+
+# Guards the public /api/chat endpoint against burning the shared 10k
+# free-neurons/day Workers AI quota for the whole site in one burst.
+[[ratelimits]]
+name = "CHAT_RATE_LIMITER"
+namespace_id = "1001"
+[ratelimits.simple]
+limit = 10
+period = 60
+
 [[routes]]
 pattern = "allstarcleaning.ca"
 custom_domain = true
