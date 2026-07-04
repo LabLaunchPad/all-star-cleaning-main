@@ -1,6 +1,7 @@
 /* All Star Cleaning — Custom Design System */
 @import "tailwindcss";
 
+
 @theme {
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
@@ -66,6 +67,45 @@
   --color-amber-dark: oklch(68% 0.18 75);
   --color-amber-surface: #fffbeb;
   --color-amber-surface: oklch(98.5% 0.015 75);
+
+  /* === VIVID ACCENT PALETTE — per-service color language (v1, pending reference screenshots) === */
+  /* Confident, saturated primaries — formalizes what was previously ad-hoc Tailwind default
+     shades (sky-500, amber-600, emerald-600, violet-600, blue-600) into real brand tokens.
+     One hue per service: replaces the "everything is navy" monotone with a genuine 5-color system. */
+  --color-vivid-blue: #2f7fe0;
+  --color-vivid-blue: oklch(62% 0.20 235);      /* windows */
+  --color-vivid-blue-dark: #1f5cb0;
+  --color-vivid-blue-dark: oklch(50% 0.19 235);
+  --color-vivid-blue-surface: #eaf2fd;
+  --color-vivid-blue-surface: oklch(96% 0.025 235);
+
+  --color-vivid-amber: #e8920f;
+  --color-vivid-amber: oklch(78% 0.18 70);      /* gutters */
+  --color-vivid-amber-dark: #b56d09;
+  --color-vivid-amber-dark: oklch(62% 0.17 70);
+  --color-vivid-amber-surface: #fdf1e0;
+  --color-vivid-amber-surface: oklch(96% 0.03 70);
+
+  --color-vivid-green: #1fa768;
+  --color-vivid-green: oklch(65% 0.20 150);     /* pressure washing */
+  --color-vivid-green-dark: #16804f;
+  --color-vivid-green-dark: oklch(52% 0.18 150);
+  --color-vivid-green-surface: #e6f7ef;
+  --color-vivid-green-surface: oklch(96% 0.025 150);
+
+  --color-vivid-violet: #7c3fd6;
+  --color-vivid-violet: oklch(58% 0.22 300);    /* siding */
+  --color-vivid-violet-dark: #5c2ba3;
+  --color-vivid-violet-dark: oklch(46% 0.20 300);
+  --color-vivid-violet-surface: #f2eafd;
+  --color-vivid-violet-surface: oklch(96% 0.03 300);
+
+  --color-vivid-coral: #e5533f;
+  --color-vivid-coral: oklch(63% 0.21 25);      /* snow removal / urgent CTAs */
+  --color-vivid-coral-dark: #bb3a29;
+  --color-vivid-coral-dark: oklch(50% 0.19 25);
+  --color-vivid-coral-surface: #fdece9;
+  --color-vivid-coral-surface: oklch(96% 0.03 25);
 
   /* Neutrals — indigo-tinted (hue 265), hex fallbacks + OKLCH */
   --color-off-white: #fafafc;
@@ -260,6 +300,21 @@
 
   /* Container query support */
   .container-query { container-type: inline-size; }
+
+  /* Angled section divider — replaces flat border-t transitions with a bolder,
+     poster-like edge. clip-path only, no extra DOM element needed. */
+  .divider-angle-up::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 48px;
+    background: inherit;
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+    transform: translateY(-100%);
+  }
+  @media (min-width: 768px) {
+    .divider-angle-up::before { height: 72px; }
+  }
 
   /* Readability measure cap — impeccable typeset */
   .measure { max-width: 65ch; }

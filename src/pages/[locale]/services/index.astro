@@ -1,6 +1,8 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
 import GoogleReviewBadge from '@/components/GoogleReviewBadge.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ServiceCardMarquee from '@/components/ServiceCardMarquee.astro';
 import { useTranslations } from '@/i18n/translations';
 import { services } from '@/data/services';
 import { getBreadcrumbSchema } from '@/seo';
@@ -34,22 +36,6 @@ const itemListSchema = {
 
 
 const cms = homepageData;
-
-const serviceObjectPosition: Record<string, string> = {
-  'window-cleaning':  'object-center',
-  'gutter-cleaning':  'object-[center_30%]',
-  'pressure-washing': 'object-center',
-  'siding-cleaning':  'object-center',
-  'snow-removal':     'object-center',
-};
-
-const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }> = {
-  'window-cleaning':  { en: 'Streak-Free',      fr: 'Sans Traces',        color: 'bg-sky-light/20' },
-  'gutter-cleaning':  { en: 'Clog Prevention',  fr: 'Anti-Obstruction',   color: 'bg-midnight-indigo/15' },
-  'pressure-washing': { en: 'Deep Clean',       fr: 'Nettoyage Intensif', color: 'bg-mint-fresh/20' },
-  'siding-cleaning':  { en: 'Curb Appeal',      fr: 'Façade Propre',      color: 'bg-lavender-blend/20' },
-  'snow-removal':     { en: 'Winter Ready',     fr: 'Prêt Hiver',         color: 'bg-sky-light/15' },
-};
 ---
 
 <PageLayout
@@ -76,69 +62,19 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
       </div>
     </div>
 
-    <div class="mx-auto max-w-7xl grid gap-6 px-4 md:px-6 md:grid-cols-2 lg:grid-cols-3">
-      {services.map((service, i) => {
-        const delayClass = `delay-${Math.min(i + 1, 5)}`;
-        const features = isFr ? service.frFeatures : service.features;
-        const imgSrc = service.image || `/images/${service.slug}.jpg`;
-        const isFeatured = i === 0;
-        const badge = serviceBadgeMap[service.slug];
-        const objPos = serviceObjectPosition[service.slug] ?? 'object-center';
-        return (
-          <a
-            href={`/${locale}/services/${service.slug}`}
-            class:list={[
-              `touch-target fade-in ${delayClass} group relative overflow-hidden rounded-2xl transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2`,
-              isFeatured
-                ? 'md:col-span-2 lg:col-span-2 aspect-[4/3] md:aspect-[16/9] lg:aspect-[8/3]'
-                : i === 1
-                ? 'aspect-[4/3] lg:aspect-auto'
-                : 'aspect-[4/3]',
-            ]}
-          >
-            {/* Full-bleed image */}
-            <img
-              src={imgSrc}
-              alt={isFr ? service.frName : service.name}
-              width="800" height="600"
-              class:list={['absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105', objPos]}
-              loading={i < 2 ? 'eager' : 'lazy'}
-            />
-
-            {/* Gradient — branded indigo wash for maximum text safety */}
-            <div class="absolute inset-0 bg-gradient-to-t from-midnight-indigo-dark/90 via-midnight-indigo-dark/70 to-transparent" />
-
-            {/* All content overlaid at bottom */}
-            <div class="absolute bottom-0 left-0 right-0 flex flex-col gap-2 p-4 md:p-5">
-              <span class:list={['w-fit rounded-md px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-text-on-dark', badge?.color ?? 'bg-midnight-indigo/35']}>
-                {badge ? (isFr ? badge.fr : badge.en) : ''}
-              </span>
-              <h2 class:list={['font-heading font-extrabold text-text-on-dark drop-shadow', isFeatured ? 'text-2xl lg:text-3xl' : 'text-xl']}>
-                {isFr ? service.frName : service.name}
-              </h2>
-              <p class="line-clamp-2 text-sm leading-relaxed text-text-on-dark-muted">
-                {isFr ? service.frDescription : service.description}
-              </p>
-              {features.length > 0 && (
-                <ul class="space-y-1">
-                  {features.slice(0, isFeatured ? 3 : 2).map((feature) => (
-                    <li class="flex items-center gap-2 text-xs text-text-on-dark-muted">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 shrink-0 text-text-on-dark/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-              <div class="mt-1 flex w-fit items-center gap-2 rounded-xl border border-text-on-dark/30 bg-text-on-dark/15 py-1.5 pl-3 pr-1.5 transition-colors duration-300 group-hover:bg-text-on-dark/25">
-                <span class="text-xs font-semibold text-text-on-dark">{t.ui.learnMore}</span>
-                <div class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg border border-white/30 transition-transform duration-300 group-hover:translate-x-0.5">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-text-on-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-                </div>
-              </div>
-            </div>
-          </a>
-        );
-      })}
+    <div class="mx-auto max-w-7xl px-4 md:px-6">
+      <ServiceCardMarquee services={services} locale={locale} learnMoreText={t.ui.learnMore} />
+      <div class="hidden md:grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {services.map((service, i) => (
+          <ServiceCard
+            service={service}
+            locale={locale}
+            featured={i === 0}
+            learnMoreText={t.ui.learnMore}
+            delayClass={`delay-${Math.min(i + 1, 5)}`}
+          />
+        ))}
+      </div>
     </div>
 
     <!-- Bottom CTA Section -->

@@ -1,0 +1,122 @@
+---
+// Mobile/tablet-only card carousel: two rows auto-scrolling in opposite directions.
+// Desktop keeps the static grid (see index.astro/services/index.astro) — a marquee
+// solves "too many cards on a narrow screen," which isn't a desktop problem.
+//
+// Accessibility (WCAG 2.2.2 — Pause, Stop, Hide, since this moves continuously
+// for >5s): hover/touch-hold pauses, but that alone isn't sufficient for keyboard
+// or assistive-tech users, so there's also a persistent, focusable pause/play
+// button. prefers-reduced-motion is handled globally (global.css forces
+// animation-duration: 0.01ms), so no extra JS branch is needed for that.
+import ServiceCard from './ServiceCard.astro';
+import type { Service } from '@/types';
+
+interface Props {
+  services: Service[];
+  locale: 'en' | 'fr';
+  learnMoreText: string;
+}
+const { services, locale, learnMoreText } = Astro.props;
+const isFr = locale === 'fr';
+
+// Duplicate the list so each track can loop seamlessly at translateX(-50%).
+// Row 2 reverses the service order so the two rows don't feel like mirrored copies.
+const rowA = [...services, ...services];
+const rowB = [...services].reverse().concat([...services].reverse());
+---
+
+<div class="md:hidden" data-marquee data-paused="false">
+  <div class="mb-3 flex justify-end">
+    <button
+      type="button"
+      class="touch-target inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-semibold text-muted-foreground"
+      data-marquee-toggle
+      aria-pressed="false"
+    >
+      <svg data-icon="pause" xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+      <svg data-icon="play" xmlns="http://www.w3.org/2000/svg" class="hidden h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      <span data-label>{isFr ? 'Pause du défilement' : 'Pause scrolling'}</span>
+    </button>
+  </div>
+
+  <div class="marquee-row" data-marquee-row>
+    <div class="marquee-track marquee-track--left">
+      {rowA.map((service) => (
+        <div class="marquee-card"><ServiceCard service={service} locale={locale} learnMoreText={learnMoreText} /></div>
+      ))}
+    </div>
+  </div>
+  <div class="marquee-row mt-4" data-marquee-row>
+    <div class="marquee-track marquee-track--right">
+      {rowB.map((service) => (
+        <div class="marquee-card"><ServiceCard service={service} locale={locale} learnMoreText={learnMoreText} /></div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .marquee-row {
+    overflow: hidden;
+    /* fade the edges so cards don't look like they're cut off mid-card */
+    mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+  }
+  .marquee-track--left { animation: marquee-left 34s linear infinite; }
+  .marquee-track--right { animation: marquee-right 38s linear infinite; }
+  .marquee-card { flex: 0 0 15rem; }
+
+  @keyframes marquee-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes marquee-right {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+
+  /* Pause on hover/keyboard-focus within a row, or when the explicit toggle is engaged */
+  .marquee-row:hover .marquee-track,
+  .marquee-row:focus-within .marquee-track,
+  [data-marquee][data-paused="true"] .marquee-track {
+    animation-play-state: paused;
+  }
+
+  [data-marquee][data-paused="true"] [data-icon="pause"] { display: none; }
+  [data-marquee][data-paused="true"] [data-icon="play"] { display: block; }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-marquee]').forEach((wrap) => {
+    const toggle = wrap.querySelector<HTMLButtonElement>('[data-marquee-toggle]');
+    const label = wrap.querySelector<HTMLElement>('[data-label]');
+    if (!toggle) return;
+    const pauseText = label?.textContent ?? '';
+    const isFr = document.documentElement.lang === 'fr';
+    const resumeText = isFr ? 'Reprendre le défilement' : 'Resume scrolling';
+
+    // Touch-and-hold: pause while a finger is down on a row, resume on release —
+    // independent of the persistent toggle state.
+    wrap.querySelectorAll<HTMLElement>('[data-marquee-row]').forEach((row) => {
+      row.addEventListener('touchstart', () => {
+        if (wrap.dataset.paused !== 'true') row.style.setProperty('--touch-pause', '1');
+        row.querySelectorAll<HTMLElement>('.marquee-track').forEach((t) => (t.style.animationPlayState = 'paused'));
+      }, { passive: true });
+      row.addEventListener('touchend', () => {
+        if (wrap.dataset.paused === 'true') return;
+        row.querySelectorAll<HTMLElement>('.marquee-track').forEach((t) => (t.style.animationPlayState = ''));
+      }, { passive: true });
+    });
+
+    toggle.addEventListener('click', () => {
+      const nowPaused = wrap.dataset.paused !== 'true';
+      wrap.dataset.paused = String(nowPaused);
+      toggle.setAttribute('aria-pressed', String(nowPaused));
+      if (label) label.textContent = nowPaused ? resumeText : pauseText;
+    });
+  });
+</script>

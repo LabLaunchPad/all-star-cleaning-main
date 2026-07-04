@@ -1,0 +1,78 @@
+---
+// Full redesign, replacing the photo+dark-gradient+white-text-overlay pattern used
+// previously (duplicated, drifting, in index.astro and services/index.astro — one copy
+// even referenced undefined tokens bg-mint-fresh/bg-lavender-blend, silently broken).
+// Editorial anatomy instead: image inset in its own frame, content on clean card
+// background below it (real contrast, no text-shadow-over-photo reliance), per-service
+// vivid color carries the identity via a tinted badge + accent icon, not a border stripe
+// (DESIGN.md bans side-stripe borders).
+import { getServiceAccent } from '@/data/services';
+import type { Service } from '@/types';
+
+interface Props {
+  service: Service;
+  locale: 'en' | 'fr';
+  featured?: boolean;
+  learnMoreText: string;
+  delayClass?: string;
+}
+const { service, locale, featured = false, learnMoreText, delayClass = '' } = Astro.props;
+const isFr = locale === 'fr';
+const accent = getServiceAccent(service.slug);
+const imgSrc = service.image || `/images/${service.slug}.jpg`;
+const features = isFr ? service.frFeatures : service.features;
+const badge = isFr ? accent.badgeFr : accent.badgeEn;
+---
+
+<a
+  href={`/${locale}/services/${service.slug}`}
+  style={`--accent: ${accent.color}; --accent-surface: ${accent.colorSurface}; --accent-dark: ${accent.colorDark};`}
+  class:list={[
+    'touch-target fade-in group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2',
+    delayClass,
+    featured ? 'md:col-span-2 lg:col-span-2' : '',
+  ]}
+>
+  {/* Image inset in its own frame — not full-bleed, so text below never depends on a scrim */}
+  <div class="relative p-3 pb-0">
+    <div class:list={['relative overflow-hidden rounded-xl', featured ? 'aspect-[16/9] md:aspect-[21/9]' : 'aspect-[4/3]']}>
+      <img
+        src={imgSrc}
+        alt={isFr ? service.frName : service.name}
+        width="800" height="600"
+        class:list={['h-full w-full object-cover transition-transform duration-500 group-hover:scale-105', accent.objectPosition]}
+        loading={featured ? 'eager' : 'lazy'}
+      />
+      <span class="absolute left-3 top-3 w-fit rounded-full bg-[var(--accent)] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-white shadow-sm">
+        {badge}
+      </span>
+    </div>
+  </div>
+
+  {/* Content on clean card background — full-contrast text, no shadow hack needed */}
+  <div class="flex flex-1 flex-col gap-2 p-4 md:p-5">
+    <h3 class:list={['font-heading font-extrabold text-midnight-indigo', featured ? 'text-xl lg:text-2xl' : 'text-lg']}>
+      {isFr ? service.frName : service.name}
+    </h3>
+    <p class="line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+      {isFr ? service.frDescription : service.description}
+    </p>
+    {features?.length > 0 && (
+      <ul class="space-y-1">
+        {features.slice(0, featured ? 3 : 2).map((feature: string) => (
+          <li class="flex items-center gap-2 text-xs text-muted-foreground">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 shrink-0 text-[var(--accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    <div class="mt-auto flex w-fit items-center gap-2 rounded-xl bg-[var(--accent-surface)] py-1.5 pl-3 pr-1.5 transition-colors duration-300 group-hover:bg-[var(--accent)]/15">
+      <span class="text-xs font-semibold text-[var(--accent-dark)]">{learnMoreText}</span>
+      <div class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg bg-[var(--accent)]/15 transition-transform duration-300 group-hover:translate-x-0.5">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-[var(--accent-dark)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+    </div>
+  </div>
+</a>
