@@ -4,6 +4,7 @@ import GoogleReviewBadge from '@/components/GoogleReviewBadge.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import ServiceCardMarquee from '@/components/ServiceCardMarquee.astro';
 import Badge from '@/components/Badge.astro';
+import StatTile from '@/components/StatTile.astro';
 import { useTranslations } from '@/i18n/translations';
 import { services } from '@/data/services';
 import { getBreadcrumbSchema } from '@/seo';
@@ -61,15 +62,23 @@ const cms = homepageData;
       </Badge>
     </div>
 
+    <!-- PROOF STRIP — same bold-number stats as the homepage, single source of truth. -->
+    <div class="mx-auto mb-8 grid max-w-3xl grid-cols-3 gap-4 px-4 md:mb-12 md:max-w-4xl md:gap-8 md:px-6">
+      <StatTile align="center" value={String(cms.googleReviewCount)} suffix="+" label={isFr ? cms.statsRatingFr : cms.statsRatingEn} />
+      <StatTile align="center" value="100" suffix="%" label={isFr ? cms.statsSatisfactionFr : cms.statsSatisfactionEn} />
+      <StatTile align="center" value="7" label={isFr ? cms.statsDaysFr : cms.statsDaysEn} />
+    </div>
+
     <div class="mx-auto max-w-7xl px-4 md:px-6">
       <h2 class="sr-only">{isFr ? 'Nos Services' : 'Our Services'}</h2>
-      <ServiceCardMarquee services={services} locale={locale} learnMoreText={t.ui.learnMore} />
+      <ServiceCardMarquee services={services} locale={locale} learnMoreText={t.ui.learnMore} cardVariant="bleed" />
       <div class="hidden md:grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {services.map((service, i) => (
           <ServiceCard
             service={service}
             locale={locale}
             featured={i === 0}
+            variant={i === 0 ? 'bleed' : 'inset'}
             learnMoreText={t.ui.learnMore}
             delayClass={`delay-${Math.min(i + 1, 5)}`}
           />

@@ -1,10 +1,12 @@
 ---
 // Area directory page — lists all locations organized by zone
 import PageLayout from '@/layouts/PageLayout.astro';
+import StatTile from '@/components/StatTile.astro';
 import { locations } from '@/data/locations';
 import { useTranslations } from '@/i18n/translations';
 import { getBreadcrumbSchema } from '@/seo';
 import type { BreadcrumbItem } from '@/types';
+import homepageData from '@/content/homepage.json';
 
 export function getStaticPaths() {
   return [{ params: { locale: 'en' } }, { params: { locale: 'fr' } }];
@@ -25,6 +27,7 @@ const zoneNameKeys = ['central', 'east', 'west', 'south', 'southWest', 'eastCent
 const zoneNames: Record<string, string> = Object.fromEntries(
   areaZones.map((zone, i) => [zone, t.area.zones[zoneNameKeys[i]]])
 );
+const cms = homepageData;
 ---
 
 <PageLayout
@@ -42,6 +45,12 @@ const zoneNames: Record<string, string> = Object.fromEntries(
   schema={[breadcrumbSchema]}
 >
   <div class="mx-auto max-w-7xl px-4 md:px-6">
+  <!-- PROOF STRIP — same bold-number stats as the homepage, single source of truth. -->
+  <div class="mx-auto mb-10 grid max-w-3xl grid-cols-3 gap-4 md:max-w-4xl md:gap-8">
+    <StatTile align="center" value={String(cms.googleReviewCount)} suffix="+" label={isFr ? cms.statsRatingFr : cms.statsRatingEn} />
+    <StatTile align="center" value="100" suffix="%" label={isFr ? cms.statsSatisfactionFr : cms.statsSatisfactionEn} />
+    <StatTile align="center" value="7" label={isFr ? cms.statsDaysFr : cms.statsDaysEn} />
+  </div>
   <div class="space-y-10">
     {areaZones.map((zone) => {
       const zoneLocs = locations.filter((l) => l.area === zone);
@@ -54,7 +63,7 @@ const zoneNames: Record<string, string> = Object.fromEntries(
             {zoneLocs.map((loc) => (
               <a
                 href={`/${locale}/area/${loc.slug}`}
-                class="group rounded-lg border border-border bg-card p-4 transition-colors duration-200 hover:border-midnight-indigo/30 hover:shadow-md hover-lift"
+                class="touch-target group rounded-lg border border-border bg-card p-4 transition-colors duration-200 hover:border-midnight-indigo/30 hover:shadow-md hover-lift"
               >
                 <h3 class="font-medium text-navy group-hover:text-midnight-indigo">{isFr ? loc.frName : loc.name}</h3>
                 <p class="mt-1 text-xs text-muted-foreground">{loc.postalCode}</p>

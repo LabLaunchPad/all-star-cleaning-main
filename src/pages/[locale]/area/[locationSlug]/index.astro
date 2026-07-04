@@ -5,12 +5,14 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import Badge from '@/components/Badge.astro';
 import SidebarCTA from '@/components/SidebarCTA.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
+import StatTile from '@/components/StatTile.astro';
 import { useTranslations } from '@/i18n/translations';
 import { services } from '@/data/services';
 import { locations } from '@/data/locations';
 import { getBreadcrumbSchema } from '@/seo';
 import type { BreadcrumbItem } from '@/types';
 import siteSettings from '@/content/settings.json';
+import homepageData from '@/content/homepage.json';
 
 export function getStaticPaths() {
   return ['en', 'fr'].flatMap((locale) =>
@@ -40,6 +42,7 @@ const heroTitle = isFr
 const heroSubtitle = isFr
   ? `Services professionnels de nettoyage extérieur à ${location.frName} et les environs. Vitres, gouttières, lavage sous pression, revêtement et déneigement.`
   : `Professional exterior cleaning services in ${location.name} and surrounding areas. Window, gutter, pressure washing, siding & snow removal.`;
+const cms = homepageData;
 ---
 
 <PageLayout
@@ -58,6 +61,13 @@ const heroSubtitle = isFr
   <div class="mx-auto max-w-7xl px-4 md:px-6">
     <div class="grid gap-10 lg:grid-cols-3">
       <div class="lg:col-span-2">
+      <!-- PROOF STRIP — same bold-number stats as the homepage, single source of truth. -->
+      <div class="grid grid-cols-3 gap-4 rounded-xl border border-border bg-card p-4 sm:gap-6 sm:p-6">
+        <StatTile value={String(cms.googleReviewCount)} suffix="+" label={isFr ? cms.statsRatingFr : cms.statsRatingEn} />
+        <StatTile value="100" suffix="%" label={isFr ? cms.statsSatisfactionFr : cms.statsSatisfactionEn} />
+        <StatTile value="7" label={isFr ? cms.statsDaysFr : cms.statsDaysEn} />
+      </div>
+
       <!-- Area Context -->
       <div class="mt-10 rounded-xl border border-border bg-card p-6">
         <h2 class="font-heading text-2xl font-extrabold text-midnight-indigo">

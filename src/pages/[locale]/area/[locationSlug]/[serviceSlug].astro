@@ -7,12 +7,14 @@ import FAQAccordion from '@/components/FAQAccordion.astro';
 import GoogleReviewBadge from '@/components/GoogleReviewBadge.astro';
 import SidebarCTA from '@/components/SidebarCTA.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
+import StatTile from '@/components/StatTile.astro';
 import { useTranslations } from '@/i18n/translations';
 import { services } from '@/data/services';
 import { locations } from '@/data/locations';
 import { getLocationServiceSchema, getBreadcrumbSchema, getFAQSchema } from '@/seo';
 import type { BreadcrumbItem } from '@/types';
 import siteSettings from '@/content/settings.json';
+import homepageData from '@/content/homepage.json';
 
 export function getStaticPaths() {
   return ['en', 'fr'].flatMap((locale) =>
@@ -53,6 +55,7 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
 const responseTimeText = service.slug === 'snow-removal'
   ? t.servicesPage.noObligation4h
   : t.servicesPage.noObligation24h;
+const cms = homepageData;
 ---
 
 <PageLayout
@@ -74,6 +77,13 @@ const responseTimeText = service.slug === 'snow-removal'
           <Badge label={t.trust.insured} tone="brand" caps={false} class="!text-navy">
             <svg slot="icon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-midnight-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
           </Badge>
+      </div>
+
+      <!-- PROOF STRIP — same bold-number stats as the homepage, single source of truth. -->
+      <div class="mb-8 grid grid-cols-3 gap-4 rounded-xl border border-border bg-card p-4 sm:gap-6 sm:p-6">
+        <StatTile value={String(cms.googleReviewCount)} suffix="+" label={isFr ? cms.statsRatingFr : cms.statsRatingEn} />
+        <StatTile value="100" suffix="%" label={isFr ? cms.statsSatisfactionFr : cms.statsSatisfactionEn} />
+        <StatTile value="7" label={isFr ? cms.statsDaysFr : cms.statsDaysEn} />
       </div>
 
       <!-- Service Features -->
