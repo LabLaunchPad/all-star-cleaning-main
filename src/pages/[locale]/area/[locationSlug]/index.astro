@@ -2,7 +2,7 @@
 // Location hub page — lists all services available in a given location
 // Generates 44 locations × 2 locales = 88 pages
 import PageLayout from '@/layouts/PageLayout.astro';
-import ServiceBadge from '@/components/ServiceBadge.astro';
+import Badge from '@/components/Badge.astro';
 import SidebarCTA from '@/components/SidebarCTA.astro';
 import { useTranslations } from '@/i18n/translations';
 import { services } from '@/data/services';
@@ -120,7 +120,7 @@ const heroSubtitle = isFr
             {location.neighbours.map((neighbour) => {
               const loc = locations.find((l) => l.slug === neighbour);
               return loc ? (
-                <ServiceBadge key={loc.slug} label={isFr ? loc.frName : loc.name} href={`/${locale}/area/${loc.slug}`} variant="teal" />
+                <Badge label={isFr ? loc.frName : loc.name} href={`/${locale}/area/${loc.slug}`} tone="brand" caps={false} />
               ) : null;
             })}
           </div>

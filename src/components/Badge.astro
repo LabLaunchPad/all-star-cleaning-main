@@ -11,30 +11,46 @@
 // two-path compounds (outline + accent mark), and concatenating multiple <path>
 // elements into one `d` string risks silently breaking relative-coordinate
 // commands (m/l) that were only ever correct relative to their own subpath.
+//
+// Also absorbs the former ServiceBadge.astro (neighbour-location link pills) —
+// those aren't small-caps trust labels, they're proper nouns (place names), so
+// `caps={false}` switches to normal-case/medium-weight type instead of the
+// bold/uppercase/tracking-widest default. Same shape, two real typographic
+// registers, not one component pretending to be two.
 interface Props {
   label: string;
-  tone?: 'neutral' | 'accent' | 'dark';
+  href?: string;
+  tone?: 'neutral' | 'accent' | 'dark' | 'brand';
+  caps?: boolean;
   accentColor?: string;
   accentSurface?: string;
   accentDark?: string;
   class?: string;
 }
-const { label, tone = 'neutral', accentColor, accentSurface, accentDark, class: className = '' } = Astro.props;
+const { label, href, tone = 'neutral', caps = true, accentColor, accentSurface, accentDark, class: className = '' } = Astro.props;
 const accentStyle = tone === 'accent' && accentColor && accentSurface && accentDark
   ? `--accent: ${accentColor}; --accent-surface: ${accentSurface}; --accent-dark: ${accentDark};`
   : undefined;
+const classes = [
+  'inline-flex items-center rounded-full',
+  'px-[var(--space-badge-x)] py-[var(--space-badge-y)] gap-[var(--space-icon-gap)]',
+  caps ? 'text-[11px] font-bold uppercase tracking-widest' : 'text-xs font-medium',
+  tone === 'neutral' && 'border border-border bg-card text-muted-foreground',
+  tone === 'dark' && 'border border-text-on-dark/20 bg-text-on-dark/10 text-text-on-dark',
+  tone === 'brand' && 'border border-midnight-indigo/20 bg-midnight-indigo/10 text-midnight-indigo',
+  tone === 'accent' && 'border border-[var(--accent)]/40 bg-[var(--accent-surface)] text-[var(--accent-dark)]',
+  href && 'touch-target transition-colors hover:opacity-80 focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2',
+  className,
+];
 ---
-<span
-  style={accentStyle}
-  class:list={[
-    'inline-flex items-center rounded-full text-[11px] font-bold uppercase tracking-widest',
-    'px-[var(--space-badge-x)] py-[var(--space-badge-y)] gap-[var(--space-icon-gap)]',
-    tone === 'neutral' && 'border border-border bg-card text-muted-foreground',
-    tone === 'dark' && 'border border-text-on-dark/20 bg-text-on-dark/10 text-text-on-dark',
-    tone === 'accent' && 'border border-[var(--accent)]/40 bg-[var(--accent-surface)] text-[var(--accent-dark)]',
-    className,
-  ]}
->
-  <slot name="icon" />
-  {label}
-</span>
+{href ? (
+  <a href={href} style={accentStyle} class:list={classes}>
+    <slot name="icon" />
+    {label}
+  </a>
+) : (
+  <span style={accentStyle} class:list={classes}>
+    <slot name="icon" />
+    {label}
+  </span>
+)}
