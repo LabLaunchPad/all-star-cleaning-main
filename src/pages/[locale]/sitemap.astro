@@ -42,7 +42,7 @@ const legalPages = [
           <ul class="space-y-2">
             {mainPages.map((page) => (
               <li>
-                <a href={page.href} class="text-muted-foreground hover:text-midnight-indigo transition-colors">
+                <a href={page.href} class="touch-target inline-flex items-center text-muted-foreground hover:text-midnight-indigo transition-colors">
                   {page.label}
                 </a>
               </li>
@@ -56,7 +56,7 @@ const legalPages = [
           <ul class="space-y-2">
             {services.map((service) => (
               <li>
-                <a href={`/${locale}/services/${service.slug}`} class="text-muted-foreground hover:text-midnight-indigo transition-colors">
+                <a href={`/${locale}/services/${service.slug}`} class="touch-target inline-flex items-center text-muted-foreground hover:text-midnight-indigo transition-colors">
                   {isFr ? service.frName : service.name}
                 </a>
               </li>
@@ -70,13 +70,13 @@ const legalPages = [
           <ul class="space-y-2">
             {legalPages.map((page) => (
               <li>
-                <a href={page.href} class="text-muted-foreground hover:text-midnight-indigo transition-colors">
+                <a href={page.href} class="touch-target inline-flex items-center text-muted-foreground hover:text-midnight-indigo transition-colors">
                   {page.label}
                 </a>
               </li>
             ))}
             <li>
-              <a href="/sitemap-index.xml" class="text-muted-foreground hover:text-midnight-indigo transition-colors">
+              <a href="/sitemap-index.xml" class="touch-target inline-flex items-center text-muted-foreground hover:text-midnight-indigo transition-colors">
                 XML Sitemap Index
               </a>
             </li>

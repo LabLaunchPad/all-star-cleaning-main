@@ -59,7 +59,7 @@ const tocSections = isFr ? [
           {tocSections.map((section, i) => (
             <li class="flex items-start gap-2">
               <span class="text-xs font-medium text-muted-foreground mt-0.5">{i + 1}.</span>
-              <a href={`#${section.id}`} class="text-sm text-navy transition-colors hover:text-midnight-indigo focus-visible:ring-2 focus-visible:ring-midnight-indigo">{section.label}</a>
+              <a href={`#${section.id}`} class="touch-target text-sm text-navy transition-colors hover:text-midnight-indigo focus-visible:ring-2 focus-visible:ring-midnight-indigo">{section.label}</a>
             </li>
           ))}
         </ol>
