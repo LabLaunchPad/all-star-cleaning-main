@@ -1,0 +1,60 @@
+---
+import siteSettings from '@/content/settings.json';
+import homepageData from '@/content/homepage.json';
+
+interface Props {
+  locale: 'en' | 'fr';
+}
+
+const { locale } = Astro.props;
+const isFr = locale === 'fr';
+const s = siteSettings;
+const h = homepageData;
+const reviewCount = s.googleReviewCount || h.googleReviewCount;
+const rating = h.googleRating.split('/')[0] || "5.0"; // e.g. "5" or "5.0"
+const displayRating = rating.includes('.') ? rating : `${rating}.0`; // Force "5.0" format
+const stars = Array.from({ length: 5 });
+---
+
+<div class="fixed bottom-24 right-4 md:bottom-6 md:right-6 z-[99] fade-in delay-2">
+  <a
+    href={s.googleUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="touch-target group relative flex items-center gap-4 rounded-xl border-t border-t-green border-x border-b border-border p-4 shadow-lg overflow-hidden transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2"
+    style="background: linear-gradient(to bottom, var(--color-green) 0px, var(--color-green) 4px, var(--color-card) 4px, var(--color-card) 100%);"
+    aria-label={isFr ? 'Voir nos avis Google (ouvre une nouvelle fenêtre)' : 'See our Google Reviews (opens in new window)'}
+  >
+    <!-- Google "G" Logo -->
+    <div class="shrink-0 flex items-center justify-center bg-card rounded-full p-1.5 shadow-sm border border-border/40">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+        <path d="M12 23c3.11 0 5.72-1.03 7.63-2.77l-3.57-2.77c-1.01.68-2.31 1.09-4.06 1.09-3.13 0-5.78-2.11-6.73-4.96H2.62v2.87C4.52 20.38 8.04 23 12 23z" fill="#34A853"/>
+        <path d="M5.27 13.59c-.24-.71-.38-1.47-.38-2.27 0-.79.14-1.55.38-2.26V6.19H2.62C1.81 7.82 1.35 9.66 1.35 11.62c0 1.96.46 3.8 1.27 5.43l2.65-2.07z" fill="#FBBC05"/>
+        <path d="M12 4.39c1.7 0 3.22.58 4.42 1.73l3.31-3.31C17.71 1.05 15.09 0 12 0 8.04 0 4.52 2.62 2.62 6.19l3.3 2.57C6.88 6.5 9.53 4.39 12 4.39z" fill="#EA4335"/>
+      </svg>
+    </div>
+
+    <!-- Rating details -->
+    <div class="flex flex-col text-left">
+      <span class="text-[10px] font-bold uppercase tracking-wider text-muted-foreground leading-none">
+        {isFr ? 'Note Google' : 'Google Rating'}
+      </span>
+      
+      <div class="mt-1.5 flex items-center gap-1.5">
+        <span class="text-lg font-extrabold text-navy leading-none tabular-nums">{displayRating}</span>
+        <div class="flex gap-0.5 text-gold-dark" role="img" aria-label={`${displayRating} ${isFr ? 'sur 5 étoiles' : 'out of 5 stars'}`}>
+          {stars.map(() => (
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          ))}
+        </div>
+      </div>
+      
+      <span class="mt-1 text-xs text-muted-foreground leading-none">
+        {isFr ? `Basé sur ${reviewCount} avis` : `Based on ${reviewCount} reviews`}
+      </span>
+    </div>
+  </a>
+</div>
