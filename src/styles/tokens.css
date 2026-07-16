@@ -1,0 +1,245 @@
+/* All Star Cleaning — Design System Tokens */
+/* Centralized tokens for theming, dark mode, and consistency */
+/* Use :root for LightningCSS compatibility */
+
+:root {
+  /* ============================================================ */
+  /* BREAKPOINTS */
+  /* ============================================================ */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* ============================================================ */
+  /* LAYOUT */
+  /* ============================================================ */
+  --header-height: 6rem;
+  --safe-area-top: env(safe-area-inset-top);
+  --safe-area-bottom: env(safe-area-inset-bottom);
+  --safe-area-left: env(safe-area-inset-left);
+  --safe-area-right: env(safe-area-inset-right);
+
+  /* ============================================================ */
+  /* COLOR STRATEGY: Royal Blue & White */
+  /* ============================================================ */
+
+  /* --- Brand: Midnight Indigo (Primary) --- */
+  --color-midnight-indigo: oklch(63.2% 0.149 243.5);
+  --color-midnight-indigo-hex: #2e82f7;
+  --color-midnight-indigo-light: oklch(73.2% 0.13 243.5);
+  --color-midnight-indigo-light-hex: #61a1fb;
+  --color-midnight-indigo-dark: oklch(32% 0.13 243.5);
+  --color-midnight-indigo-dark-hex: #1c3f7b;
+  --color-midnight-indigo-surface: oklch(97.5% 0.015 243.5);
+  --color-midnight-indigo-surface-hex: #f4f8fc;
+
+  /* --- Anchor: Navy (Neutral Dark) --- */
+  --color-navy: oklch(17.5% 0.045 243.5);
+  --color-navy-hex: #131824;
+  --color-navy-light: oklch(25.5% 0.050 243.5);
+  --color-navy-light-hex: #222838;
+  --color-navy-dark: oklch(12.0% 0.035 243.5);
+  --color-navy-dark-hex: #0a0d16;
+
+  /* --- Accent: Gold (Ratings/Emphasis) --- */
+  --color-gold: oklch(75% 0.15 85);
+  --color-gold-hex: #c9a84c;
+  --color-gold-light: oklch(80% 0.14 85);
+  --color-gold-light-hex: #d4b96e;
+  --color-gold-dark: oklch(65% 0.16 85);
+  --color-gold-dark-hex: #a88a2e;
+
+  /* --- Semantic Colors --- */
+  /* Green (Success) */
+  --color-green: oklch(63.0% 0.190 145);
+  --color-green-hex: #1a9a4a;
+  --color-green-light: oklch(78.0% 0.180 150);
+  --color-green-light-hex: #3dba6a;
+  --color-green-dark: oklch(52.0% 0.175 140);
+  --color-green-dark-hex: #157a3a;
+  --color-green-surface: oklch(98% 0.015 145);
+  --color-green-surface-hex: #f0fdf4;
+
+  /* Sky (Info) */
+  --color-sky: oklch(70% 0.16 235);
+  --color-sky-hex: #0ea5e9;
+  --color-sky-light: oklch(78% 0.14 235);
+  --color-sky-light-hex: #38bdf8;
+  --color-sky-dark: oklch(60% 0.18 235);
+  --color-sky-dark-hex: #0284c7;
+  --color-sky-surface: oklch(98% 0.015 235);
+  --color-sky-surface-hex: #f0f9ff;
+
+  /* Amber (Warning) */
+  --color-amber: oklch(78% 0.17 75);
+  --color-amber-hex: #f59e0b;
+  --color-amber-light: oklch(84% 0.16 75);
+  --color-amber-light-hex: #fbbf24;
+  --color-amber-dark: oklch(68% 0.18 75);
+  --color-amber-dark-hex: #d97706;
+  --color-amber-surface: oklch(98.5% 0.015 75);
+  --color-amber-surface-hex: #fffbeb;
+
+  /* Red (Error) */
+  --color-destructive: oklch(55.0% 0.200 25);
+  --color-destructive-hex: #b91c1c;
+
+  /* ============================================================ */
+  /* NEUTRALS (Indigo-tinted, hue 243.5) */
+  /* ============================================================ */
+  --color-off-white: oklch(98.0% 0.005 243.5);
+  --color-off-white-hex: #f9fafc;
+  --color-off-white-dark: oklch(93.5% 0.006 243.5);
+  --color-off-white-dark-hex: #e5e8f0;
+
+  /* Backgrounds */
+  --color-background: var(--color-off-white);
+  --color-background-hex: var(--color-off-white-hex);
+  --color-foreground: var(--color-navy);
+  --color-foreground-hex: var(--color-navy-hex);
+
+  /* Text */
+  --color-text-on-dark: oklch(94.5% 0.025 243.5);
+  --color-text-on-dark-hex: #e9ecf5;
+  --color-text-on-dark-muted: oklch(88.0% 0.03 243.5);
+  --color-text-on-dark-muted-hex: #cbd2e5;
+
+  /* Surfaces */
+  --color-card: oklch(99.2% 0.004 243.5);
+  --color-card-foreground: var(--color-navy);
+
+  /* Borders */
+  --color-border: oklch(92.0% 0.008 243.5);
+  --color-border-hex: #e5e8f0;
+
+  /* Rings (Focus) */
+  --color-ring: var(--color-midnight-indigo);
+
+  /* ============================================================ */
+  /* SEMANTIC TAILWIND MAPPINGS */
+  /* ============================================================ */
+  --color-primary: var(--color-midnight-indigo);
+  --color-primary-foreground: var(--color-text-on-dark);
+  --color-secondary: var(--color-navy);
+  --color-secondary-foreground: oklch(98.5% 0.004 243.5);
+  --color-accent: var(--color-gold);
+  --color-accent-foreground: var(--color-navy);
+  --color-muted: oklch(35.0% 0.03 243.5);
+  --color-muted-foreground: oklch(42.0% 0.025 243.5);
+  --color-destructive-foreground: var(--color-text-on-dark);
+  --color-input: var(--color-border);
+
+  /* ============================================================ */
+  /* TYPOGRAPHY */
+  /* ============================================================ */
+  --font-heading: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+
+  /* Font Sizes (1.25 ratio scale) */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+
+  /* Fluid Typography */
+  --text-display: clamp(2.5rem, 5vw, 4.5rem);
+  --text-headline: clamp(1.75rem, 4vw, 3rem);
+  --text-subheading: clamp(1.125rem, 2.5vw, 1.5rem);
+  --text-lead: 1.25rem;
+
+  /* ============================================================ */
+  /* SPACING (8/16/24/32/48/80/120 scale) */
+  /* ============================================================ */
+  --space-section-sm: 4rem;
+  --space-section-md: 5rem;
+  --space-section-lg: 6rem;
+  --space-gap-tight: 0.5rem;
+  --space-gap-normal: 1rem;
+  --space-gap-relaxed: 1.5rem;
+  --space-gap-loose: 2rem;
+  --space-gap-section: 3rem;
+  --space-gap-spread: 5rem;
+
+  /* ============================================================ */
+  /* WIDTH */
+  /* ============================================================ */
+  --width-content: 65ch;
+  --width-max: 80rem;
+
+  /* ============================================================ */
+  /* RADII */
+  /* ============================================================ */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+
+  /* ============================================================ */
+  /* SHADOWS (Branded Indigo) */
+  /* ============================================================ */
+  --shadow-sm: 0 1px 3px 0 oklch(15% 0.05 243.5 / 0.07), 0 1px 2px -1px oklch(15% 0.05 243.5 / 0.04);
+  --shadow-md: 0 4px 6px -1px oklch(15% 0.05 243.5 / 0.08), 0 2px 4px -2px oklch(15% 0.05 243.5 / 0.08);
+  --shadow-lg: 0 10px 15px -3px oklch(15% 0.05 243.5 / 0.08), 0 4px 6px -4px oklch(15% 0.05 243.5 / 0.08);
+  --shadow-xl: 0 20px 25px -5px oklch(15% 0.05 243.5 / 0.08), 0 8px 10px -6px oklch(15% 0.05 243.5 / 0.08);
+  --shadow-hover: 0 4px 24px -4px oklch(15% 0.05 243.5 / 0.12), 0 1px 3px oklch(15% 0.05 243.5 / 0.06);
+  --shadow-blue-glow: 0 8px 32px -8px oklch(63.2% 0.149 243.5 / 0.25);
+
+  /* ============================================================ */
+  /* Z-INDEX */
+  /* ============================================================ */
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+
+  /* ============================================================ */
+  /* MOTION */
+  /* ============================================================ */
+  --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-base: 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 350ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-entrance: 500ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ============================================================ */
+  /* DARK MODE TOKENS */
+  /* ============================================================ */
+  /* Light mode (default) */
+  --color-background-light: var(--color-background);
+  --color-foreground-light: var(--color-foreground);
+  --color-card-light: var(--color-card);
+  --color-border-light: var(--color-border);
+
+  /* Dark mode */
+  --color-background-dark: oklch(12% 0.035 243.5);
+  --color-foreground-dark: oklch(98.0% 0.003 243.5);
+  --color-card-dark: oklch(15% 0.04 243.5);
+  --color-border-dark: oklch(20% 0.03 243.5);
+  --color-text-on-light: var(--color-navy);
+  --color-text-on-light-muted: oklch(42.0% 0.025 243.5);
+}
+
+/* ============================================================ */
+/* DARK MODE: Apply dark tokens when preferred */
+/* ============================================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--color-background-dark);
+    --color-foreground: var(--color-foreground-dark);
+    --color-card: var(--color-card-dark);
+    --color-border: var(--color-border-dark);
+    --color-text-on-dark: var(--color-text-on-light);
+    --color-text-on-dark-muted: var(--color-text-on-light-muted);
+  }
+}

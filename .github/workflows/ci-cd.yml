@@ -1,0 +1,306 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ============================================================
+  # VALIDATION JOB
+  # Runs type checking, linting, and unit tests
+  # ============================================================
+  validate:
+    name: Validate Code
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run type check
+        run: npm run typecheck
+      
+      - name: Run linting
+        run: npm run lint
+      
+      - name: Run unit tests
+        run: npm run test:unit:coverage
+      
+      - name: Upload unit test coverage
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unit-test-coverage
+          path: coverage/unit/
+          retention-days: 7
+
+  # ============================================================
+  # E2E TESTS JOB
+  # Runs Playwright end-to-end tests
+  # ============================================================
+  e2e-tests:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: validate
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+      
+      - name: Start dev server
+        run: npm run dev &
+        env:
+          NODE_ENV: test
+      
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:3000
+        timeout-minutes: 2
+      
+      - name: Run E2E tests
+        run: npm run test:coverage
+        env:
+          PLAYWRIGHT_BASE_URL: http://localhost:3000
+      
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14
+
+  # ============================================================
+  # VISUAL REGRESSION TESTS JOB
+  # Runs visual regression tests
+  # ============================================================
+  visual-regression:
+    name: Visual Regression Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: validate
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+      
+      - name: Start dev server
+        run: npm run dev &
+        env:
+          NODE_ENV: test
+      
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:3000
+        timeout-minutes: 2
+      
+      - name: Run visual regression tests
+        run: npm run test:visual
+        env:
+          PLAYWRIGHT_BASE_URL: http://localhost:3000
+      
+      - name: Upload visual regression results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-regression-results
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14
+
+  # ============================================================
+  # ACCESSIBILITY TESTS JOB
+  # Runs WCAG 2.1 AA compliance tests
+  # ============================================================
+  accessibility-tests:
+    name: Accessibility Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: validate
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+      
+      - name: Start dev server
+        run: npm run dev &
+        env:
+          NODE_ENV: test
+      
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:3000
+        timeout-minutes: 2
+      
+      - name: Run accessibility tests
+        run: npm run test:a11y
+        env:
+          PLAYWRIGHT_BASE_URL: http://localhost:3000
+      
+      - name: Upload accessibility results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: accessibility-results
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14
+
+  # ============================================================
+  # BUILD JOB
+  # Builds the production site
+  # ============================================================
+  build:
+    name: Build Production Site
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: [validate, e2e-tests, visual-regression, accessibility-tests]
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build site
+        run: npm run build
+      
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-build
+          path: dist/
+          retention-days: 7
+
+  # ============================================================
+  # DEPLOY JOB
+  # Deploys to Cloudflare Pages
+  # ============================================================
+  deploy:
+    name: Deploy to Cloudflare Pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build site
+        run: npm run build
+      
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: all-star-cleaning
+          directory: dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+  # ============================================================
+  # STORYBOOK DEPLOY JOB
+  # Deploys Storybook to GitHub Pages
+  # ============================================================
+  deploy-storybook:
+    name: Deploy Storybook
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: validate
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build Storybook
+        run: npm run storybook:build
+      
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./storybook-static
+          keep_files: false
