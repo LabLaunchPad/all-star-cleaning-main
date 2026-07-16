@@ -17,6 +17,7 @@
     "@astrojs/sitemap": "^3.0.0",
     "@keystatic/astro": "^5.1.0",
     "@keystatic/core": "^0.5.50",
+    "@radix-ui/react-label": "^2.1.11",
     "@radix-ui/react-slot": "^1.2.4",
     "@tailwindcss/postcss": "^4.2.4",
     "@tailwindcss/vite": "^4.3.1",
