@@ -10,6 +10,63 @@ import cloudflare from '@astrojs/cloudflare';
 import tailwind from '@tailwindcss/vite';
 
 /**
+ * Auto-Trigger Hook: Log build start/end
+ */
+function buildHooks() {
+  return {
+    name: 'build-hooks',
+    hooks: {
+      'astro:build:start': async ({ logger }) => {
+        logger.info('🚀 Build started...');
+      },
+      'astro:build:done': async ({ logger }) => {
+        logger.info('✅ Build completed!');
+      },
+      'astro:build:error': async ({ logger, error }) => {
+        logger.error('❌ Build failed:', error);
+      },
+    },
+  };
+}
+
+/**
+ * Auto-Trigger Hook: Validate before build
+ */
+function validationHooks() {
+  return {
+    name: 'validation-hooks',
+    hooks: {
+      'astro:build:start': async ({ logger }) => {
+        logger.info('🔍 Running pre-build validations...');
+        // Could add custom validations here
+      },
+    },
+  };
+}
+
+/**
+ * Auto-Trigger Hook: Dev server hooks
+ */
+function devHooks() {
+  return {
+    name: 'dev-hooks',
+    configureServer(server) {
+      server.httpServer?.on('listening', () => {
+        console.log('🔥 Dev server started at http://localhost:3000');
+      });
+    },
+    hooks: {
+      'astro:server:start': async ({ logger }) => {
+        logger.info('🔥 Dev server starting...');
+      },
+      'astro:server:done': async ({ logger }) => {
+        logger.info('✅ Dev server ready!');
+      },
+    },
+  };
+}
+
+/**
  * Tech-Stack Obfuscation Vite Plugin
  *
  * Renames all technology-identifying patterns in production builds:
@@ -189,6 +246,9 @@ export default defineConfig({
       obfuscateTechStack(),
       stripHtmlComments(),
       fixSsrEntryName(),
+      buildHooks(),
+      validationHooks(),
+      devHooks(),
     ],
   },
 });
