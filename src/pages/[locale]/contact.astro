@@ -14,7 +14,7 @@ const isFr = locale === 'fr';
 const t = useTranslations(locale);
 const altLocale = isFr ? 'en' : 'fr';
 const s = siteSettings;
-const web3formsKey = import.meta.env.WEB3FORMS_ACCESS_KEY || '';
+const web3formsKey = import.meta.env.WEB3FORMS_ACCESS_KEY || '9165fcc5-87a6-40f3-ad8f-f1ed91000988';
 
 const breadcrumbs: BreadcrumbItem[] = [
   { label: t.nav.home, frLabel: t.nav.home, href: `/${locale}` },
@@ -336,6 +336,7 @@ const contactPageSchema = {
           throw new Error(data.message || 'Submission failed');
         }
       } catch (err) {
+        console.error('Web3Forms submit error:', err);
         statusDiv.className = 'rounded-lg p-4 text-sm font-medium bg-red-50 text-red-800 border border-red-200 block';
         statusDiv.textContent = isFr 
           ? 'Désolé, une erreur est survenue lors de l\'envoi. Veuillez réessayer ou nous appeler directement.'
