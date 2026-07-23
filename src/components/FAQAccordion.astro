@@ -9,7 +9,7 @@ const isFr = locale === 'fr';
 ---
 
 {faqs.length > 0 && (
-  <div class="mt-10 rounded-xl border border-border bg-card p-6">
+  <div class="card mt-10">
     {title && <h2 class="font-heading heading-card font-bold text-midnight-indigo">{title}</h2>}
     <div class="mt-4 space-y-4">
       {faqs.map((faq) => (

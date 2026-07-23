@@ -368,4 +368,120 @@
     font-size: var(--text-sm);
     margin-top: 0.25rem;
   }
+
+  /* ============================================================ */
+  /* ATOMS STAGE: Foundational, indivisible UI components         */
+  /* ============================================================ */
+
+  /* Button Atoms */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.625rem 1.25rem;
+  }
+  .btn:focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+  .btn:active {
+    transform: scale(0.95);
+  }
+  .btn:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  .btn svg {
+    pointer-events: none;
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+  }
+
+  .btn-primary {
+    background-color: var(--color-midnight-indigo);
+    color: var(--color-text-on-dark);
+    box-shadow: var(--shadow-sm);
+  }
+  .btn-primary:hover {
+    background-color: var(--color-midnight-indigo-dark);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary {
+    background-color: var(--color-navy);
+    color: var(--color-text-on-dark);
+    box-shadow: var(--shadow-sm);
+  }
+  .btn-secondary:hover {
+    background-color: var(--color-navy-dark);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-outline {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--color-text-on-dark);
+    background-color: transparent;
+  }
+  .btn-outline:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-ghost {
+    background-color: transparent;
+    color: var(--color-foreground);
+  }
+  .btn-ghost:hover {
+    background-color: var(--color-off-white-dark);
+    color: var(--color-midnight-indigo);
+  }
+
+  /* Form Atoms */
+  .form-label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-navy);
+  }
+
+  .form-input {
+    display: block;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-card);
+    padding: 0.75rem 1rem;
+    color: var(--color-navy);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  .form-input::placeholder {
+    color: var(--color-muted-foreground);
+    opacity: 0.6;
+  }
+  .form-input:focus {
+    border-color: var(--color-midnight-indigo);
+    outline: none;
+    box-shadow: 0 0 0 2px oklch(63.2% 0.149 243.5 / 0.15);
+  }
+
+  /* Card Atoms */
+  .card {
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-card);
+    padding: 1.5rem;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
 }

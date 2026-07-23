@@ -6,14 +6,14 @@ Midnight Indigo (`oklch(28% 0.08 265)`) carries the authoritative brand voice ac
 ## Palette
 
 ### Primary: Midnight Indigo
-- `--color-midnight-indigo`: `oklch(28% 0.08 265)` — Primary brand color, headings, CTAs
-- `--color-midnight-indigo-light`: `oklch(38% 0.07 265)` — Hover states, accents
-- `--color-midnight-indigo-dark`: `oklch(20% 0.06 265)` — Deep emphasis, button hovers
+- `--color-midnight-indigo`: `oklch(63.2% 0.149 243.5)` — Primary brand color, headings, CTAs
+- `--color-midnight-indigo-light`: `oklch(73.2% 0.13 243.5)` — Hover states, accents
+- `--color-midnight-indigo-dark`: `oklch(32% 0.13 243.5)` — Deep emphasis, button hovers
 
 ### Anchor: Navy
-- `--color-navy`: `oklch(17.5% 0.030 265)` — Hero backgrounds, authoritative elements
-- `--color-navy-light`: `oklch(25.5% 0.035 265)` — Gradient endpoints
-- `--color-navy-dark`: `oklch(12.0% 0.025 265)` — Hover states on navy surfaces
+- `--color-navy`: `oklch(17.5% 0.045 243.5)` — Hero backgrounds, authoritative elements
+- `--color-navy-light`: `oklch(25.5% 0.050 243.5)` — Gradient endpoints
+- `--color-navy-dark`: `oklch(12.0% 0.035 243.5)` — Hover states on navy surfaces
 
 ### Accent: Gold
 - `--color-gold`: `oklch(75% 0.15 85)` — Rare emphasis, ratings, highlights
@@ -21,11 +21,12 @@ Midnight Indigo (`oklch(28% 0.08 265)`) carries the authoritative brand voice ac
 - `--color-gold-dark`: `oklch(65% 0.16 85)` — Deep gold emphasis
 
 ### Neutrals (indigo-tinted)
-- `--color-off-white`: `oklch(98.0% 0.005 265)` — Page background
-- `--color-off-white-dark`: `oklch(93.5% 0.006 265)` — Subtle dividers, secondary backgrounds
-- `--color-muted`: `oklch(42.0% 0.025 265)` — Secondary text
-- `--color-border`: `oklch(92.0% 0.008 265)` — Hairline borders
-- `--color-card`: `#ffffff` — Card surfaces
+- `--color-off-white`: `oklch(98.0% 0.005 243.5)` — Page background
+- `--color-off-white-dark`: `oklch(93.5% 0.006 243.5)` — Subtle dividers, secondary backgrounds
+- `--color-muted`: `oklch(35.0% 0.03 243.5)` — Deeper secondary text
+- `--color-muted-foreground`: `oklch(42.0% 0.025 243.5)` — Secondary text foreground (WCAG AA)
+- `--color-border`: `oklch(92.0% 0.008 243.5)` — Hairline borders
+- `--color-card`: `oklch(99.2% 0.004 243.5)` — Card surfaces
 
 ## Typography
 
