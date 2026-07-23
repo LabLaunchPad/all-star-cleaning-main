@@ -95,7 +95,7 @@ const responseTimeText = service.slug === 'snow-removal'
         </h2>
         <div class="mt-4 grid gap-4 sm:grid-cols-2">
           {otherServices.map((otherService, i) => (
-            <a href={`/${locale}/services/${otherService.slug}`} class={`touch-target group rounded-xl border border-border bg-card p-4 transition-colors duration-200 hover:border-midnight-indigo/30 focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2 hover-lift ${i === 0 ? 'sm:col-span-2 border-midnight-indigo/20 bg-midnight-indigo/5' : ''}`}>
+            <a href={`/${locale}/services/${otherService.slug}`} class={`card hover-lift group p-4 focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2 ${i === 0 ? 'sm:col-span-2 border-midnight-indigo/20 bg-midnight-indigo/5' : ''}`}>
               <h3 class="font-medium text-navy group-hover:text-midnight-indigo">{isFr ? otherService.frName : otherService.name}</h3>
               <p class="mt-1 text-sm text-muted-foreground line-clamp-2">{isFr ? otherService.frDescription : otherService.description}</p>
               <span class="mt-2 inline-flex items-center gap-1 text-sm font-medium text-midnight-indigo">
