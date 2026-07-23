@@ -16,7 +16,7 @@ const displayRating = rating.includes('.') ? rating : `${rating}.0`; // Force "5
 const stars = Array.from({ length: 5 });
 ---
 
-<div class="fixed bottom-24 right-4 md:bottom-6 md:right-6 z-[99] fade-in delay-2">
+<div id="floating-google-badge" class="fixed bottom-24 right-4 md:bottom-6 md:right-6 z-[99] fade-in delay-2 transition-opacity duration-300 motion-reduce:transition-none">
   <a
     href={s.googleUrl}
     target="_blank"
@@ -58,3 +58,32 @@ const stars = Array.from({ length: 5 });
     </div>
   </a>
 </div>
+
+<script>
+  const badge = document.getElementById('floating-google-badge');
+  const footer = document.querySelector('footer');
+  if (badge) {
+    let footerNear = false;
+
+    const updateVisibility = () => {
+      const pastHero = window.scrollY > window.innerHeight * 0.6;
+      const visible = pastHero && !footerNear;
+      badge.classList.toggle('opacity-0', !visible);
+      badge.classList.toggle('pointer-events-none', !visible);
+    };
+
+    if (footer && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          footerNear = entries[0]?.isIntersecting ?? false;
+          updateVisibility();
+        },
+        { rootMargin: '0px 0px 200px 0px' }
+      );
+      observer.observe(footer);
+    }
+
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+    updateVisibility();
+  }
+</script>
