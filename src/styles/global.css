@@ -311,6 +311,13 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* Scroll cue: smooth deceleration instead of elastic bounce */
+  .animate-scroll-cue { animation: scrollCue 1.8s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+  @keyframes scrollCue {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
   /* Stagger delays for entrance choreography */
   .delay-1 { animation-delay: 100ms; }
   .delay-2 { animation-delay: 200ms; }

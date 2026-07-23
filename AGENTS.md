@@ -134,7 +134,7 @@ Skill installed at `.agents/skills/impeccable/SKILL.md`.
 ```
 
 ### CTA Consistency
-All CTA text imports from `src/data/cta.ts`. No hardcoded strings.
+All CTA text comes from `useTranslations()` (`src/i18n/translations`), e.g. `t.cta.freeQuote`. No hardcoded strings.
 
 ### Color Convention
 ```css
