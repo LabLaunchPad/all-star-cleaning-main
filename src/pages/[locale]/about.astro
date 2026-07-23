@@ -67,13 +67,13 @@ const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
           </div>
 
           <div class="mt-8 lg:hidden">
-            <a href={`/${locale}/contact`} class="touch-target inline-flex items-center gap-2 rounded-full uppercase tracking-wider bg-midnight-indigo px-8 py-4 text-base font-bold text-text-on-dark transition-colors duration-200 hover:bg-midnight-indigo-dark hover:shadow-xl w-full justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-midnight-indigo">
+            <a href={`/${locale}/contact`} class="btn btn-primary w-full text-base py-4 px-8 justify-center">
               {t.cta.freeQuote}
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
             </a>
           </div>
           <div class="mt-8 hidden lg:block">
-            <a href={`/${locale}/contact`} class="inline-flex items-center gap-2 rounded-full uppercase tracking-wider bg-midnight-indigo px-8 py-4 text-lg font-semibold text-text-on-dark transition-colors duration-200 hover:bg-midnight-indigo-dark hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-midnight-indigo touch-target">{t.cta.freeQuote}</a>
+            <a href={`/${locale}/contact`} class="btn btn-primary text-lg py-4 px-8">{t.cta.freeQuote}</a>
           </div>
         </div>
 
@@ -95,7 +95,7 @@ const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
               href={siteSettings.googleUrl} 
               target="_blank" 
               rel="noopener noreferrer" 
-               class="touch-target block rounded-xl border border-border bg-card p-5 text-center transition-colors duration-200 hover:bg-midnight-indigo/5 hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2"
+              class="card hover-lift block p-5 text-center focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2"
               aria-label={isFr ? 'Voir nos avis Google (ouvre une nouvelle fenêtre)' : 'See our Google Reviews (opens in new window)'}
             >
               <span class="text-4xl font-bold text-navy">{home.googleRating}</span>
