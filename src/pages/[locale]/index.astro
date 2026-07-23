@@ -62,7 +62,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
     <div class="absolute inset-0 z-0">
       <img
         src={cms.heroImage}
-        alt="All Star Cleaning — sparkling clean Ottawa home"
+        alt=""
         role="presentation"
         width="1344"
         height="768"
@@ -83,7 +83,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
       </p>
       
       <div class="fade-in delay-4 mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href={`/${locale}/contact`} class="touch-target group inline-flex w-full items-center justify-center gap-3 rounded-full bg-white px-10 py-4 text-lg font-bold uppercase tracking-wider text-midnight-indigo shadow-2xl transition-all hover:bg-white/90 hover:scale-105 active:scale-95 sm:w-auto">
+        <a href={`/${locale}/contact`} class="touch-target group inline-flex w-full items-center justify-center gap-3 rounded-full bg-white px-10 py-4 text-lg font-bold uppercase tracking-wider text-midnight-indigo shadow-2xl transition-[background-color,transform] duration-200 hover:bg-white/90 hover:scale-105 active:scale-95 sm:w-auto">
           {isFr ? 'Obtenez un Devis' : 'Get a Quote'}
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
         </a>
@@ -104,7 +104,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
             href={siteSettings.googleUrl} 
             target="_blank" 
             rel="noopener noreferrer" 
-            class="flex min-w-[150px] items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-2.5 backdrop-blur-md border border-white/20 transition-all hover:bg-white/20 hover:scale-105 active:scale-95"
+            class="flex min-w-[150px] items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-2.5 backdrop-blur-md border border-white/20 transition-[background-color,transform] duration-200 hover:bg-white/20 hover:scale-105 active:scale-95"
             aria-label={isFr ? 'Voir nos avis Google (ouvre une nouvelle fenêtre)' : 'See our Google Reviews (opens in new window)'}
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c3.11 0 5.72-1.03 7.63-2.77l-3.57-2.77c-1.01.68-2.31 1.09-4.06 1.09-3.13 0-5.78-2.11-6.73-4.96H2.62v2.87C4.52 20.38 8.04 23 12 23z" fill="#34A853"/><path d="M5.27 13.59c-.24-.71-.38-1.47-.38-2.27 0-.79.14-1.55.38-2.26V6.19H2.62C1.81 7.82 1.35 9.66 1.35 11.62c0 1.96.46 3.8 1.27 5.43l2.65-2.07z" fill="#FBBC05"/><path d="M12 4.39c1.7 0 3.22.58(6.19l3.3 2.57C6.88 6.5 9.53 4.39 12 4.39z" fill="#EA4335"/></svg>
@@ -126,7 +126,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
     </div>
 
     <!-- Bottom scroll indicator -->
-    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 animate-bounce opacity-30">
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 animate-scroll-cue opacity-30">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-text-on-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 13 5 5 5-5"/><path d="m7 6 5 5 5-5"/></svg>
     </div>
   </section>
