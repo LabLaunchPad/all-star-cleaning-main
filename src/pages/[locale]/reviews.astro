@@ -18,12 +18,14 @@ const altLocale = isFr ? 'en' : 'fr';
 const home = homepageData;
 const s = siteSettings;
 
-// Load all reviews from CMS content files
+// Load all reviews from CMS content files (excluding disabled services)
 const reviewFiles = import.meta.glob<{ default: Record<string, unknown> }>('/src/content/reviews/*.json', { eager: true });
-const allReviews = Object.values(reviewFiles).map((m) => m.default as {
-  author: string; rating: number; service: string; frService: string;
-  date: string; textEn: string; textFr: string;
-});
+const allReviews = Object.values(reviewFiles)
+  .map((m) => m.default as {
+    author: string; rating: number; service: string; frService: string;
+    date: string; textEn: string; textFr: string;
+  })
+  .filter((r) => r.service !== 'Snow Removal' && r.frService !== 'Déneigement');
 
 // Sort newest first
 allReviews.sort((a, b) => b.date.localeCompare(a.date));

@@ -18,8 +18,8 @@ export function getLocalBusinessSchema({ locale, url }: LocalBusinessSchemaOptio
     logo: 'https://allstarcleaning.ca/favicon.svg',
     image: 'https://allstarcleaning.ca/images/og-default.jpg',
     description: locale === 'fr'
-      ? "Service de nettoyage extérieur de confiance à Ottawa. Vitres, gouttières, lavage sous pression, revêtement et déneigement. Devis gratuits."
-      : "Ottawa's trusted exterior cleaning service. Window, gutter, pressure washing, siding & snow removal. Free quotes.",
+      ? "Service de nettoyage extérieur de confiance à Ottawa. Vitres, gouttières, lavage sous pression et nettoyage de revêtement. Devis gratuits."
+      : "Ottawa's trusted exterior cleaning service. Window, gutter, pressure washing & siding cleaning. Free quotes.",
     telephone: '+1-613-314-3300',
     email: 'hello@allstarcleaning.ca',
     address: {
@@ -74,7 +74,7 @@ export function getLocalBusinessSchema({ locale, url }: LocalBusinessSchemaOptio
         { '@type': 'Offer', itemOffered: { '@type': 'Service', name: locale === 'fr' ? 'Nettoyage de Gouttières' : 'Gutter Cleaning', url: `https://allstarcleaning.ca/${locale}/services/gutter-cleaning` } },
         { '@type': 'Offer', itemOffered: { '@type': 'Service', name: locale === 'fr' ? 'Lavage sous Pression' : 'Pressure Washing', url: `https://allstarcleaning.ca/${locale}/services/pressure-washing` } },
         { '@type': 'Offer', itemOffered: { '@type': 'Service', name: locale === 'fr' ? 'Nettoyage de Revêtement' : 'Siding Cleaning', url: `https://allstarcleaning.ca/${locale}/services/siding-cleaning` } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: locale === 'fr' ? 'Déneigement' : 'Snow Removal', url: `https://allstarcleaning.ca/${locale}/services/snow-removal` } },
+        // { '@type': 'Offer', itemOffered: { '@type': 'Service', name: locale === 'fr' ? 'Déneigement' : 'Snow Removal', url: `https://allstarcleaning.ca/${locale}/services/snow-removal` } },
       ],
     },
   };

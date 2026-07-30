@@ -48,7 +48,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
 
 <BaseLayout
   title={isFr ? 'All Star Cleaning Ottawa | Nettoyage de Vitres, Gouttières et Lavage sous Pression' : 'All Star Cleaning Ottawa | Window, Gutter & Pressure Washing'}
-  description={isFr ? 'Service de nettoyage de confiance à Ottawa. Nettoyage de vitres, gouttières, lavage sous pression, revêtement et déneigement. Devis gratuits.' : "Ottawa's trusted cleaning service. Window cleaning, gutter cleaning, pressure washing, siding cleaning & snow removal. Free quotes: residential & commercial."}
+  description={isFr ? 'Service de nettoyage de confiance à Ottawa. Nettoyage de vitres, gouttières, lavage sous pression et revêtement. Devis gratuits.' : "Ottawa's trusted cleaning service. Window cleaning, gutter cleaning, pressure washing & siding cleaning. Free quotes: residential & commercial."}
   locale={locale}
   ogImage="https://allstarcleaning.ca/og-default.jpg"
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/` }]}
@@ -224,18 +224,17 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
       <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {services.map((service, i) => {
           const imgSrc = service.image || `/images/${service.slug}.jpg`;
-          const isFeatured = i === 0;
+          const isWide = i === 0 || i === 3;
+          const isFeatured = isWide;
           const features = isFr ? service.frFeatures : service.features;
           return (
             <a
               href={`/${locale}/services/${service.slug}`}
               class:list={[
                 'group relative overflow-hidden rounded-2xl transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl',
-                isFeatured
+                isWide
                   ? 'md:col-span-2 lg:col-span-2 aspect-[4/3] md:aspect-[16/9] lg:aspect-[8/3]'
-                  : i === 1
-                  ? 'aspect-[4/3] lg:aspect-auto'
-                  : 'aspect-[4/3]',
+                  : 'aspect-[4/3] lg:aspect-auto',
               ]}
             >
               {/* Full-bleed image */}

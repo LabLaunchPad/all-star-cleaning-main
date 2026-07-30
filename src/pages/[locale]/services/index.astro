@@ -54,7 +54,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
 
 <PageLayout
   title={isFr ? 'Nos Services de Nettoyage | All Star Cleaning Ottawa' : 'Professional Exterior Cleaning Services in Ottawa | All Star Cleaning'}
-  description={isFr ? 'Services de nettoyage extérieur professionnels à Ottawa. Nettoyage de vitres, gouttières, lavage sous pression, revêtement et déneigement.' : 'Professional exterior cleaning services in Ottawa. Window cleaning, gutter cleaning, pressure washing, siding cleaning, and snow removal.'}
+  description={isFr ? 'Services de nettoyage extérieur professionnels à Ottawa. Nettoyage de vitres, gouttières, lavage sous pression et revêtement.' : 'Professional exterior cleaning services in Ottawa. Window cleaning, gutter cleaning, pressure washing, and siding cleaning.'}
   locale={locale}
   breadcrumbs={breadcrumbs}
   heroTitle={t.servicesPage.heroTitle}
@@ -81,7 +81,8 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
         const delayClass = `delay-${Math.min(i + 1, 5)}`;
         const features = isFr ? service.frFeatures : service.features;
         const imgSrc = service.image || `/images/${service.slug}.jpg`;
-        const isFeatured = i === 0;
+        const isWide = i === 0 || i === 3;
+        const isFeatured = isWide;
         const badge = serviceBadgeMap[service.slug];
         const objPos = serviceObjectPosition[service.slug] ?? 'object-center';
         return (
@@ -89,11 +90,9 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
             href={`/${locale}/services/${service.slug}`}
             class:list={[
               `touch-target fade-in ${delayClass} group relative overflow-hidden rounded-2xl transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2`,
-              isFeatured
+              isWide
                 ? 'md:col-span-2 lg:col-span-2 aspect-[4/3] md:aspect-[16/9] lg:aspect-[8/3]'
-                : i === 1
-                ? 'aspect-[4/3] lg:aspect-auto'
-                : 'aspect-[4/3]',
+                : 'aspect-[4/3] lg:aspect-auto',
             ]}
           >
             {/* Full-bleed image */}

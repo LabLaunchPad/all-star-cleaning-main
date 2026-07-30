@@ -37,15 +37,15 @@ const heroTitle = isFr
   ? `Services de Nettoyage à ${location.frName}`
   : `Cleaning Services in ${location.name}`;
 const heroSubtitle = isFr
-  ? `Services professionnels de nettoyage extérieur à ${location.frName} et les environs. Vitres, gouttières, lavage sous pression, revêtement et déneigement.`
-  : `Professional exterior cleaning services in ${location.name} and surrounding areas. Window, gutter, pressure washing, siding & snow removal.`;
+  ? `Services professionnels de nettoyage extérieur à ${location.frName} et les environs. Vitres, gouttières, lavage sous pression et revêtement.`
+  : `Professional exterior cleaning services in ${location.name} and surrounding areas. Window, gutter, pressure washing & siding cleaning.`;
 ---
 
 <PageLayout
   title={isFr ? `Services de Nettoyage à ${location.frName} Ottawa | All Star Cleaning` : `Cleaning Services in ${location.name} Ottawa | All Star Cleaning`}
   description={isFr
-    ? `Services de nettoyage extérieur professionnels à ${location.frName}, Ottawa. Vitres, gouttières, lavage sous pression, revêtement et déneigement. Devis gratuit.`
-    : `Professional exterior cleaning services in ${location.name}, Ottawa. Window, gutter, pressure washing, siding cleaning & snow removal. Free quote.`}
+    ? `Services de nettoyage extérieur professionnels à ${location.frName}, Ottawa. Vitres, gouttières, lavage sous pression et revêtement. Devis gratuit.`
+    : `Professional exterior cleaning services in ${location.name}, Ottawa. Window, gutter, pressure washing & siding cleaning. Free quote.`}
   locale={locale}
   ogImage="https://allstarcleaning.ca/og-default.jpg"
   breadcrumbs={breadcrumbs}
@@ -88,13 +88,10 @@ const heroSubtitle = isFr
         {isFr ? 'Nos Services à' : 'Our Services in'} {isFr ? location.frName : location.name}
       </h2>
       <div class="mt-4 grid gap-4 sm:grid-cols-2">
-        {services.map((service, i) => (
+        {services.map((service) => (
           <a
             href={`/${locale}/area/${location.slug}/${service.slug}`}
-            class:list={[
-              'touch-target group rounded-xl border border-border bg-card p-5 transition-colors duration-200 hover:border-midnight-indigo/30 hover:shadow-md hover-lift focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2',
-              i === 0 ? 'sm:col-span-2 border-midnight-indigo/20 bg-midnight-indigo/5' : '',
-            ]}
+            class="touch-target group rounded-xl border border-border bg-card p-5 transition-colors duration-200 hover:border-midnight-indigo/30 hover:shadow-md hover-lift focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2"
           >
             <h3 class="font-heading text-lg font-semibold text-navy group-hover:text-midnight-indigo">
               {isFr ? service.frName : service.name}
