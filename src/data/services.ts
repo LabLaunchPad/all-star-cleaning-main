@@ -18,7 +18,3 @@ export const services: Service[] = [
 export function getServiceBySlug(slug: string): Service | undefined {
   return services.find((s) => s.slug === slug || s.frSlug === slug);
 }
-
-export function getServiceSlugs(): string[] {
-  return services.map((s) => s.slug);
-}

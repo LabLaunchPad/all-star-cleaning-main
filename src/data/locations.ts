@@ -51,9 +51,3 @@ export const locations: Location[] = [
 export function getLocationBySlug(slug: string): Location | undefined {
   return locations.find((l) => l.slug === slug);
 }
-export function getLocationSlugs(): string[] {
-  return locations.map((l) => l.slug);
-}
-export function getLocationsByArea(area: string): Location[] {
-  return locations.filter((l) => l.area.toLowerCase() === area.toLowerCase());
-}

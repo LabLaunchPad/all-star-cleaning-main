@@ -4,7 +4,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
-import markdoc from '@astrojs/markdoc';
 import keystatic from '@keystatic/astro';
 import cloudflare from '@astrojs/cloudflare';
 import tailwind from '@tailwindcss/vite';
@@ -133,7 +132,6 @@ export default defineConfig({
 
   integrations: [
     react(),
-    markdoc(),
     keystatic(),
     sitemap({
       i18n: {
