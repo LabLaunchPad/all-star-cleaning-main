@@ -38,11 +38,11 @@ const serviceObjectPosition: Record<string, string> = {
 };
 
 const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }> = {
-  'window-cleaning':  { en: 'Streak-Free',       fr: 'Sans Traces',        color: 'bg-sky-500/35' },
-  'gutter-cleaning':  { en: 'Clog Prevention',   fr: 'Anti-Obstruction',   color: 'bg-amber-600/35' },
-  'pressure-washing': { en: 'Deep Clean',        fr: 'Nettoyage Intensif', color: 'bg-emerald-600/35' },
-  'siding-cleaning':  { en: 'Curb Appeal',       fr: 'Façade Propre',      color: 'bg-violet-600/35' },
-  'snow-removal':     { en: 'Winter Ready',      fr: 'Prêt Hiver',         color: 'bg-blue-600/35' },
+  'window-cleaning':  { en: 'Streak-Free',       fr: 'Sans Traces',        color: 'bg-sky-light/20' },
+  'gutter-cleaning':  { en: 'Clog Prevention',   fr: 'Anti-Obstruction',   color: 'bg-amber-light/20' },
+  'pressure-washing': { en: 'Deep Clean',        fr: 'Nettoyage Intensif', color: 'bg-green-light/20' },
+  'siding-cleaning':  { en: 'Curb Appeal',       fr: 'Façade Propre',      color: 'bg-midnight-indigo-light/20' },
+  'snow-removal':     { en: 'Winter Ready',      fr: 'Prêt Hiver',         color: 'bg-midnight-indigo/20' },
 };
 ---
 
@@ -83,7 +83,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
       </p>
       
       <div class="fade-in delay-4 mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href={`/${locale}/contact`} class="touch-target group inline-flex w-full items-center justify-center gap-3 rounded-full bg-white px-10 py-4 text-lg font-bold uppercase tracking-wider text-midnight-indigo shadow-2xl transition-all hover:bg-white/90 hover:scale-105 active:scale-95 sm:w-auto">
+        <a href={`/${locale}/contact`} class="touch-target group inline-flex w-full items-center justify-center gap-3 rounded-full bg-white px-10 py-4 text-lg font-bold uppercase tracking-wider text-midnight-indigo shadow-2xl transition-colors duration-200 hover:bg-white/90 sm:w-auto">
           {isFr ? 'Obtenez un Devis' : 'Get a Quote'}
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
         </a>
@@ -94,8 +94,8 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
         <!-- Top Row: Uniform sizing -->
         <div class="flex flex-wrap items-center justify-center gap-3">
           <!-- Free Estimates -->
-          <div class="flex min-w-[150px] items-center justify-center gap-2 rounded-full bg-amber-500/10 px-4 py-2.5 backdrop-blur-md border border-amber-500/20">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+          <div class="flex min-w-[150px] items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-2.5 border border-white/20 transition-colors duration-200 hover:bg-white/20">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
             <span class="text-[10px] font-bold uppercase tracking-widest text-text-on-dark sm:text-xs">{isFr ? 'Devis Gratuits' : 'Free Estimates'}</span>
           </div>
 
@@ -104,10 +104,10 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
             href={siteSettings.googleUrl} 
             target="_blank" 
             rel="noopener noreferrer" 
-            class="flex min-w-[150px] items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-2.5 backdrop-blur-md border border-white/20 transition-all hover:bg-white/20 hover:scale-105 active:scale-95"
+            class="flex min-w-[150px] items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-2.5 border border-white/20 transition-colors duration-200 hover:bg-white/20"
             aria-label={isFr ? 'Voir nos avis Google (ouvre une nouvelle fenêtre)' : 'See our Google Reviews (opens in new window)'}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c3.11 0 5.72-1.03 7.63-2.77l-3.57-2.77c-1.01.68-2.31 1.09-4.06 1.09-3.13 0-5.78-2.11-6.73-4.96H2.62v2.87C4.52 20.38 8.04 23 12 23z" fill="#34A853"/><path d="M5.27 13.59c-.24-.71-.38-1.47-.38-2.27 0-.79.14-1.55.38-2.26V6.19H2.62C1.81 7.82 1.35 9.66 1.35 11.62c0 1.96.46 3.8 1.27 5.43l2.65-2.07z" fill="#FBBC05"/><path d="M12 4.39c1.7 0 3.22.58(6.19l3.3 2.57C6.88 6.5 9.53 4.39 12 4.39z" fill="#EA4335"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c3.11 0 5.72-1.03 7.63-2.77l-3.57-2.77c-1.01.68-2.31 1.09-4.06 1.09-3.13 0-5.78-2.11-6.73-4.96H2.62v2.87C4.52 20.38 8.04 23 12 23z" fill="#34A853"/><path d="M5.27 13.59c-.24-.71-.38-1.47-.38-2.27 0-.79.14-1.55.38-2.26V6.19H2.62C1.81 7.82 1.35 9.66 1.35 11.62c0 1.96.46 3.8 1.27 5.43l2.65-2.07z" fill="#FBBC05"/><path d="M12 4.39c1.7 0 3.22.58 4.42 1.73l3.31-3.31C17.71 1.05 15.09 0 12 0 8.04 0 4.52 2.62 2.62 6.19l3.3 2.57C6.88 6.5 9.53 4.39 12 4.39z" fill="#EA4335"/></svg>
             <div class="flex text-yellow-400">
               {[...Array(5)].map(() => (
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -118,7 +118,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
         </div>
 
         <!-- Bottom Row: Primary Trust -->
-        <div class="flex min-w-[200px] items-center justify-center gap-2 rounded-full bg-emerald-500/10 px-6 py-2.5 backdrop-blur-md border border-emerald-500/20">
+        <div class="flex min-w-[200px] items-center justify-center gap-2 rounded-full bg-white/10 px-6 py-2.5 border border-white/20 transition-colors duration-200 hover:bg-white/20">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
           <span class="text-[10px] font-bold uppercase tracking-widest text-text-on-dark sm:text-xs">{isFr ? 'Assuré & Cautionné' : 'Insured & Bonded'}</span>
         </div>
@@ -170,15 +170,15 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
             {usps.map((usp) => (
               <div class:list={[
                 'fade-in rounded-xl border p-5 flex items-start gap-4 transition-transform duration-300 hover:-translate-y-0.5',
-                usp.icon === 'shield' ? 'bg-emerald-subtle border-green-500/20' : 
-                usp.icon === 'sparkles' ? 'bg-sky-subtle border-sky-500/20' : 
-                'bg-amber-subtle border-amber-500/20'
+                usp.icon === 'shield' ? 'bg-green-surface border-green-light/20' : 
+                usp.icon === 'sparkles' ? 'bg-sky-surface border-sky-light/20' : 
+                'bg-amber-surface border-amber-light/20'
               ]}>
                 <div class:list={[
                   'flex h-10 w-10 shrink-0 items-center justify-center rounded-full',
-                  usp.icon === 'shield' ? 'bg-green-500/10 text-green-600' : 
-                  usp.icon === 'sparkles' ? 'bg-sky-500/10 text-sky-600' : 
-                  'bg-amber-500/10 text-amber-600'
+                  usp.icon === 'shield' ? 'bg-green-light/20 text-green-dark' : 
+                  usp.icon === 'sparkles' ? 'bg-sky-light/20 text-sky-dark' : 
+                  'bg-amber-light/20 text-amber-dark'
                 ]}>
                   {usp.icon === 'shield' && (
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -193,9 +193,9 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
                 <div>
                   <h3 class:list={[
                     'font-heading text-base font-semibold',
-                    usp.icon === 'shield' ? 'text-green-800' : 
-                    usp.icon === 'sparkles' ? 'text-sky-800' : 
-                    'text-amber-800'
+                    usp.icon === 'shield' ? 'text-green-dark' : 
+                    usp.icon === 'sparkles' ? 'text-sky-dark' : 
+                    'text-amber-dark'
                   ]}>{usp.title}</h3>
                   <p class="mt-1 measure text-base leading-relaxed text-muted-foreground">{usp.description}</p>
                 </div>
@@ -338,15 +338,15 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
       <div class="mt-12 grid gap-8 md:grid-cols-3">
         <!-- Step 1 -->
         <div class="fade-in text-center">
-          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 border-2 border-sky-500/20">
+          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-sky-surface text-sky-dark border-2 border-sky-light/30">
             <span class="font-heading text-3xl font-bold">1</span>
           </div>
-          <h3 class="mt-5 font-heading text-lg font-semibold text-sky-900">{isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}</h3>
+          <h3 class="mt-5 font-heading text-lg font-semibold text-sky-dark">{isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}</h3>
           <p class="mt-2 measure text-base text-muted-foreground">{isFr ? "Appelez-nous ou remplissez notre formulaire en ligne. Nous vous répondons sous 24 heures avec un devis gratuit et sans engagement." : 'Call us or fill out our online form. We respond within 24 hours with a free, no-obligation quote.'}</p>
         </div>
         <!-- Step 2 -->
         <div class="fade-in delay-1 text-center">
-          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-midnight-indigo/10 text-midnight-indigo border-2 border-midnight-indigo/20">
+          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-midnight-indigo-surface text-midnight-indigo border-2 border-midnight-indigo/20">
             <span class="font-heading text-3xl font-bold">2</span>
           </div>
           <h3 class="mt-5 font-heading text-lg font-semibold text-midnight-indigo">{isFr ? 'Nous Faisons le Travail' : 'We Do the Work'}</h3>
@@ -354,10 +354,10 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
         </div>
         <!-- Step 3 -->
         <div class="fade-in delay-2 text-center">
-          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 border-2 border-emerald-500/20">
+          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-surface text-green-dark border-2 border-green-light/30">
             <span class="font-heading text-3xl font-bold">3</span>
           </div>
-          <h3 class="mt-5 font-heading text-lg font-semibold text-emerald-900">{isFr ? 'Appréciez le Résultat' : 'Enjoy the Result'}</h3>
+          <h3 class="mt-5 font-heading text-lg font-semibold text-green-dark">{isFr ? 'Appréciez le Résultat' : 'Enjoy the Result'}</h3>
           <p class="mt-2 measure text-base text-muted-foreground">{isFr ? "Vitres étincelantes, gouttières propres, allées comme neuves. Et si vous n'êtes pas satisfait à 100%, nous revenons sans frais." : 'Sparkling windows, clean gutters, driveways like new. And if you\'re not 100% satisfied, we come back at no charge.'}</p>
         </div>
       </div>

@@ -48,7 +48,9 @@ post_fix_screenshots.mjs
 screenshots/
 
 # IDE / Agent Tooling
-.codex/
 .vibe/
+.codex/
 scratch/
 screenshot*.png
+DESIGNdell.md
+DESIGNmeta.md

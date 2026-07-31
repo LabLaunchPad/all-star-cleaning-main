@@ -1,39 +1,53 @@
 # Design System — All Star Cleaning Ottawa
 
+## Single Source of Truth Architecture
+
+All design tokens, utilities, reset layers, and theme configurations are declared in a single entry point:
+- **`src/styles/global.css`**: Tailwind CSS v4 `@theme` block + `@layer utilities`
+
+---
+
 ## Color Strategy: Midnight Indigo & Tinted White
-Midnight Indigo (`oklch(28% 0.08 265)`) carries the authoritative brand voice across headings, primary CTAs, and active states. It replaces the legacy Royal Blue to provide a more premium, established feel. A clean off-white background (tinted toward indigo) anchors the experience, with Gold reserved strictly for ratings and specialized emphasis.
+
+Vibrant Midnight Indigo (`oklch(63.2% 0.149 243.5)` / `#2e82f7`) carries the authoritative brand voice across headings, primary CTAs, and active states. A clean off-white background (tinted toward indigo, hue 243.5) anchors the experience, with Gold reserved strictly for ratings and specialized emphasis.
 
 ## Palette
 
-### Primary: Midnight Indigo
-- `--color-midnight-indigo`: `oklch(28% 0.08 265)` — Primary brand color, headings, CTAs
-- `--color-midnight-indigo-light`: `oklch(38% 0.07 265)` — Hover states, accents
-- `--color-midnight-indigo-dark`: `oklch(20% 0.06 265)` — Deep emphasis, button hovers
+### Primary: Midnight Indigo (Refined Royal Blue)
+- `--color-midnight-indigo`: `oklch(63.2% 0.149 243.5)` / `#2e82f7` — Primary brand color, headings, CTAs
+- `--color-midnight-indigo-light`: `oklch(73.2% 0.13 243.5)` / `#61a1fb` — Hover states, accents
+- `--color-midnight-indigo-dark`: `oklch(32% 0.13 243.5)` / `#1c3f7b` — Deep emphasis, button hovers
+- `--color-midnight-indigo-surface`: `oklch(97.5% 0.015 243.5)` / `#f4f8fc` — Light accent surfaces
 
-### Anchor: Navy
-- `--color-navy`: `oklch(17.5% 0.030 265)` — Hero backgrounds, authoritative elements
-- `--color-navy-light`: `oklch(25.5% 0.035 265)` — Gradient endpoints
-- `--color-navy-dark`: `oklch(12.0% 0.025 265)` — Hover states on navy surfaces
+### Anchor: Navy (Warm Indigo-Tinted Dark)
+- `--color-navy`: `oklch(17.5% 0.045 243.5)` / `#131824` — Hero backgrounds, authoritative elements
+- `--color-navy-light`: `oklch(25.5% 0.050 243.5)` / `#222838` — Gradient endpoints
+- `--color-navy-dark`: `oklch(12.0% 0.035 243.5)` / `#0a0d16` — Deep dark surfaces
 
 ### Accent: Gold
-- `--color-gold`: `oklch(75% 0.15 85)` — Rare emphasis, ratings, highlights
-- `--color-gold-light`: `oklch(80% 0.14 85)` — Hover gold
-- `--color-gold-dark`: `oklch(65% 0.16 85)` — Deep gold emphasis
+- `--color-gold`: `oklch(75% 0.15 85)` / `#c9a84c` — Rating stars, highlights
+- `--color-gold-light`: `oklch(80% 0.14 85)` / `#d4b96e` — Hover gold
+- `--color-gold-dark`: `oklch(65% 0.16 85)` / `#a88a2e` — Deep gold emphasis
 
-### Neutrals (indigo-tinted)
-- `--color-off-white`: `oklch(98.0% 0.005 265)` — Page background
-- `--color-off-white-dark`: `oklch(93.5% 0.006 265)` — Subtle dividers, secondary backgrounds
-- `--color-muted`: `oklch(42.0% 0.025 265)` — Secondary text
-- `--color-border`: `oklch(92.0% 0.008 265)` — Hairline borders
-- `--color-card`: `#ffffff` — Card surfaces
+### Neutrals (Indigo-Tinted, Hue 243.5)
+- `--color-off-white`: `oklch(98.0% 0.005 243.5)` / `#f9fafc` — Page background
+- `--color-off-white-dark`: `oklch(93.5% 0.006 243.5)` / `#e5e8f0` — Subtle dividers, secondary backgrounds
+- `--color-muted-foreground`: `oklch(42.0% 0.025 243.5)` / `#545a70` — Secondary text (WCAG AA 5.22:1 contrast)
+- `--color-border`: `oklch(92.0% 0.008 243.5)` / `#e5e8f0` — Hairline borders
+- `--color-card`: `oklch(99.2% 0.004 243.5)` — Card surfaces (tinted white, not pure `#fff`)
+- `--color-text-on-dark`: `oklch(94.5% 0.025 243.5)` / `#e9ecf5` — Text on navy surfaces (Indigo-Wash)
+- `--color-text-on-dark-muted`: `oklch(88.0% 0.03 243.5)` / `#cbd2e5` — Secondary text on navy surfaces
+
+---
 
 ## Typography
 
-### Fonts
-- **Headings**: DM Serif Display — editorial authority, local trust, distinctive without being ornate
-- **Body**: Outfit — clean geometric sans, excellent readability at body sizes, pairs well with serif headings
+### Fonts & Fallbacks
+- **Headings**: `DM Serif Display`, Georgia, serif — editorial authority, local trust
+- **Body**: `Outfit`, system-ui, sans-serif — clean geometric sans, high readability
+- **Fallback Overrides**: `@font-face` size-adjust metrics configured in `global.css` (`DM Serif Display Fallback`, `Outfit Fallback`) to prevent Cumulative Layout Shift (CLS) on web font load.
 
-### Scale
+### Fluid Scale
 Fluid `clamp()` for headings, fixed `rem` for body. Ratio 1.25 between steps.
 
 | Role | Token | Value |
@@ -41,60 +55,59 @@ Fluid `clamp()` for headings, fixed `rem` for body. Ratio 1.25 between steps.
 | Display | `--text-display` | `clamp(2.5rem, 5vw, 4.5rem)` |
 | Headline | `--text-headline` | `clamp(1.75rem, 4vw, 3rem)` |
 | Subheading | `--text-subheading` | `clamp(1.125rem, 2.5vw, 1.5rem)` |
+| Lead | `--text-lead` | `1.25rem` (20px) |
 | Body | `--text-base` | `1rem` (16px) |
-| Small | `--text-sm` | `0.875rem` |
-| Caption | `--text-xs` | `0.75rem` |
+| Small | `--text-sm` | `0.875rem` (14px) |
+| Caption | `--text-xs` | `0.75rem` (12px) |
 
-### Line Heights
-- Headings: 1.1-1.2
-- Body: 1.6 (the readability sweet spot)
-- Light text on dark: +0.05-0.1
+### Line Heights & Measure
+- Headings: 1.15
+- Body: 1.6 (readability sweet spot)
+- Readability Measure: `.measure` caps line length at `65ch`
 
-## Elevation
-Flat by default. Shadows only on state change (hover, sticky).
+---
+
+## Elevation & Shadows
+
+Tinted brand shadows using OKLCH indigo hue (`oklch(15% 0.05 243.5)`):
 
 | Level | Token | Purpose |
 |-------|-------|---------|
-| Rest | none | Cards and surfaces at rest are flat |
-| Subtle | `--shadow-sm` | Resting cards |
-| Hover | `--shadow-md` | Hover lift on cards |
-| Elevated | `--shadow-lg` | Sticky CTAs, dropdowns |
-| Prominent | `--shadow-xl` | Hero elements, modals |
+| Rest | `shadow-sm` | Hairline cards at rest |
+| Hover | `shadow-md` | Card hover state |
+| Elevated | `shadow-lg` | Sticky CTAs, dropdowns |
+| Prominent | `shadow-xl` | Hero elements, modals |
+| Hover Lift | `.hover-lift` | GPU-accelerated translate-y with soft shadow fade |
 
-## Motion
+---
+
+## Motion & Transitions
+
 - **Easing**: `cubic-bezier(0.16, 1, 0.3, 1)` (ease-out-quart)
-- **Fast**: 150ms — color, opacity transitions
-- **Base**: 250ms — transforms, non-color changes
-- **Slow**: 350ms — orchestrated entrances
-- Never animate layout properties (width, height, padding, margin)
-- Always respect `prefers-reduced-motion`
+- **Fast**: 150ms — color, opacity transitions (`--transition-fast`)
+- **Base**: 250ms — transforms, non-color changes (`--transition-base`)
+- **Slow**: 350ms — orchestrated entrances (`--transition-slow`)
+- **Accessibility**: `@media (prefers-reduced-motion: reduce)` disables non-essential animations.
 
-## Spacing Scale
-8 / 16 / 24 / 32 / 48 / 64 / 80 / 120px — magazine-scale breathing room. Generous separations between sections (48-80px), tight groupings for related elements (8-16px).
+---
 
-## Components
+## Utility Classes (`src/styles/global.css`)
 
-### CTA Buttons
-- Primary: `rounded-full bg-midnight-indigo text-white shadow-lg hover:bg-midnight-indigo-dark`
-- Secondary: `rounded-full border-2 border-white/30 text-white hover:border-white/60`
-- Touch targets: minimum 44x44px (48px on coarse pointers)
+- `.touch-target`: Minimum 44×44px touch targets (48px on coarse pointer devices)
+- `.measure`: Caps text container width to `65ch`
+- `.hover-lift`: GPU-composited lift on hover using pseudo-element opacity shift
+- `.section-asymmetric`: 7:5 asymmetric grid column layout for editorial balance
+- `.brand-gradient` / `.cta-gradient`: Smooth brand blue to dark navy linear gradients
+- `.safe-area-bottom`: Mobile viewport notch padding (`env(safe-area-inset-bottom)`)
 
-### Cards
-- Rounded corners (`rounded-xl`), hairline border, flat at rest
-- Hover: subtle lift (`-translate-y-0.5`) + shadow increase
-- No side-stripe borders (impeccable ban)
-- No nested cards
-
-### Breadcrumbs
-- Hairline bottom border, compact padding
-- Chevron separators, last item bold with `aria-current`
+---
 
 ## Rules
-1. Never use pure `#000` or pure `#fff` for large areas
-2. Never use gradient text (`background-clip: text` + gradient)
-3. Never use side-stripe borders (border-left/right > 1px as accent)
-4. Never nest cards inside cards
-5. Cap body line length at 65ch
-6. Tint all neutrals toward brand hue (indigo)
-7. Gray text on colored backgrounds: use a shade of the background color instead
-8. Every interactive element needs hover, focus, active, and disabled states
+
+1. **Single Source of Truth**: All colors and values must reference `@theme` CSS variables in `global.css`.
+2. **No Pure Black/White**: Use tinted neutrals (`--color-navy` / `--color-off-white`).
+3. **No Gradient Text**: Never use `background-clip: text` with gradients.
+4. **No Side-Stripe Borders**: Never use accent `border-left` or `border-right` on cards.
+5. **No Decorative Glassmorphism**: Cards and content sections must use solid tinted surfaces (`--color-card`).
+6. **Touch Targets**: Every interactive link or button must maintain a minimum 44×44px touch target.
+7. **Accessibility**: All text colors must meet WCAG AA contrast guidelines (4.5:1 minimum).
