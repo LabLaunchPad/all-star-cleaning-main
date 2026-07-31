@@ -383,54 +383,59 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
         <ContactForm locale={locale} idPrefix="home-" />
       </div>
 
-      <!-- Homepage Service Area & Google Map Section -->
+      <!-- Homepage Visit Us / Location Map Section -->
       <div class="mt-20 fade-in delay-4">
         <div class="text-center mb-8">
           <div class="inline-flex items-center gap-1.5 rounded-full border border-midnight-indigo/20 bg-midnight-indigo/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-midnight-indigo mb-4">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>{isFr ? 'Couverture Régionale' : 'Regional Coverage'}</span>
+            <span>{isFr ? 'Visitez Nos Locaux' : 'Visit Our Location'}</span>
           </div>
           <h2 class="font-heading text-2xl font-bold tracking-tight text-navy sm:text-3xl lg:text-4xl">
-            {isFr ? 'Zone de Service Régionale' : 'Serving the Greater Region'}
+            {isFr ? 'Passez Nous Voir à Ottawa' : 'Visit Us in Ottawa'}
           </h2>
           <p class="mt-3 mx-auto max-w-xl text-sm text-muted-foreground leading-relaxed">
             {isFr
-              ? "Des centres urbains aux communautés environnantes, notre équipe apporte un nettoyage extérieur professionnel directement à votre propriété."
-              : "From urban centers to all surrounding residential & commercial communities, our crew brings professional exterior cleaning directly to your property."}
+              ? `Situé au ${siteSettings.addressFr}. Passez nous voir ou contactez notre équipe pour vos projets de nettoyage extérieur.`
+              : `Located at ${siteSettings.addressEn}. Visit our Ottawa location or contact us for your exterior cleaning projects.`}
           </p>
         </div>
 
         {/* Embedded Map Card */}
         <div class="overflow-hidden rounded-2xl border border-border shadow-md h-[320px] sm:h-[400px] lg:h-[450px]">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.5!2d-75.6667!3d45.35!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDXCsDIxJzAwLjAiTiA3NcKwNDAnMDAuMSJX!5e0!3m2!1sen!2sca!4v1"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2805.1768820625977!2d-75.6705574234032!3d45.34522817107248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce062c3e1e69b5%3A0x7d6a5d7c48972b22!2s800%20Hunt%20Club%20Rd%2C%20Ottawa%2C%20ON%20K1V%201C3!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
             width="100%"
             height="100%"
             style="border:0;"
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            title={isFr ? 'Zone de service All Star Cleaning sur Google Maps' : 'All Star Cleaning service area on Google Maps'}
+            title={isFr ? 'Emplacement de All Star Cleaning sur Google Maps' : 'All Star Cleaning location on Google Maps'}
             class="h-full w-full"
           ></iframe>
         </div>
 
-        {/* Universal Travel & Coverage Chips */}
+        {/* Address, Hours & Google Directions Link Chips */}
         <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
           <div class="inline-flex items-center gap-2 rounded-full border border-border/80 bg-card px-4 py-2 text-xs font-semibold text-navy shadow-2xs">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-bold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            <span>{isFr ? 'Propriétés Résidentielles et Commerciales' : 'Residential & Commercial Properties'}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-midnight-indigo shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>{isFr ? siteSettings.addressFr : siteSettings.addressEn}</span>
           </div>
 
           <div class="inline-flex items-center gap-2 rounded-full border border-border/80 bg-card px-4 py-2 text-xs font-semibold text-navy shadow-2xs">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-midnight-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-            <span>{isFr ? 'Service Entièrement Assuré à 100%' : '100% Fully Insured Travel & Service'}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-midnight-indigo shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>{isFr ? siteSettings.hoursFr : siteSettings.hoursEn}</span>
           </div>
 
-          <div class="inline-flex items-center gap-2 rounded-full border border-border/80 bg-card px-4 py-2 text-xs font-semibold text-navy shadow-2xs">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-bold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m13 2-2 10h7L7 22l2-10H2z"/></svg>
-            <span>{isFr ? 'Réponse Rapide sous 24h' : 'Fast 24-Hour Regional Response'}</span>
-          </div>
+          <a
+            href={siteSettings.googleUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="touch-target inline-flex items-center gap-2 rounded-full bg-midnight-indigo px-5 py-2 text-xs font-bold text-white shadow-blue-glow transition-all duration-200 hover:bg-midnight-indigo-dark hover:scale-[1.02]"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>{isFr ? "Obtenir l'itinéraire Google" : 'Get Google Directions'}</span>
+          </a>
         </div>
       </div>
     </div>
