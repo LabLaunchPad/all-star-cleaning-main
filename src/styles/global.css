@@ -339,7 +339,38 @@
     font-size: var(--text-sm);
     margin-top: 0.25rem;
   }
+  /* Infinite Review Marquee Animation */
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 45s linear infinite;
+  }
+
+  .hover-pause:hover .animate-marquee,
+  .hover-pause:focus-within .animate-marquee {
+    animation-play-state: paused;
+  }
+
+  .mask-edges {
+    mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+      animation: none;
+      width: auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
 }
-
-
-

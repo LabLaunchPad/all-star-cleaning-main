@@ -3,6 +3,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import CTASection from '@/components/CTASection.astro';
 import ContactForm from '@/components/ContactForm.astro';
+import ReviewMarquee from '@/components/ReviewMarquee.astro';
 import { services } from '@/data/services';
 import { useTranslations } from '@/i18n/translations';
 import { getHowToSchema, getBreadcrumbSchema } from '@/seo';
@@ -217,7 +218,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
   <!-- ============================================================ -->
   <!-- SERVICES SECTION — Varied grid with featured first card -->
   <!-- ============================================================ -->
-  <section aria-label={isFr ? 'Nos services' : 'Our services'} class="border-t border-midnight-indigo/10 bg-background pt-8 pb-16 md:pt-10 md:pb-20 lg:pt-12 lg:pb-24" style="content-visibility: auto; contain-intrinsic-size: 0 800px">
+  <section aria-label={isFr ? 'Nos services' : 'Our services'} class="border-t border-midnight-indigo/10 bg-background pt-8 pb-8 md:pt-10 md:pb-10 lg:pt-12 lg:pb-10" style="content-visibility: auto; contain-intrinsic-size: 0 800px">
     <div class="mx-auto max-w-7xl px-4 md:px-6">
       <div class="text-center">
         <h2 class="heading-section slide-up font-heading font-bold text-navy">{isFr ? 'Nos Services' : 'Our Services'}</h2>
@@ -304,32 +305,14 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
   </section>
 
   <!-- ============================================================ -->
-  <!-- TRUST / TESTIMONIAL SECTION — Real customer quote -->
+  <!-- WHAT PEOPLE ARE SAYING — Hilton-Style Infinite Review Marquee -->
   <!-- ============================================================ -->
-  <section class="bg-midnight-indigo py-16 text-text-on-dark md:py-20" aria-label={isFr ? 'Témoignage client' : 'Customer testimonial'} style="content-visibility: auto; contain-intrinsic-size: 0 400px">
-    <div class="mx-auto max-w-3xl px-4 text-center">
-      <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-8 w-8 text-text-on-dark/30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-      <blockquote class="mt-6 text-xl font-medium leading-relaxed text-text-on-dark sm:text-2xl">
-        {isFr
-          ? "Service exceptionnel ! Ils ont nettoyé nos gouttières et fenêtres en une seule visite. L'équipe était ponctuelle, professionnelle et a tout laissé impeccable."
-          : "Outstanding service! They cleaned our gutters and windows in a single visit. The crew was on time, professional, and left everything spotless."}
-      </blockquote>
-      <p class="mt-6 text-sm text-text-on-dark-muted">
-        — Sarah Mitchell, {isFr ? 'Nettoyage de gouttières' : 'Gutter Cleaning'}
-      </p>
-      <div class="mt-4 flex items-center justify-center gap-1 text-amber-surface" role="img" aria-label="5 out of 5 stars">
-        {[...Array(5)].map(() => (
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        ))}
-      </div>
-      <p class="mt-2 text-[11px] text-text-on-dark-muted sm:text-xs">{isFr ? `${cms.googleReviewCount} avis Google vérifiés` : `${cms.googleReviewCount} verified Google reviews`}</p>
-    </div>
-  </section>
+  <ReviewMarquee locale={locale} />
 
   <!-- ============================================================ -->
   <!-- HOW IT WORKS SECTION — 3-step process with before/after image -->
   <!-- ============================================================ -->
-  <section aria-label={isFr ? 'Comment ça marche' : 'How it works'} class="py-16 md:py-20 lg:py-24" style="content-visibility: auto; contain-intrinsic-size: 0 700px">
+  <section aria-label={isFr ? 'Comment ça marche' : 'How it works'} class="pt-8 pb-12 md:pt-10 md:pb-16 lg:pt-10 lg:pb-20" style="content-visibility: auto; contain-intrinsic-size: 0 700px">
     <div class="mx-auto max-w-7xl px-4 md:px-6">
       <div class="text-center">
         <div class="mb-3 inline-flex items-center gap-1.5 rounded-full bg-midnight-indigo/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-midnight-indigo">
