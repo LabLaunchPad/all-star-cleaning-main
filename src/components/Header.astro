@@ -21,7 +21,7 @@ const navLinks = [
 ];
 ---
 <div id="header-sentinel" class="absolute top-0 h-px w-full pointer-events-none"></div>
-<header id="main-header" class="sticky top-0 z-50 border-b border-border bg-card/95 transition-colors duration-300">
+<header id="main-header" class="sticky top-0 z-50 border-b border-border bg-card transition-colors duration-300">
   <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-3">
     <!-- Logo -->
     <a href={`/${locale}`} class="touch-target flex items-center gap-2.5 text-navy no-underline focus-visible:ring-2 focus-visible:ring-midnight-indigo">
@@ -75,10 +75,10 @@ const navLinks = [
   </div>
 
   <!-- Mobile Menu Backdrop -->
-  <div id="mobile-menu-backdrop" class="hidden fixed inset-0 top-[70px] z-40 bg-black/40 backdrop-blur-xs lg:hidden" aria-hidden="true"></div>
+  <div id="mobile-menu-backdrop" class="hidden fixed inset-0 z-40 bg-black/40 lg:hidden" aria-hidden="true"></div>
 
   <!-- Mobile Menu (Floating Overlay - Zero Layout Shift) -->
-  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation" class="hidden absolute top-full inset-x-0 z-50 max-h-[calc(100vh-70px)] overflow-y-auto border-b border-border bg-card/98 shadow-2xl backdrop-blur-md lg:hidden">
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation" class="hidden absolute top-full inset-x-0 z-50 overflow-y-auto border-b border-border bg-card shadow-2xl lg:hidden">
     <nav class="mx-auto max-w-7xl px-4 py-4" aria-label="Mobile navigation">
       {navLinks.map((link) => (
         <div>
@@ -108,6 +108,7 @@ const navLinks = [
 </header>
 <script>
   // --- Mobile Menu Logic ---
+  const headerElem = document.getElementById('main-header');
   const toggle = document.getElementById('mobile-menu-toggle');
   const menu = document.getElementById('mobile-menu');
   const backdrop = document.getElementById('mobile-menu-backdrop');
@@ -115,6 +116,12 @@ const navLinks = [
   const closeIcon = document.getElementById('menu-close-icon');
 
   function openMenu() {
+    if (headerElem && backdrop && menu) {
+      const rect = headerElem.getBoundingClientRect();
+      const bottom = Math.max(0, rect.bottom);
+      backdrop.style.top = `${bottom}px`;
+      menu.style.maxHeight = `calc(100vh - ${bottom}px)`;
+    }
     menu?.classList.remove('hidden');
     backdrop?.classList.remove('hidden');
     openIcon?.classList.add('hidden');
