@@ -2,7 +2,7 @@ const en = {
   site: { name: 'All Star Cleaning', tagline: "Ottawa's Trusted Exterior Cleaning" },
   nav: { home: 'Home', services: 'Services', about: 'About', reviews: 'Reviews', contact: 'Contact', getQuote: 'Get a Free Quote', phone: 'Call Now', area: 'Areas', privacy: 'Privacy Policy', terms: 'Terms of Service' },
   services: { windowCleaning: 'Window Cleaning', gutterCleaning: 'Gutter Cleaning', pressureWashing: 'Pressure Washing', sidingCleaning: 'Siding Cleaning', snowRemoval: 'Snow Removal' },
-  footer: { serviceArea: 'Service Area', contactUs: 'Contact Us', followUs: 'Follow Us', hours: 'Hours', weekdayHours: 'Mon–Sun: 9am–7pm', weekendHours: 'Open 7 Days a Week', closed: '', copyright: 'All rights reserved.', privacy: 'Privacy Policy', terms: 'Terms of Service', sitemap: 'Sitemap' },
+  footer: { serviceArea: 'Service Area', contactUs: 'Contact Us', followUs: 'Follow Us', hours: 'Hours', weekdayHours: 'Mon–Sun: 10am–6pm', weekendHours: 'Open 7 Days a Week', closed: '', copyright: 'All rights reserved.', privacy: 'Privacy Policy', terms: 'Terms of Service', sitemap: 'Sitemap' },
   cta: { freeQuote: 'Get a Free Quote', callNow: 'Call Now', bookOnline: 'Book Online' },
   trust: { insured: 'Insured & Bonded' },
   ui: { learnMore: 'Learn more', followUs: 'Follow Us' },
@@ -50,7 +50,7 @@ const en = {
     phoneLink: '+16133143300',
     email: 'hello@allstarcleaning.ca',
     address: '800 Hunt Club Rd, Ottawa, ON K1V 1C3',
-    hours: 'Monday to Sunday: 9AM – 7PM',
+    hours: 'Monday to Sunday: 10AM – 6PM',
   },
 } as const;
 
@@ -58,7 +58,7 @@ const fr = {
   site: { name: 'All Star Cleaning', tagline: 'Nettoyage Extérieur de Confiance à Ottawa' },
   nav: { home: 'Accueil', services: 'Services', about: 'À Propos', reviews: 'Témoignages', contact: 'Contact', getQuote: 'Obtenez un Devis Gratuit', phone: 'Appelez', area: 'Régions', privacy: 'Politique de Confidentialité', terms: "Conditions d'Utilisation" },
   services: { windowCleaning: 'Nettoyage de Vitres', gutterCleaning: 'Nettoyage de Gouttières', pressureWashing: 'Lavage sous Pression', sidingCleaning: 'Nettoyage de Revêtement', snowRemoval: 'Déneigement' },
-  footer: { serviceArea: 'Zone de Service', contactUs: 'Contactez-Nous', followUs: 'Suivez-Nous', hours: 'Heures', weekdayHours: 'Lun–Dim : 9h–19h', weekendHours: 'Ouvert 7 Jours par Semaine', closed: '', copyright: 'Tous droits réservés.', privacy: 'Politique de Confidentialité', terms: "Conditions d'Utilisation", sitemap: 'Plan du Site' },
+  footer: { serviceArea: 'Zone de Service', contactUs: 'Contactez-Nous', followUs: 'Suivez-Nous', hours: 'Heures', weekdayHours: 'Lun–Dim : 10h–18h', weekendHours: 'Ouvert 7 Jours par Semaine', closed: '', copyright: 'Tous droits réservés.', privacy: 'Politique de Confidentialité', terms: "Conditions d'Utilisation", sitemap: 'Plan du Site' },
   cta: { freeQuote: 'Obtenez un Devis Gratuit', callNow: 'Appelez', bookOnline: 'Réservez en Ligne' },
   trust: { insured: 'Assuré & Cautionné' },
   ui: { learnMore: 'En savoir plus', followUs: 'Suivez-nous' },
@@ -106,7 +106,7 @@ const fr = {
     phoneLink: '+16133143300',
     email: 'hello@allstarcleaning.ca',
     address: '800, chemin Hunt Club, Ottawa, ON K1V 1C3',
-    hours: 'Lundi au dimanche : 9h – 19h',
+    hours: 'Lundi au dimanche : 10h – 18h',
   },
 } as const;
 
