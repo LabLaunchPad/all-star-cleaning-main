@@ -68,6 +68,14 @@ const contactPageSchema = {
           <div class="mt-6">
             <ContactForm locale={locale} formOnly={true} idPrefix="contact-page-" />
           </div>
+
+          <!-- Social Links (Moved to fill space under form card) -->
+          <div class="mt-6 rounded-xl border border-border bg-card p-5">
+            <h3 class="font-heading text-lg font-bold text-navy">{t.ui.followUs}</h3>
+            <div class="mt-3">
+              <SocialLinks variant="light" locale={locale} />
+            </div>
+          </div>
         </div>
 
         <!-- Right: Contact Info + Map -->
@@ -138,14 +146,6 @@ const contactPageSchema = {
               title={isFr ? 'Emplacement de All Star Cleaning sur Google Maps' : 'All Star Cleaning location on Google Maps'}
               class="h-[300px] w-full"
             ></iframe>
-          </div>
-
-          <!-- Social Links -->
-          <div class="rounded-xl border border-border bg-card p-5">
-            <h3 class="font-heading text-lg font-bold text-navy">{t.ui.followUs}</h3>
-            <div class="mt-3">
-              <SocialLinks variant="light" locale={locale} />
-            </div>
           </div>
         </div>
       </div>
