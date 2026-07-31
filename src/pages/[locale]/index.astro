@@ -2,6 +2,7 @@
 // Dynamic locale homepage — Astro v6
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import CTASection from '@/components/CTASection.astro';
+import ContactForm from '@/components/ContactForm.astro';
 import { services } from '@/data/services';
 import { useTranslations } from '@/i18n/translations';
 import { getHowToSchema, getBreadcrumbSchema } from '@/seo';
@@ -376,6 +377,11 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
           class="h-full w-full object-cover"
           loading="lazy"
         />
+      </div>
+
+      <!-- Homepage Contact Form -->
+      <div class="mt-16 fade-in">
+        <ContactForm locale={locale} idPrefix="home-" />
       </div>
     </div>
   </section>
