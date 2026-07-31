@@ -74,8 +74,11 @@ const navLinks = [
     </div>
   </div>
 
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation" class="hidden border-t border-border bg-card lg:hidden">
+  <!-- Mobile Menu Backdrop -->
+  <div id="mobile-menu-backdrop" class="hidden fixed inset-0 top-[70px] z-40 bg-black/40 backdrop-blur-xs lg:hidden" aria-hidden="true"></div>
+
+  <!-- Mobile Menu (Floating Overlay - Zero Layout Shift) -->
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation" class="hidden absolute top-full inset-x-0 z-50 max-h-[calc(100vh-70px)] overflow-y-auto border-b border-border bg-card/98 shadow-2xl backdrop-blur-md lg:hidden">
     <nav class="mx-auto max-w-7xl px-4 py-4" aria-label="Mobile navigation">
       {navLinks.map((link) => (
         <div>
@@ -107,11 +110,13 @@ const navLinks = [
   // --- Mobile Menu Logic ---
   const toggle = document.getElementById('mobile-menu-toggle');
   const menu = document.getElementById('mobile-menu');
+  const backdrop = document.getElementById('mobile-menu-backdrop');
   const openIcon = document.getElementById('menu-open-icon');
   const closeIcon = document.getElementById('menu-close-icon');
 
   function openMenu() {
     menu?.classList.remove('hidden');
+    backdrop?.classList.remove('hidden');
     openIcon?.classList.add('hidden');
     closeIcon?.classList.remove('hidden');
     toggle?.setAttribute('aria-expanded', 'true');
@@ -122,12 +127,15 @@ const navLinks = [
 
   function closeMenu() {
     menu?.classList.add('hidden');
+    backdrop?.classList.add('hidden');
     openIcon?.classList.remove('hidden');
     closeIcon?.classList.add('hidden');
     toggle?.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
     toggle?.focus();
   }
+
+  backdrop?.addEventListener('click', closeMenu);
 
   toggle?.addEventListener('click', () => {
     const isHidden = menu?.classList.contains('hidden');
