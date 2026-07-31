@@ -205,7 +205,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
             ))}
           </div>
 
-          <a href={`/${locale}/contact`} class="group fade-in delay-3 mt-8 inline-flex items-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold text-midnight-indigo transition-colors hover:bg-midnight-indigo/5 hover:text-midnight-indigo-dark focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2 touch-target">
+          <a href={`/${locale}/contact`} class="group fade-in delay-3 mt-8 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-midnight-indigo bg-midnight-indigo/10 transition-colors hover:bg-midnight-indigo/20 focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2 touch-target">
             {isFr ? 'Obtenez votre devis gratuit' : 'Get your free quote'}
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
           </a>
@@ -259,7 +259,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
                   const badge = serviceBadgeMap[service.slug];
                   return (
                     <div class="flex flex-wrap gap-1.5">
-                      <span class:list={['w-fit rounded-md px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-text-on-dark', badge?.color ?? 'bg-midnight-indigo/35']}>
+                      <span class:list={['w-fit rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider text-text-on-dark', badge?.color ?? 'bg-midnight-indigo/35']}>
                         {badge ? (isFr ? badge.fr : badge.en) : service.name}
                       </span>
                     </div>
@@ -285,13 +285,13 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
 
                 {/* CTA pill — solid background */}
                 <div class:list={[
-                  'mt-1 flex w-fit items-center gap-2 rounded-xl py-1.5 pl-3 pr-1.5 transition-colors duration-300 group-hover:bg-white/25',
+                  'mt-1 flex w-fit items-center gap-2 rounded-full py-1.5 pl-3.5 pr-2 transition-colors duration-300 group-hover:bg-white/25',
                   serviceBadgeMap[service.slug]?.color?.replace('bg-', 'bg-').replace('/35', '/20') || 'bg-white/15'
                 ]}>
                   <span class="text-xs font-semibold text-text-on-dark">
                     {t.ui.learnMore}
                   </span>
-                  <div class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg transition-transform duration-300 group-hover:translate-x-0.5">
+                  <div class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full transition-transform duration-300 group-hover:translate-x-0.5">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-text-on-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
                   </div>
                 </div>
