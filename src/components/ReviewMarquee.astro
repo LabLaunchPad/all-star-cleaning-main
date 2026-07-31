@@ -8,8 +8,6 @@ interface Props {
 }
 
 const { locale, title, subtitle } = Astro.props;
-const isFr = locale === 'fr';
-const s = siteSettings;
 
 // Load all 8 real Google reviews from CMS content files
 const reviewFiles = import.meta.glob<{ default: Record<string, unknown> }>('/src/content/reviews/*.json', { eager: true });

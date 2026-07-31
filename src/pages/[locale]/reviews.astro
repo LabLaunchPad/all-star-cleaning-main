@@ -16,7 +16,6 @@ const t = useTranslations(locale);
 const isFr = locale === 'fr';
 const altLocale = isFr ? 'en' : 'fr';
 const home = homepageData;
-const s = siteSettings;
 
 // Load all reviews from CMS content files (excluding disabled services)
 const reviewFiles = import.meta.glob<{ default: Record<string, unknown> }>('/src/content/reviews/*.json', { eager: true });
