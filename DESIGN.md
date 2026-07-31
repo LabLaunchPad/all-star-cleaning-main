@@ -4,39 +4,28 @@
 
 All design tokens, utilities, reset layers, and theme configurations are declared in a single entry point:
 - **`src/styles/global.css`**: Tailwind CSS v4 `@theme` block + `@layer utilities`
+- **Hybrid Strategy**: **Meta Modern Commerce** (`DESIGNmeta.md`) drives the entire website body & components, combined with **Dell 1996 Retro Catalog** (`DESIGNdell.md`) for the footer.
 
 ---
 
-## Color Strategy: Midnight Indigo & Tinted White
+## Visual Aesthetics & Palette
 
-Vibrant Midnight Indigo (`oklch(63.2% 0.149 243.5)` / `#2e82f7`) carries the authoritative brand voice across headings, primary CTAs, and active states. A clean off-white background (tinted toward indigo, hue 243.5) anchors the experience, with Gold reserved strictly for ratings and specialized emphasis.
+### Website Body: Meta Modern Commerce (`DESIGNmeta.md`)
+- **Primary Accent**: Meta Cobalt Blue (`#0064e0`) — CTAs, active links, focus rings
+- **Deep Ink**: `#0a1317` — Primary headings, hero dark elements
+- **Soft Surface**: `#f1f4f7` — Card backgrounds, secondary containers
+- **Hairline Border**: `#ced0d4` — Clean hairline division borders
+- **Pill Buttons**: Full pill-shaped rounding (`rounded-full` / `9999px`) on all primary and secondary buttons.
+- **Rounded Cards**: Generous `24px` (`1.5rem`) rounding on all cards and bento grid elements.
+- **Typography**: Clean geometric sans-serif (`system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`).
 
-## Palette
+### Footer: Dell 1996 Retro Catalog (`DESIGNdell.md`)
+- **Top Accent Line**: Bold 4px Red border (`#e91d2a`)
+- **Frame Ink**: Pure Black background (`#000000`)
+- **Sticker Badges**: High-contrast Yellow badge (`#fcc20f`) with black text and drop shadow
+- **Typography**: Uppercase sans-serif column headings (`Arial Black`) + classic serif body text (`Times New Roman`)
+- **Corners & Edges**: Flat 0px retro corners (`rounded-none`).
 
-### Primary: Midnight Indigo (Refined Royal Blue)
-- `--color-midnight-indigo`: `oklch(63.2% 0.149 243.5)` / `#2e82f7` — Primary brand color, headings, CTAs
-- `--color-midnight-indigo-light`: `oklch(73.2% 0.13 243.5)` / `#61a1fb` — Hover states, accents
-- `--color-midnight-indigo-dark`: `oklch(32% 0.13 243.5)` / `#1c3f7b` — Deep emphasis, button hovers
-- `--color-midnight-indigo-surface`: `oklch(97.5% 0.015 243.5)` / `#f4f8fc` — Light accent surfaces
-
-### Anchor: Navy (Warm Indigo-Tinted Dark)
-- `--color-navy`: `oklch(17.5% 0.045 243.5)` / `#131824` — Hero backgrounds, authoritative elements
-- `--color-navy-light`: `oklch(25.5% 0.050 243.5)` / `#222838` — Gradient endpoints
-- `--color-navy-dark`: `oklch(12.0% 0.035 243.5)` / `#0a0d16` — Deep dark surfaces
-
-### Accent: Gold
-- `--color-gold`: `oklch(75% 0.15 85)` / `#c9a84c` — Rating stars, highlights
-- `--color-gold-light`: `oklch(80% 0.14 85)` / `#d4b96e` — Hover gold
-- `--color-gold-dark`: `oklch(65% 0.16 85)` / `#a88a2e` — Deep gold emphasis
-
-### Neutrals (Indigo-Tinted, Hue 243.5)
-- `--color-off-white`: `oklch(98.0% 0.005 243.5)` / `#f9fafc` — Page background
-- `--color-off-white-dark`: `oklch(93.5% 0.006 243.5)` / `#e5e8f0` — Subtle dividers, secondary backgrounds
-- `--color-muted-foreground`: `oklch(42.0% 0.025 243.5)` / `#545a70` — Secondary text (WCAG AA 5.22:1 contrast)
-- `--color-border`: `oklch(92.0% 0.008 243.5)` / `#e5e8f0` — Hairline borders
-- `--color-card`: `oklch(99.2% 0.004 243.5)` — Card surfaces (tinted white, not pure `#fff`)
-- `--color-text-on-dark`: `oklch(94.5% 0.025 243.5)` / `#e9ecf5` — Text on navy surfaces (Indigo-Wash)
-- `--color-text-on-dark-muted`: `oklch(88.0% 0.03 243.5)` / `#cbd2e5` — Secondary text on navy surfaces
 
 ---
 

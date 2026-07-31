@@ -1,5 +1,6 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
+import CTASection from '@/components/CTASection.astro';
 import GoogleReviewBadge from '@/components/GoogleReviewBadge.astro';
 import { useTranslations } from '@/i18n/translations';
 import { getFounderSchema, getBreadcrumbSchema } from '@/seo';
@@ -118,4 +119,8 @@ const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
       </div>
     </div>
   </section>
+
+  <!-- CTA SECTION — Unified component across website -->
+  <CTASection locale={locale} />
 </PageLayout>
+

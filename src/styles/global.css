@@ -13,87 +13,58 @@
   /* Blue carries 30-60% of hero/CTA surfaces. Navy anchors. White keeps it clean. */
   /* Neutrals tinted toward blue (hue 255) with chroma 0.005-0.015 */
 
-  /* Brand: Midnight Indigo (Refined) */
-  --color-midnight-indigo: #2e82f7;
-  --color-midnight-indigo: oklch(63.2% 0.149 243.5);
-  --color-midnight-indigo-light: #61a1fb;
-  --color-midnight-indigo-light: oklch(73.2% 0.13 243.5);
-  --color-midnight-indigo-dark: #1c3f7b;
-  --color-midnight-indigo-dark: oklch(32% 0.13 243.5);
-  --color-midnight-indigo-surface: #f4f8fc;
-  --color-midnight-indigo-surface: oklch(97.5% 0.015 243.5);
+  /* Brand: Meta Cobalt Blue Primary */
+  --color-midnight-indigo: #0064e0;
+  --color-midnight-indigo-light: #0091ff;
+  --color-midnight-indigo-dark: #0457cb;
+  --color-midnight-indigo-surface: #f1f4f7;
 
-  /* Anchor: Navy — warm-tinted indigo, never pure black */
-  --color-navy: #131824;
-  --color-navy: oklch(17.5% 0.045 243.5);
-  --color-navy-light: #222838;
-  --color-navy-light: oklch(25.5% 0.050 243.5);
-  --color-navy-dark: #0a0d16;
-  --color-navy-dark: oklch(12.0% 0.035 243.5);
+  /* Anchor: Deep Ink */
+  --color-navy: #0a1317;
+  --color-navy-light: #1c1e21;
+  --color-navy-dark: #050a0c;
 
-  /* Accent: Gold reserved for ratings and rare emphasis */
-  --color-gold: #c9a84c;
-  --color-gold: oklch(75% 0.15 85);
-  --color-gold-light: #d4b96e;
-  --color-gold-light: oklch(80% 0.14 85);
-  --color-gold-dark: #a88a2e;
-  --color-gold-dark: oklch(65% 0.16 85);
+  /* Accent: Gold / Attention */
+  --color-gold: #f2a918;
+  --color-gold-light: #f7b928;
+  --color-gold-dark: #d48b00;
 
   /* Semantic colors */
-  --color-green: #1a9a4a;
-  --color-green: oklch(63.0% 0.190 145);
-  --color-green-light: #3dba6a;
-  --color-green-light: oklch(78.0% 0.180 150);
-  --color-green-dark: #157a3a;
-  --color-green-dark: oklch(52.0% 0.175 140);
+  --color-green: #31a24c;
+  --color-green-light: #44b65e;
+  --color-green-dark: #228038;
   --color-green-surface: #f0fdf4;
-  --color-green-surface: oklch(98% 0.015 145);
 
-  --color-sky: #0ea5e9;
-  --color-sky: oklch(70% 0.16 235);
+  --color-sky: #0091ff;
   --color-sky-light: #38bdf8;
-  --color-sky-light: oklch(78% 0.14 235);
-  --color-sky-dark: #0284c7;
-  --color-sky-dark: oklch(60% 0.18 235);
+  --color-sky-dark: #0064e0;
   --color-sky-surface: #f0f9ff;
-  --color-sky-surface: oklch(98% 0.015 235);
 
-  --color-amber: #f59e0b;
-  --color-amber: oklch(78% 0.17 75);
-  --color-amber-light: #fbbf24;
-  --color-amber-light: oklch(84% 0.16 75);
-  --color-amber-dark: #d97706;
-  --color-amber-dark: oklch(68% 0.18 75);
+  --color-amber: #f2a918;
+  --color-amber-light: #f7b928;
+  --color-amber-dark: #d48b00;
   --color-amber-surface: #fffbeb;
-  --color-amber-surface: oklch(98.5% 0.015 75);
 
-  /* Neutrals — indigo-tinted (hue 243.5), hex fallbacks + OKLCH */
-  --color-off-white: #f9fafc;
-  --color-off-white: oklch(98.0% 0.005 243.5);       /* Page background */
-  --color-off-white-dark: #e5e8f0;
-  --color-off-white-dark: oklch(93.5% 0.006 243.5);
-  --color-background: var(--color-off-white);
-  --color-foreground: var(--color-navy);
-  --color-primary: var(--color-midnight-indigo);
-  --color-primary-foreground: var(--color-text-on-dark);
-  --color-destructive-foreground: var(--color-text-on-dark);
-  --color-input: var(--color-border);
-  --color-secondary: var(--color-navy);
-  --color-secondary-foreground: #fafafc;
-  --color-secondary-foreground: oklch(98.5% 0.004 243.5);
-  --color-accent: var(--color-gold);
-  --color-accent-foreground: var(--color-navy);
-  --color-muted: #545a70;
-  --color-muted: oklch(35.0% 0.03 243.5);              /* Deeper secondary text for better authority */
-  --color-muted-foreground: #545a70;
-  --color-muted-foreground: oklch(42.0% 0.025 243.5);   /* WCAG AA: 5.22:1 on off-white */
-  --color-border: #e5e8f0;
-  --color-border: oklch(92.0% 0.008 243.5);              /* Tinted toward brand, not pure gray */
-  --color-ring: var(--color-midnight-indigo);                 /* Indigo focus rings */
-  --color-destructive: #b91c1c;
-  --color-destructive: oklch(55.0% 0.200 25);
-  --color-card: oklch(99.2% 0.004 243.5);                /* Card surfaces — tinted white, not pure #fff */
-  --color-card-foreground: var(--color-navy);
+  /* Neutrals — Meta modern commerce */
+  --color-off-white: #ffffff;
+  --color-off-white-dark: #f1f4f7;
+  --color-background: #ffffff;
+  --color-foreground: #1c1e21;
+  --color-primary: #0064e0;
+  --color-primary-foreground: #ffffff;
+  --color-destructive-foreground: #ffffff;
+  --color-input: #ced0d4;
+  --color-secondary: #0a1317;
+  --color-secondary-foreground: #ffffff;
+  --color-accent: #f2a918;
+  --color-accent-foreground: #0a1317;
+  --color-muted: #5d6c7b;
+  --color-muted-foreground: #444950;
+  --color-border: #ced0d4;
+  --color-ring: #0064e0;
+  --color-destructive: #e41e3f;
+  --color-card: #f1f4f7;
+  --color-card-foreground: #1c1e21;
 
   /* === TYPOGRAPHY TEST: "White" Text on Dark === */
   /* --color-text-on-dark: oklch(98.0% 0.003 243.5); [Original Stark White] */
@@ -116,8 +87,8 @@
 
   /* === TYPOGRAPHY === */
   /* Impeccable typeset: fluid clamp() headings, fixed rem body, 1.25 ratio scale */
-  --font-heading: 'DM Serif Display', Georgia, serif;
-  --font-body: 'Outfit', system-ui, sans-serif;
+  --font-heading: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Outfit', sans-serif;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Outfit', sans-serif;
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -133,12 +104,12 @@
   --text-subheading: clamp(1.125rem, 2.5vw, 1.5rem);
   --text-lead: 1.25rem;              /* Body lead paragraphs — slightly larger */
 
-  /* === RADIUS === */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.375rem;
-  --radius-lg: 0.5rem;
-  --radius-xl: 0.75rem;
-  --radius-2xl: 1rem;
+  /* === RADIUS — Meta Modern Rounded === */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 1.75rem;
+  --radius-2xl: 2rem;
   --radius-full: 9999px;
 
   /* === SPACING === */
@@ -369,3 +340,6 @@
     margin-top: 0.25rem;
   }
 }
+
+
+

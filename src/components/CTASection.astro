@@ -1,0 +1,63 @@
+---
+// src/components/CTASection.astro
+import siteSettings from '@/content/settings.json';
+import homepageData from '@/content/homepage.json';
+
+interface Props {
+  locale: 'en' | 'fr';
+  title?: string;
+  subtitle?: string;
+  bgImage?: string;
+}
+
+const { locale, title, subtitle, bgImage } = Astro.props;
+const isFr = locale === 'fr';
+
+const ctaTitle = title || (isFr ? homepageData.ctaHeadlineFr : homepageData.ctaHeadlineEn);
+const ctaSubtitle = subtitle || (isFr ? homepageData.ctaSubtitleFr : homepageData.ctaSubtitleEn);
+const imageSrc = bgImage || homepageData.ctaImage || '/images/clean-house-hero.jpg';
+---
+
+<section aria-label={isFr ? "Appel à l'action" : "Call to action"} class="relative overflow-hidden py-16 text-text-on-dark md:py-24 lg:py-28">
+  <!-- Background image with theme overlay -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src={imageSrc}
+      alt="All Star Cleaning home exterior"
+      role="presentation"
+      width="1344"
+      height="768"
+      class="h-full w-full object-cover"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 cta-gradient opacity-95"></div>
+  </div>
+
+  <!-- Content Container -->
+  <div class="relative z-10 mx-auto max-w-4xl px-4 md:px-6 text-center">
+    <h2 class="heading-subsection slide-up font-heading font-bold !text-text-on-dark text-shadow-lg">
+      {ctaTitle}
+    </h2>
+    <p class="fade-in delay-2 mx-auto mt-4 max-w-2xl text-lg text-text-on-dark-muted">
+      {ctaSubtitle}
+    </p>
+
+    <div class="fade-in delay-4 mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <a
+        href={`/${locale}/contact`}
+        class="touch-target group inline-flex w-full items-center justify-center gap-2 rounded-full bg-midnight-indigo px-8 py-3.5 text-base font-bold uppercase tracking-wider text-text-on-dark shadow-xl transition-all duration-200 hover:bg-midnight-indigo-dark hover:scale-105 active:scale-95 sm:w-auto"
+      >
+        {isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+
+      <a
+        href={`tel:${siteSettings.phoneLink}`}
+        class="touch-target inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-text-on-dark/40 bg-text-on-dark/10 px-8 py-3.5 text-base font-bold uppercase tracking-wider text-text-on-dark transition-all duration-200 hover:border-text-on-dark/80 hover:bg-text-on-dark/20 sm:w-auto"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        {siteSettings.phone}
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,5 +1,6 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
+import CTASection from '@/components/CTASection.astro';
 import GoogleReviewBadge from '@/components/GoogleReviewBadge.astro';
 import { useTranslations } from '@/i18n/translations';
 import { getReviewSchema, getBreadcrumbSchema } from '@/seo';
@@ -117,34 +118,7 @@ const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
     </div>
   </section>
 
-  <!-- CTA SECTION — Premium full-width version synced from homepage -->
-  <section aria-label={isFr ? 'Appel à l\'action' : 'Call to action'} class="relative overflow-hidden py-20 text-text-on-dark md:py-24 lg:py-28">
-    <!-- Background image with overlay -->
-    <div class="absolute inset-0 z-0">
-      <img
-        src={home.ctaImage}
-        alt="Clean home exterior ready for service"
-        role="presentation"
-        width="1344"
-        height="768"
-        class="h-full w-full object-cover"
-        loading="lazy"
-      />
-      <div class="absolute inset-0 bg-midnight-indigo-dark/90"></div>
-    </div>
-    <!-- Content -->
-    <div class="relative z-10 mx-auto max-w-4xl px-4 md:px-6 text-center">
-      <h2 class="heading-subsection slide-up font-heading font-bold !text-text-on-dark">{isFr ? home.ctaHeadlineFr : home.ctaHeadlineEn}</h2>
-      <p class="fade-in delay-2 mx-auto mt-4 max-w-2xl text-text-on-dark-muted">{isFr ? home.ctaSubtitleFr : home.ctaSubtitleEn}</p>
-      <div class="fade-in delay-4 mt-8 flex flex-col items-center gap-4 md:flex-row md:justify-center">
-        <a href={`/${locale}/contact`} class="touch-target inline-flex items-center rounded-full bg-midnight-indigo px-8 py-3.5 text-lg font-semibold uppercase tracking-wider text-text-on-dark shadow-lg transition-colors duration-200 hover:bg-midnight-indigo-dark hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-midnight-indigo">
-          {isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}
-        </a>
-        <a href={`tel:${s.phoneLink}`} class="touch-target inline-flex items-center gap-2 rounded-full border-2 border-text-on-dark/30 px-8 py-3.5 text-lg font-semibold uppercase tracking-wider text-text-on-dark transition-colors duration-200 hover:border-text-on-dark/60 hover:bg-text-on-dark/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-midnight-indigo">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          {s.phone}
-        </a>
-      </div>
-    </div>
-  </section>
+  <!-- CTA SECTION — Unified component across website -->
+  <CTASection locale={locale} />
 </PageLayout>
+
