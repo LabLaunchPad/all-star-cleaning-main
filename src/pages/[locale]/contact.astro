@@ -133,8 +133,8 @@ const contactPageSchema = {
             </div>
           </div>
 
-          <!-- Google Map (Stretches dynamically to match left column height) -->
-          <div class="mt-6 flex-1 overflow-hidden rounded-xl border border-border shadow-sm min-h-[250px]">
+          <!-- Google Map (Explicit mobile height + stretches dynamically on desktop) -->
+          <div class="mt-6 flex-1 overflow-hidden rounded-xl border border-border shadow-sm h-[300px] sm:h-[360px] lg:h-full lg:min-h-[250px]">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.5!2d-75.6667!3d45.35!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDXCsDIxJzAwLjAiTiA3NcKwNDAnMDAuMSJX!5e0!3m2!1sen!2sca!4v1"
               width="100%"
@@ -143,7 +143,7 @@ const contactPageSchema = {
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               title={isFr ? 'Emplacement de All Star Cleaning sur Google Maps' : 'All Star Cleaning location on Google Maps'}
-              class="h-full w-full min-h-[250px]"
+              class="h-full w-full"
             ></iframe>
           </div>
         </div>
