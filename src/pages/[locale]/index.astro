@@ -425,7 +425,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
             </div>
 
             <a
-              href="https://www.google.com/maps/search/?api=1&query=800+Hunt+Club+Rd,+Ottawa,+ON+K1V+1C3"
+              href={siteSettings.googleUrl || "https://www.google.com/maps/search/?api=1&query=All+Star+Cleaning,+800+Hunt+Club+Rd,+Ottawa,+ON+K1V+1C3"}
               target="_blank"
               rel="noopener noreferrer"
               class="touch-target inline-flex items-center gap-2 rounded-full bg-midnight-indigo px-5 py-2 text-xs font-bold text-white shadow-blue-glow transition-all duration-200 hover:bg-midnight-indigo-dark hover:scale-[1.02]"
@@ -440,7 +440,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
             </a>
 
             <a
-              href="https://maps.apple.com/?address=800+Hunt+Club+Rd,+Ottawa,+ON+K1V+1C3"
+              href="https://maps.apple.com/?q=All+Star+Cleaning&address=800+Hunt+Club+Rd,+Ottawa,+ON+K1V+1C3"
               target="_blank"
               rel="noopener noreferrer"
               class="touch-target inline-flex items-center gap-2 rounded-full border border-midnight-indigo/30 bg-card px-5 py-2 text-xs font-bold text-navy transition-all duration-200 hover:bg-midnight-indigo/5 hover:scale-[1.02]"
