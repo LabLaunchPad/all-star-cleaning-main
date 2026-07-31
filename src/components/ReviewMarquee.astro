@@ -68,10 +68,10 @@ const avatarGradients = [
       </span>
     </div>
 
-    <h2 class="heading-section font-heading font-bold text-navy tracking-tight">
+    <h2 class="font-heading text-2xl font-bold tracking-tight text-navy sm:text-3xl lg:text-4xl">
       {title || (isFr ? 'Ce Que Disent Nos Clients' : 'What People Are Saying')}
     </h2>
-    <p class="mt-3 measure mx-auto text-base text-muted-foreground">
+    <p class="mt-3 max-w-xl mx-auto text-sm text-muted-foreground leading-relaxed">
       {subtitle || (isFr
         ? 'Découvrez les commentaires réels de propriétaires et commerçants à travers Ottawa.'
         : 'Don\'t just take our word for it. Here\'s what the Ottawa community has to say about our exterior cleaning services.')}
@@ -91,17 +91,17 @@ const avatarGradients = [
           const gradientClass = avatarGradients[idx % avatarGradients.length];
 
           return (
-            <li class="w-[340px] sm:w-[380px] shrink-0 rounded-2xl border border-midnight-indigo/15 bg-background p-6 sm:p-7 flex flex-col justify-between shadow-[0_4px_20px_-10px_rgba(0,0,0,0.06)] hover:shadow-xl hover:border-midnight-indigo/30 transition-all duration-300">
+            <li class="w-[280px] sm:w-[320px] shrink-0 rounded-2xl border border-midnight-indigo/15 bg-background p-4 sm:p-5 flex flex-col justify-between shadow-[0_4px_20px_-10px_rgba(0,0,0,0.06)] hover:shadow-xl hover:border-midnight-indigo/30 transition-all duration-300">
               <div>
                 {/* Header row: Quote icon + Star Rating */}
-                <div class="flex items-center justify-between mb-4">
-                  <svg class="h-7 w-7 text-midnight-indigo/25" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <div class="flex items-center justify-between mb-3">
+                  <svg class="h-5 w-5 text-midnight-indigo/25" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
                   </svg>
                   <div class="flex gap-0.5" role="img" aria-label={`${review.rating} out of 5 stars`}>
                     {[...Array(5)].map((_, i) => (
                       <svg
-                        class={`h-4 w-4 ${i < review.rating ? 'text-amber-500 fill-amber-500' : 'text-border'}`}
+                        class={`h-3.5 w-3.5 ${i < review.rating ? 'text-amber-500 fill-amber-500' : 'text-border'}`}
                         viewBox="0 0 24 24"
                         aria-hidden="true"
                       >
@@ -111,20 +111,20 @@ const avatarGradients = [
                   </div>
                 </div>
 
-                {/* Review Text Body */}
-                <p class="text-sm sm:text-base text-foreground/90 leading-relaxed font-normal mb-6">
-                  "{text}"
+                {/* Review Text Body — truncated to 160 chars */}
+                <p class="text-xs sm:text-sm text-foreground/90 leading-relaxed font-normal mb-4">
+                  "{text.length > 160 ? text.slice(0, 157) + '…' : text}"
                 </p>
               </div>
 
               {/* Author & Service Info */}
-              <div class="flex items-center gap-3.5 pt-4 border-t border-border/50">
-                <div class={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${gradientClass} text-white font-semibold text-xs shadow-xs`}>
+              <div class="flex items-center gap-3 pt-3 border-t border-border/50">
+                <div class={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${gradientClass} text-white font-semibold text-xs shadow-xs`}>
                   {initials}
                 </div>
                 <div class="flex flex-col min-w-0 flex-1">
-                  <span class="text-sm font-bold text-navy truncate">{review.author}</span>
-                  <span class="text-xs text-muted-foreground truncate">{service}</span>
+                  <span class="text-xs font-bold text-navy truncate">{review.author}</span>
+                  <span class="text-[11px] text-muted-foreground truncate">{service}</span>
                 </div>
                 <span class="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-700 dark:text-emerald-400 shrink-0">
                   <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>

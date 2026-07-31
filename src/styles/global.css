@@ -248,7 +248,9 @@
   .text-shadow { text-shadow: 0 1px 4px oklch(15% 0.05 243.5 / 0.6); }
   .text-shadow-lg { text-shadow: 0 2px 8px oklch(15% 0.05 243.5 / 0.7); }
 
-  /* Impeccable typeset: heading size variety for visual rhythm */
+  /* Impeccable typeset: heading size variety for visual rhythm.
+     heading-section / heading-subsection: document/article h2s only (privacy, terms, sitemap).
+     Marketing section headings → text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-navy */
   .heading-display { font-size: var(--text-display); }
   .heading-section { font-size: var(--text-headline); }
   .heading-subsection { font-size: var(--text-subheading); }

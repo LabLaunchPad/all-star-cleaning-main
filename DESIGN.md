@@ -100,3 +100,10 @@ Tinted brand shadows using OKLCH indigo hue (`oklch(15% 0.05 243.5)`):
 5. **No Decorative Glassmorphism**: Cards and content sections must use solid tinted surfaces (`--color-card`).
 6. **Touch Targets**: Every interactive link or button must maintain a minimum 44×44px touch target.
 7. **Accessibility**: All text colors must meet WCAG AA contrast guidelines (4.5:1 minimum).
+8. **Section Heading Canon**: All marketing section `<h2>` headings must use the canonical sizing pattern:
+   ```html
+   <h2 class="font-heading text-2xl font-bold tracking-tight text-navy sm:text-3xl lg:text-4xl">
+   ```
+   Subtitle below: `<p class="mt-3 max-w-xl text-sm text-muted-foreground leading-relaxed">`
+   The `.heading-section` utility is for **document/article pages only** (privacy, terms, sitemap).
+
