@@ -157,8 +157,8 @@
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-padding-top: 5rem; }
   body { font-family: var(--font-body); color: var(--color-foreground); background-color: var(--color-background); line-height: 1.6; min-height: 100vh; font-kerning: normal; padding-top: env(safe-area-inset-top); padding-bottom: max(0px, env(safe-area-inset-bottom)); }
 
-  /* Impeccable typeset: hierarchy through scale + weight contrast (≥1.25 ratio) */
-  h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); line-height: 1.15; text-wrap: balance; color: var(--color-midnight-indigo); }
+  /* Modern Typeset: High-contrast Deep Ink headings for modern UI */
+  h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); line-height: 1.15; text-wrap: balance; color: var(--color-navy); }
   h1 { font-weight: 700; letter-spacing: -0.02em; }
   h2 { font-weight: 700; }
   h3 { font-weight: 600; }
