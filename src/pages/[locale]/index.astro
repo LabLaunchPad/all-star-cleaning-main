@@ -400,39 +400,49 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
           </p>
         </div>
 
-        {/* Map iframe Container (Official Unblocked Embed Payload) */}
-        <div class="rounded-2xl overflow-hidden bg-card border border-border shadow-md min-h-[350px] sm:min-h-[400px]">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2805.1768820625977!2d-75.6705574234032!3d45.34522817107248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce062c3e1e69b5%3A0x7d6a5d7c48972b22!2s800%20Hunt%20Club%20Rd%2C%20Ottawa%2C%20ON%20K1V%201C3!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
-            class="w-full h-full min-h-[350px] sm:min-h-[400px] border-0"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title={isFr ? 'Emplacement de All Star Cleaning sur Google Maps' : 'All Star Cleaning location on Google Maps'}
-          ></iframe>
-        </div>
-
-        {/* Address, Hours & Google Directions Link Chips */}
-        <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-          <div class="inline-flex items-center gap-2 rounded-full border border-border/80 bg-card px-4 py-2 text-xs font-semibold text-navy shadow-2xs">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-midnight-indigo shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>{isFr ? siteSettings.addressFr : siteSettings.addressEn}</span>
+        {/* Failproof Interactive Map (OpenStreetMap + One-Tap Native Nav Launchers) */}
+        <div class="flex flex-col gap-3">
+          <div class="relative w-full h-[350px] sm:h-[420px] rounded-2xl overflow-hidden bg-card border border-border shadow-md">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-75.6805%2C45.3352%2C-75.6605%2C45.3552&layer=mapnik&marker=45.3452%2C-75.6705"
+              class="absolute inset-0 w-full h-full border-0"
+              loading="lazy"
+              title={isFr ? 'Emplacement de All Star Cleaning sur la carte' : 'All Star Cleaning location map'}
+            ></iframe>
           </div>
 
-          <div class="inline-flex items-center gap-2 rounded-full border border-border/80 bg-card px-4 py-2 text-xs font-semibold text-navy shadow-2xs">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-midnight-indigo shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>{isFr ? siteSettings.hoursFr : siteSettings.hoursEn}</span>
-          </div>
+          <!-- Address, Hours & Google/Apple Navigation Buttons -->
+          <div class="mt-2 flex flex-wrap items-center justify-center gap-3">
+            <div class="inline-flex items-center gap-2 rounded-full border border-border/80 bg-card px-4 py-2 text-xs font-semibold text-navy shadow-2xs">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-midnight-indigo shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>{isFr ? siteSettings.addressFr : siteSettings.addressEn}</span>
+            </div>
 
-          <a
-            href={siteSettings.googleUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="touch-target inline-flex items-center gap-2 rounded-full bg-midnight-indigo px-5 py-2 text-xs font-bold text-white shadow-blue-glow transition-all duration-200 hover:bg-midnight-indigo-dark hover:scale-[1.02]"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span>{isFr ? "Obtenir l'itinéraire Google" : 'Get Google Directions'}</span>
-          </a>
+            <div class="inline-flex items-center gap-2 rounded-full border border-border/80 bg-card px-4 py-2 text-xs font-semibold text-navy shadow-2xs">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-midnight-indigo shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>{isFr ? siteSettings.hoursFr : siteSettings.hoursEn}</span>
+            </div>
+
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=800+Hunt+Club+Rd,+Ottawa,+ON+K1V+1C3"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="touch-target inline-flex items-center gap-2 rounded-full bg-midnight-indigo px-5 py-2 text-xs font-bold text-white shadow-blue-glow transition-all duration-200 hover:bg-midnight-indigo-dark hover:scale-[1.02]"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <span>{isFr ? 'Ouvrir sur Google Maps' : 'Open in Google Maps'}</span>
+            </a>
+
+            <a
+              href="https://maps.apple.com/?address=800+Hunt+Club+Rd,+Ottawa,+ON+K1V+1C3"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="touch-target inline-flex items-center gap-2 rounded-full border border-midnight-indigo/30 bg-card px-5 py-2 text-xs font-bold text-navy transition-all duration-200 hover:bg-midnight-indigo/5 hover:scale-[1.02]"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 text-midnight-indigo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.5-3-3 1.41-1.41L13 13.67l4.59-4.58L19 10.5z"/></svg>
+              <span>{isFr ? 'Ouvrir sur Apple Maps' : 'Open in Apple Maps'}</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
