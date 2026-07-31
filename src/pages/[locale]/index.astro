@@ -312,7 +312,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
   <!-- ============================================================ -->
   <!-- HOW IT WORKS SECTION — 3-step process with before/after image -->
   <!-- ============================================================ -->
-  <section aria-label={isFr ? 'Comment ça marche' : 'How it works'} class="pt-8 pb-12 md:pt-10 md:pb-16 lg:pt-10 lg:pb-20" style="content-visibility: auto; contain-intrinsic-size: 0 700px">
+  <section aria-label={isFr ? 'Comment ça marche' : 'How it works'} class="pt-8 pb-12 md:pt-10 md:pb-16 lg:pt-10 lg:pb-20">
     <div class="mx-auto max-w-7xl px-4 md:px-6">
       <div class="text-center">
         <div class="mb-3 inline-flex items-center gap-1.5 rounded-full bg-midnight-indigo/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-midnight-indigo">
@@ -384,7 +384,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
       </div>
 
       <!-- Homepage Visit Us / Location Map Section -->
-      <div class="mt-20 fade-in delay-4">
+      <div class="mt-20">
         <div class="text-center mb-8">
           <div class="inline-flex items-center gap-1.5 rounded-full border border-midnight-indigo/20 bg-midnight-indigo/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-midnight-indigo mb-4">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -400,18 +400,15 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
           </p>
         </div>
 
-        {/* Embedded Map Card (Failproof Universal Embed for Mobile WebKit & Desktop) */}
-        <div class="overflow-hidden rounded-2xl border border-border shadow-md h-[320px] sm:h-[400px] lg:h-[450px]">
+        {/* Map iframe Container (Exact Douro Soulfood Mobile Working Code) */}
+        <div class="rounded-2xl overflow-hidden bg-card border border-border shadow-md min-h-[350px] sm:min-h-[400px]">
           <iframe
-            src="https://maps.google.com/maps?q=800+Hunt+Club+Rd,+Ottawa,+ON+K1V+1C3&t=&z=14&ie=UTF8&iwloc=&output=embed"
-            width="100%"
-            height="100%"
-            style="border:0;"
+            src="https://maps.google.com/maps?q=800%20Hunt%20Club%20Rd,%20Ottawa,%20ON%20K1V%201C3&t=&z=14&ie=UTF8&iwloc=&output=embed"
+            class="w-full h-full min-h-[350px] sm:min-h-[400px] border-0"
             allowfullscreen=""
-            loading="eager"
+            loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
             title={isFr ? 'Emplacement de All Star Cleaning sur Google Maps' : 'All Star Cleaning location on Google Maps'}
-            class="h-full w-full min-h-[320px] border-0"
           ></iframe>
         </div>
 
