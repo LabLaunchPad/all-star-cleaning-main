@@ -37,11 +37,11 @@ const contactPageSchema = {
     "email": s.email,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": s.streetAddress,
-      "addressLocality": s.addressLocality,
-      "addressRegion": s.addressRegion,
-      "postalCode": s.postalCode,
-      "addressCountry": s.addressCountry
+      "streetAddress": s.addressEn.split(',')[0].trim(),
+      "addressLocality": "Ottawa",
+      "addressRegion": "ON",
+      "postalCode": s.addressEn.match(/[A-Z]\d[A-Z]\s?\d[A-Z]\d/)?.[0] || "K1V 1C3",
+      "addressCountry": "CA"
     }
   }
 };
