@@ -133,14 +133,15 @@ const contactPageSchema = {
             </div>
           </div>
 
-          <!-- Failproof Interactive Map (OpenStreetMap + One-Tap Native Nav Launchers) -->
+          <!-- Google Map Container (Official Unblocked Embed Payload) -->
           <div class="mt-6 flex flex-col gap-3">
             <div class="relative w-full h-[350px] rounded-xl overflow-hidden bg-card border border-border shadow-sm">
               <iframe
-                src="https://www.openstreetmap.org/export/embed.html?bbox=-75.6805%2C45.3352%2C-75.6605%2C45.3552&layer=mapnik&marker=45.3452%2C-75.6705"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2805.1768820625977!2d-75.6705574234032!3d45.34522817107248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce062c3e1e69b5%3A0x7d6a5d7c48972b22!2s800%20Hunt%20Club%20Rd%2C%20Ottawa%2C%20ON%20K1V%201C3!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
                 class="absolute inset-0 w-full h-full border-0"
                 loading="lazy"
-                title={isFr ? 'Emplacement de All Star Cleaning sur la carte' : 'All Star Cleaning location map'}
+                referrerpolicy="no-referrer-when-downgrade"
+                title={isFr ? 'Emplacement de All Star Cleaning sur Google Maps' : 'All Star Cleaning location on Google Maps'}
               ></iframe>
             </div>
 
